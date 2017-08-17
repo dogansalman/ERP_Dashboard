@@ -1,0 +1,44 @@
+<div class="animated fadeIn">
+
+  <!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Müşteriler
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped table-md">
+            <thead>
+            <tr>
+              <th>Firma</th>
+              <th>İlgili Kişi</th>
+              <th>Tel</th>
+              <th>İl/İlçe</th>
+              <th>Kayıt</th>
+              <th>Durum</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr class="linked-table-row" *ngFor='let item of custumerList'  [routerLink]="['/customers/edit', item.id]">
+              <td>{{item.company | capitalizeFirst }} </td>
+              <td>{{item.name | capitalizeFirst}} {{item.lastname | capitalizeFirst}}</td>
+              <td>{{item.phone}}</td>
+              <td>{{item.city | capitalizeFirst}} / {{item.town | capitalizeFirst}}</td>
+              <td>{{item.created_date}}</td>
+              <td>
+                <span [ngClass]="item.state ? 'badge badge-success' : 'badge badge-danger'">{{item.state ? 'Aktif' : 'Pasif'}}</span>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+
+</div>

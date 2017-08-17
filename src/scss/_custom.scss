@@ -1,0 +1,7 @@
+// Here you can add other styles
+.linked-table-row {
+  cursor:pointer;
+}
+.linked-table-row:hover, .linked-table-row:focus, .linked-table-row:active, .linked-table-row:focus:active{
+  background-color: rgba(242, 242, 242, 0.48);
+}

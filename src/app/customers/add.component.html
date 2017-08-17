@@ -1,0 +1,97 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate class="form-horizontal">
+      <div class="card">
+        <div class="card-header">
+          <strong>Müşteri</strong> Ekle
+        </div>
+            <div class="col-sm-12 col-md-5 card-body">
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="company">Firma Adı</label>
+                <div class="col-md-9">
+                  <input ngModel type="text" id="company" name="company" class="form-control" placeholder="Firma Adı">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="adress">Adres</label>
+                <div class="col-md-9">
+                  <textarea ngModel id="adress" name="adress" rows="3" class="form-control" placeholder="Adres"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="country">Ülke</label>
+                <div class="col-md-9">
+                  <select [ngModel]="'Türkiye'" name="country" class="form-control" id="country">
+                    <option selected>Türkiye</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="city">İl</label>
+                <div class="col-md-9">
+                  <select [ngModel]="'0'" name="city" appCities (cities)="cities = $event" class="form-control" id="city" #citydrp>
+                    <option value="0">Seçiniz</option>
+                    <option *ngFor="let c of cities" value="{{c.il}}"> {{c.il}} </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="town">İlçe</label>
+                <div class="col-md-9">
+                  <select [ngModel]="'0'" name="town" class="form-control" id="town" appTowns (towns)="towns = $event" [selectedCity]="citydrp.value">
+                    <option value="0">Seçiniz</option>
+                    <option *ngFor="let t of towns" value="{{t}}"> {{t}} </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="email">E-posta</label>
+                <div class="col-md-9">
+                  <input ngModel type="email" id="email" name="email" class="form-control" placeholder="E-posta">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="password">Şifre</label>
+                <div class="col-md-9">
+                  <input ngModel type="text" id="password" name="password" class="form-control" placeholder="Şifre">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="phone">Telefon</label>
+                <div class="col-md-9">
+                  <input ngModel type="number" id="phone" name="phone" class="form-control" placeholder="Telefon No">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="name">İlgili Adı</label>
+                <div class="col-md-9">
+                  <input ngModel type="text" id="name" name="name" class="form-control" placeholder="İlgili Adı">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label" for="lastname">İlgili Soyadı</label>
+                <div class="col-md-9">
+                  <input ngModel type="text" id="lastname" name="lastname" class="form-control" placeholder="İlgili Soyadı">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 form-control-label">Aktif/Pasif</label>
+                <div class="col-md-9 text-right">
+                  <label class="switch switch-3d switch-primary">
+                    <input ngModel name="state" checked="" class="switch-input" type="checkbox">
+                    <span class="switch-label"></span>
+                    <span class="switch-handle"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> {{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+          <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> {{this.id ? 'Müşteri Sil' : 'Temizle'}}</button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div><!--/.row-->
+</div>
