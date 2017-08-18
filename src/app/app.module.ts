@@ -18,8 +18,8 @@ import { AppRoutingModule } from './app.routing';
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
-
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 
 @NgModule({
@@ -28,7 +28,11 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    ToastModule.forRoot()
+
   ],
   declarations: [
     AppComponent,
