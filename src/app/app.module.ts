@@ -19,8 +19,7 @@ import { AppRoutingModule } from './app.routing';
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -31,7 +30,12 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
     ChartsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    ToastModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 20000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      closeButton: true
+    })
 
   ],
   declarations: [
@@ -44,10 +48,11 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
     AsideToggleDirective,
   ],
   providers: [{
-    provide: LocationStrategy,
+    provide: [LocationStrategy],
     useClass: HashLocationStrategy,
   }
   ],
   bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+}

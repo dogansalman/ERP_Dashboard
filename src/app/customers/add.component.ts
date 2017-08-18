@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ApiServices} from '../services/api.services';
 import {NgForm} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   templateUrl: 'add.component.html'
@@ -10,12 +10,12 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export class AddComponent  implements OnInit {
   public id: number;
 
-  constructor( private api: ApiServices, private route: ActivatedRoute, private toastr: ToastsManager) {
+  constructor( private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService) {
 
   }
 
   onSubmit(f: NgForm) {
-    this.api.post('customers/add', f.value).subscribe(r => console.log(r));
+    this.api.post('customers/add', f.value).subscribe(r => setTimeout(() => this.toastr.success('Müşteri kaydı oluşturuldu.')));
   }
 
   ngOnInit(): void {
@@ -24,11 +24,13 @@ export class AddComponent  implements OnInit {
         this.id = +params['id'];
       }
     });
-    this.toastr.success('You are awesome!', 'Success!');
+
   }
   // delete customer
   onDelete(): void {
-    this.api.delete('customers/delete/' + this.id).subscribe(r => console.log(r));
+
+    this.api.delete('customers/delete/' + this.id)
+      .subscribe(r => setTimeout(() => this.toastr.success('Müşteri kaydı silindi.')))
   }
 
 }
