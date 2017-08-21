@@ -20,7 +20,7 @@ export class ApiServices {
     return this.http.get(this.apiUrl + url )
       .map((res: Response) =>  <any[]> res.json())
       .catch((error: any) => {
-        setTimeout(() => this.toastr.error('Kayıt bulunamadı. Lütfen tekrar deneyin'));
+        setTimeout(() => { this.toastr.success('Lütfen tekrar deneyin', 'Kayıt bulunamadı!'); }, 100)
         return Observable.throw(error.json().error || 'Server error');
       });
   }
@@ -30,14 +30,24 @@ export class ApiServices {
     return this.http.post(this.apiUrl + url, data, options )
       .map((res: Response) =>  <any[]> res.json())
       .catch((error: any) => {
-        setTimeout(() => this.toastr.error('İşlem başarısız. Lütfen tekrar deneyin.'));
+        setTimeout(() => this.toastr.error('İşlem başarısız. Lütfen tekrar deneyin.', 'İstek başarısız!'));
+        return Observable.throw(error.json().error || 'Server error');
+      })
+  }
+  put(url, data): Observable<any> {
+    const headers = new Headers({ 'Accept': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    return this.http.put(this.apiUrl + url, data, options )
+      .map((res: Response) =>  <any[]> res.json())
+      .catch((error: any) => {
+        setTimeout(() => this.toastr.error('İşlem başarısız. Lütfen tekrar deneyin.', 'İstek başarısız!'));
         return Observable.throw(error.json().error || 'Server error');
       })
   }
   delete(url): Observable<any> {
     return this.http.delete(this.apiUrl + url )
       .catch((error: any) => {
-        setTimeout(() => this.toastr.error('Kayıt silinemedi lütfen tekrar deneyin.'));
+        setTimeout(() => this.toastr.error('Kayıt silinemedi lütfen tekrar deneyin.', 'İşlem başarısız'));
         return Observable.throw(error || 'Server error')
       });
   }

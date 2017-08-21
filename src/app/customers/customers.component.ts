@@ -12,7 +12,7 @@ export class CustomersComponent  implements OnInit {
 
   public custumerList = [];
   ngOnInit(): void {
-    this.api.get('customers/get')
+    this.api.get('customers')
       .subscribe(c => this.custumerList = c);
   }
 

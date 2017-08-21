@@ -11,6 +11,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Routing Module
 import { AppRoutingModule } from './app.routing';
@@ -30,6 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
     ChartsModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 20000,
       positionClass: 'toast-bottom-right',

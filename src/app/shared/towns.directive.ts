@@ -20,8 +20,11 @@ export class TownsDirective implements OnInit, OnChanges {
 
   ngOnChanges(values) {
     //  Emitted Output Town
-    if (this.citylist) {
-      this.towns.emit(this.citylist.filter(t => t.il === values.selectedCity.currentValue)[0].ilceler);
+    if (this.citylist && this.selectedCity && this.selectedCity !== 'Seçiniz') {
+      /*
+      Production moda geçene kadar timeout kullanılacak.
+       */
+      setTimeout(() => this.towns.emit(this.citylist.filter(t => t.city.name === values.selectedCity.currentValue)[0].towns), 1000)
     }
   }
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CustomersComponent } from './customers.component';
-import { AddComponent } from './add.component'
+import { CustomerComponent } from './customer.component'
 import { CustomersRoutingModule } from './customers-routing.module';
 import { HttpModule } from '@angular/http';
 import { ApiServices } from '../services/api.services';
@@ -19,7 +19,7 @@ import { FilterPipe } from '../pipes/filter.pipe';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [ CustomersComponent, AddComponent, CapitalizeFirstPipe, CitiesDirective, TownsDirective, FilterPipe  ],
+  declarations: [ CustomersComponent, CustomerComponent, CapitalizeFirstPipe, CitiesDirective, TownsDirective, FilterPipe  ],
   providers: [
     ApiServices
   ]

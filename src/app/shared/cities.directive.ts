@@ -6,7 +6,6 @@ import {Http} from '@angular/http';
 })
 
 export class CitiesDirective implements OnInit {
-  public city = [];
   @Output('cities') cities: EventEmitter<object> = new EventEmitter<object>();
 
   constructor(public http: Http) {
@@ -15,13 +14,9 @@ export class CitiesDirective implements OnInit {
   @HostListener('change', ['$event'])
   change($event: any) {
     $event.preventDefault();
-
   }
   ngOnInit() {
     this.http.get('/assets/data/cities.json')
-      .subscribe(city =>  {
-        this.city = city.json();
-        this.cities.emit(city.json())
-      });
+      .subscribe(city => this.cities.emit(city.json()));
   }
 }

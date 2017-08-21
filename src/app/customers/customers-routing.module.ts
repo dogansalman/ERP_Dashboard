@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CustomersComponent } from './customers.component';
-import { AddComponent} from './add.component'
+import { CustomerComponent} from './customer.component'
 const routes: Routes = [
   {
     path: '',
@@ -18,16 +18,16 @@ const routes: Routes = [
       },
       {
         path: 'add',
-        component: AddComponent,
+        component: CustomerComponent,
         data: {
           title: 'Yeni Müşteri'
         }
       },
       {
         path: 'edit/:id',
-        component: AddComponent,
+        component: CustomerComponent,
         data: {
-          title: 'Yeni Düzenle'
+          title: 'Müşteri Düzenle'
         }
       }
     ]
