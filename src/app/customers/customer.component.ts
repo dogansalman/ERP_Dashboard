@@ -30,9 +30,8 @@ export class CustomerComponent  implements OnInit {
 
   onSubmit() {
       if (this.id) {
-        console.log(this.customerForm.value);
         this.api.put('customers/' + this.id, this.customerForm.value).subscribe(() => {
-          setTimeout(() => this.toastr.success('Müşteri kaydı oluşturuldu.'));
+          setTimeout(() => this.toastr.success('Müşteri kaydı güncellendi.'));
           setTimeout(() => this.routes.navigateByUrl('customers/list'), 1000);
         });
       } else {
@@ -64,5 +63,4 @@ export class CustomerComponent  implements OnInit {
         setTimeout(() => this.routes.navigateByUrl('customers/list'), 2000);
       })
   }
-
 }

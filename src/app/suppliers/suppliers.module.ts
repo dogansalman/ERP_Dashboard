@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CustomersComponent } from './customers.component';
-import { CustomerComponent } from './customer.component'
-import { CustomersRoutingModule } from './customers-routing.module';
+import { SuppliersComponent } from './suppliers.component';
+import { SupplierComponent } from './supplier.component';
+import { SuppliersRoutingModule } from './suppliers-routing.module';
 import { HttpModule } from '@angular/http';
 import { ApiServices } from '../services/api.services';
 import { CommonModule } from '@angular/common';
@@ -10,10 +10,9 @@ import { CitiesModule } from '../shared/directive/cities/cities.module';
 import { TownsModule } from '../shared/directive/towns/towns.module';
 import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
 
-
 @NgModule({
   imports: [
-    CustomersRoutingModule,
+    SuppliersRoutingModule,
     HttpModule,
     CommonModule,
     FormsModule,
@@ -22,9 +21,9 @@ import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
     CitiesModule,
     TownsModule
   ],
-  declarations: [ CustomersComponent, CustomerComponent],
+  declarations: [ SuppliersComponent, SupplierComponent],
   providers: [
     ApiServices
   ]
 })
-export class CustomersModule { }
+export class SuppliersModule { }

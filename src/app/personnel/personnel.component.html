@@ -1,0 +1,62 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="personnelForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+        <div class="card">
+          <div class="card-header">
+            <strong>Personel</strong> {{this.id ? 'Düzenle' : 'Ekle'}}
+          </div>
+          <div class="col-sm-12 col-md-5 card-body">
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="name">Personel Adı</label>
+              <div class="col-md-9">
+                <input  formControlName="name"  id="name" name="name" class="form-control" placeholder="Personel Adi">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="lastname">Personel Soyadı</label>
+              <div class="col-md-9">
+                <input formControlName="lastname" id="lastname" name="lastname" class="form-control" placeholder="Personel Soyadı">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="lastname">Kullanıcı Adı</label>
+              <div class="col-md-9">
+                <input formControlName="username" id="username" name="username" class="form-control" placeholder="Kullanıcı Adı">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="password">Şifre</label>
+              <div class="col-md-9">
+                <input formControlName="password" id="password" name="password" class="form-control" placeholder="Şifre">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="department">Departman</label>
+              <div class="col-md-9">
+                <select formControlName="department_id" name="department" appDepartments (departments)="departments = $event" class="form-control" id="department">
+                  <option value="Seçiniz">Seçiniz</option>
+                  <option *ngFor="let d of departments" value="{{d.id}}"> {{d.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label">Aktif/Pasif</label>
+              <div class="col-md-9 text-right">
+                <label class="switch switch-3d switch-primary">
+                  <input formControlName="state" name="state" id="state"  (change)="onCheckboxChange($event)" class="switch-input" type="checkbox">
+                  <span class="switch-label"></span>
+                  <span class="switch-handle"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+            <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Personel Sil' : 'Temizle'}}</button>
+          </div>
+    </div>
+  </form>
+  </div><!--/.row-->
+</div>
+</div>

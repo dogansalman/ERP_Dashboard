@@ -1,30 +1,27 @@
 import { NgModule } from '@angular/core';
-import { CustomersComponent } from './customers.component';
-import { CustomerComponent } from './customer.component'
-import { CustomersRoutingModule } from './customers-routing.module';
+import { PersonnelsComponent} from './personnels.component';
+import { PersonnelComponent } from './personnel.component';
+import { PersonnelRoutingModule} from './personnel-routing.module';
 import { HttpModule } from '@angular/http';
 import { ApiServices } from '../services/api.services';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { CitiesModule } from '../shared/directive/cities/cities.module';
-import { TownsModule } from '../shared/directive/towns/towns.module';
+import { DepartmentsModule } from '../shared/directive/departments/departments.module';
 import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
-
 
 @NgModule({
   imports: [
-    CustomersRoutingModule,
+    PersonnelRoutingModule,
     HttpModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     CapitalizeModule,
-    CitiesModule,
-    TownsModule
+    DepartmentsModule
   ],
-  declarations: [ CustomersComponent, CustomerComponent],
+  declarations: [ PersonnelsComponent, PersonnelComponent ],
   providers: [
     ApiServices
   ]
 })
-export class CustomersModule { }
+export class PersonnelModule { }

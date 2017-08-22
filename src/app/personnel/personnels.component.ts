@@ -1,0 +1,14 @@
+import {Component, OnInit} from '@angular/core';
+import {ApiServices} from '../services/api.services';
+
+@Component({
+  templateUrl: 'personnels.component.html'
+})
+export class PersonnelsComponent implements  OnInit {
+  public personnelList = [];
+  constructor(private api: ApiServices) {}
+
+  ngOnInit(): void {
+    this.api.get('personnel').subscribe(p => this.personnelList = p);
+  }
+}

@@ -24,7 +24,7 @@ export class TownsDirective implements OnInit, OnChanges {
       /*
       Production moda geçene kadar timeout kullanılacak.
        */
-      setTimeout(() => this.towns.emit(this.citylist.filter(t => t.city.name === values.selectedCity.currentValue)[0].towns), 1000)
+      setTimeout(() => this.towns.emit(this.citylist.filter(t => t.city.name === values.selectedCity.currentValue)[0].towns), 1500)
     }
   }
 

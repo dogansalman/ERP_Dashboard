@@ -1,4 +1,4 @@
-import {Directive, Output, Input, EventEmitter, OnInit, HostListener} from '@angular/core';
+import {Directive, Output, EventEmitter, OnInit, HostListener} from '@angular/core';
 import {Http} from '@angular/http';
 
 @Directive({

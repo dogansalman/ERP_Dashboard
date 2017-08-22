@@ -15,7 +15,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // Routing Module
 import { AppRoutingModule } from './app.routing';
-
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
@@ -37,8 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
       closeButton: true
-    })
-
+    }),
   ],
   declarations: [
     AppComponent,
@@ -47,7 +45,7 @@ import { ToastrModule } from 'ngx-toastr';
     NAV_DROPDOWN_DIRECTIVES,
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
-    AsideToggleDirective,
+    AsideToggleDirective
   ],
   providers: [{
     provide: [LocationStrategy],
