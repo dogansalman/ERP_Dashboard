@@ -35,6 +35,7 @@
               </div>
             </div>
           </div>
+
           <div class="card-footer">
             <button type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
             <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Stok Kart Sil' : 'Temizle'}}</button>
@@ -46,6 +47,16 @@
           </div>
         </div>
       </form>
+
+      <div class="card card-accent-warning">
+        <div class="card-header">
+          Bilgi !
+        </div>
+        <div class="card-body">
+          <b>Yeni eklenecek</b> Stok Kartı için stok adedini ilgili stok kartını ekledikten sonra ayrıca gerçekleştirebilirsiniz. <br/>Stok kartına stok eklemek için aşağıdaki adımları takip edebilirsiniz.
+          <b>Stok</b> > <b>Stok Kartları</b> > <b>Stok Girişi</b> <button class="btn btn-success btn-sm" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+      </div>
     </div><!--/.row-->
   </div>
 </div>

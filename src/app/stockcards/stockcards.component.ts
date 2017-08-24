@@ -1,26 +1,38 @@
-import {Component, OnInit, Input, ViewChild} from '@angular/core';
+import {Component, OnInit, TemplateRef } from '@angular/core';
 import {ApiServices} from '../services/api.services';
-import {StockaddComponent} from './stockadd.component';
-
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import {FormGroup, FormControl} from '@angular/forms';
 
 @Component({
   templateUrl: 'stockcards.component.html'
 })
 
-
 export class StockcardsComponent implements  OnInit {
 
   public stockCardList = [];
+  public selectedStockCard = {};
+  public modalRef: BsModalRef;
 
-  constructor(private api: ApiServices, private stockadd: StockaddComponent ) { }
+  public stockCardAddForm = new FormGroup({
+    unit: new FormControl(),
+    waybill: new FormControl(),
+    not: new FormControl(),
+    suppliers: new FormControl('Seçiniz')
+  })
+
+  constructor(private api: ApiServices, private modalService: BsModalService) { }
 
   ngOnInit(): void {
-
     this.api.get('stockcards').subscribe(s => this.stockCardList = s);
-    this.stockadd.openModal();
   }
-  addStock(event): void {
-    event.preventDefault();
-    alert('clicked');
+
+  public openModal(template: TemplateRef<any>, stockcard) {
+    this.selectedStockCard = stockcard;
+    this.modalRef = this.modalService.show(template, {keyboard: false, ignoreBackdropClick: true});
   }
+  addStock(): void {
+  }
+
+
 }

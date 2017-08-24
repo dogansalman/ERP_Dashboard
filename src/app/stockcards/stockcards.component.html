@@ -19,7 +19,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="linked-table-row" *ngFor='let item of stockCardList'  [routerLink]="['/stockcards/edit', item.id]">
+            <tr class="linked-table-row" *ngFor='let item of stockCardList'>
               <td>{{item.code | capitalizeFirst}}</td>
               <td>{{item.name}}</td>
               <td>{{item.unit}}</td>
@@ -28,7 +28,7 @@
                 <button class="btn btn-primary btn-sm"  type="button" tooltip="Stok hareketlerini incele." container="body" placement="top">
                   <i class="icon-graph icons"></i>
                 </button>
-                <button class="btn btn-success btn-sm" (click)="addStock($event)" type="button" tooltip="Stok Girişi." container="body" placement="top">
+                <button class="btn btn-success btn-sm"  (click)="openModal(template, item)" type="button" tooltip="Stok Girişi." container="body" placement="top">
                   <i class="fa fa-plus"></i>
                 </button>
                 <button class="btn btn-danger btn-sm" type="button" tooltip="Stok Çıkışı." container="body" placement="top">
@@ -47,10 +47,6 @@
             Üretim aşamasındaki stok kartları silinemez. Stok kartlarının stok düzenlenmesi <b>İşlem</b> alından gerçekleşmektedir. <br/> <b>Stok Girişi</b>  için  <button class="btn btn-success btn-sm" type="button"><i class="fa fa-plus"></i></button>
               seçeneği <b>Stok Çıkışı</b> için  <button class="btn btn-danger btn-sm" type="button"><i class="fa fa-times"></i></button> seçeneğini kullanabilirsiniz. <b>Stok Hareketlerini incelemek için </b>
               <button class="btn btn-primary btn-sm" type="button"><i class="icon-graph icons"></i></button> seçeneğini kullanınız.
-
-
-
-
             </div>
           </div>
         </div>
@@ -59,4 +55,53 @@
     <!--/.col-->
   </div>
   <!--/.row-->
+
+
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{selectedStockCard.name}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="stockCardAddForm" (ngSubmit)="addStock()" class="form-horizontal">
+        <strong>Yeni stok kaydı girmek üzeresiniz !</strong>
+
+        <div class="form-group">
+          <label class="form-control-label" for="unit">Adet</label>
+          <div class="controls">
+            <input  formControlName="unit" id="unit" name="unit" class="form-control" placeholder="Adet">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="waybill">İrsaliye No</label>
+          <div class="controls">
+            <input formControlName="waybill" id="waybill" name="waybill" class="form-control" placeholder="İrsaliye No">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="suppliers">Tedarikçi</label>
+          <div class="controls">
+            <select formControlName="suppliers" name="suppliers" appSuppliers (suppliers)="suppliers = $event" class="form-control" id="suppliers">
+              <option value="Seçiniz">Seçiniz</option>
+              <option *ngFor="let d of suppliers" value="{{d.company}}"> {{d.company}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="not">Not</label>
+          <div class="controls">
+            <textarea  formControlName="not" id="not" name="not" class="form-control" placeholder="Not"></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-sm btn-primary">Ekle</button>
+        <button type="button" (click)="modalRef.hide()" class="btn btn-sm btn-danger">İptal</button>
+
+      </form>
+    </div>
+  </ng-template>
+
 </div>

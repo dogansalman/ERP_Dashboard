@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ElementRef } from '@angular/core';
 import { StockcardsComponent } from './stockcards.component';
 import { StockcardComponent } from './stockcard.component';
-import { StockaddComponent } from './stockadd.component';
 import { StockcardsRoutingModule } from './stockcards-routing.module';
 import { HttpModule } from '@angular/http';
 import { ApiServices } from '../services/api.services';
@@ -11,13 +10,10 @@ import { CitiesModule } from '../shared/directive/cities/cities.module';
 import { TownsModule } from '../shared/directive/towns/towns.module';
 import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
 import { StocktypesModule } from '../shared/directive/stocktypes/stocktypes.module';
+import { SuppliersModule } from '../shared/directive/suppliers/suppliers.module';
 import { TooltipModule } from 'ngx-bootstrap';
 import { TooltipConfig } from 'ngx-bootstrap';
-
-import { ModalModule } from 'ngx-bootstrap'
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-
+import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -31,16 +27,17 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
     CitiesModule,
     TownsModule,
     StocktypesModule,
+    SuppliersModule,
     TooltipModule,
-    ModalModule
+    ModalModule.forRoot(),
+
+
   ],
   declarations: [ StockcardsComponent, StockcardComponent],
   providers: [
     ApiServices,
     TooltipConfig,
-    BsModalService,
-    BsModalRef,
-    StockaddComponent
+    BsModalRef
   ]
 })
 export class StockcardsModule { }
