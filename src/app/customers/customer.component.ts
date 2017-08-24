@@ -3,6 +3,7 @@ import {ApiServices} from '../services/api.services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {FormGroup, FormControl} from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   templateUrl: 'customer.component.html'
@@ -22,7 +23,9 @@ export class CustomerComponent  implements OnInit {
     name: new FormControl(),
     lastname: new FormControl(),
     password: new FormControl(),
-    state: new FormControl()
+    state: new FormControl(),
+    created_date: new FormControl(),
+    updated_date: new FormControl()
   });
 
   constructor( private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router) {

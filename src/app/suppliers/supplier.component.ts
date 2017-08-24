@@ -3,6 +3,7 @@ import {ApiServices} from '../services/api.services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {FormGroup, FormControl} from '@angular/forms';
+import {DatePipe} from '@angular/common';
 
 @Component({
   templateUrl: 'supplier.component.html'

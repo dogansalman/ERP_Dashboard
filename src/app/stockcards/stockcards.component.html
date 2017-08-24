@@ -1,0 +1,62 @@
+<div class="animated fadeIn">
+
+  <!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Stok Kartları ({{stockCardList.length}})
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped table-md">
+            <thead>
+            <tr>
+              <th>Kodu</th>
+              <th>Tanım</th>
+              <th>Adet</th>
+              <th>Tip</th>
+              <th>İşlem</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="linked-table-row" *ngFor='let item of stockCardList'  [routerLink]="['/stockcards/edit', item.id]">
+              <td>{{item.code | capitalizeFirst}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.unit}}</td>
+              <td>{{item.stock_type | capitalizeFirst }}</td>
+              <td>
+                <button class="btn btn-primary btn-sm"  type="button" tooltip="Stok hareketlerini incele." container="body" placement="top">
+                  <i class="icon-graph icons"></i>
+                </button>
+                <button class="btn btn-success btn-sm" (click)="addStock($event)" type="button" tooltip="Stok Girişi." container="body" placement="top">
+                  <i class="fa fa-plus"></i>
+                </button>
+                <button class="btn btn-danger btn-sm" type="button" tooltip="Stok Çıkışı." container="body" placement="top">
+                  <i class="fa fa-times"></i>
+                </button>
+              </td>
+
+            </tr>
+            </tbody>
+          </table>
+          <div class="card card-accent-warning">
+            <div class="card-header">
+              Bilgi !
+            </div>
+            <div class="card-body">
+            Üretim aşamasındaki stok kartları silinemez. Stok kartlarının stok düzenlenmesi <b>İşlem</b> alından gerçekleşmektedir. <br/> <b>Stok Girişi</b>  için  <button class="btn btn-success btn-sm" type="button"><i class="fa fa-plus"></i></button>
+              seçeneği <b>Stok Çıkışı</b> için  <button class="btn btn-danger btn-sm" type="button"><i class="fa fa-times"></i></button> seçeneğini kullanabilirsiniz. <b>Stok Hareketlerini incelemek için </b>
+              <button class="btn btn-primary btn-sm" type="button"><i class="icon-graph icons"></i></button> seçeneğini kullanınız.
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>

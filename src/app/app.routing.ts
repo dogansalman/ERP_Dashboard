@@ -47,6 +47,14 @@ export const routes: Routes = [
         loadChildren: './suppliers/suppliers.module#SuppliersModule'
       },
       {
+        path: 'stocktypes',
+        loadChildren: './stocktypes/stocktypes.module#StocktypesModule'
+      },
+      {
+        path: 'stockcards',
+        loadChildren: './stockcards/stockcards.module#StockcardsModule'
+      },
+      {
         path: 'charts',
         loadChildren: './chartjs/chartjs.module#ChartJSModule'
       }

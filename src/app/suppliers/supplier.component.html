@@ -76,6 +76,11 @@
           <div class="card-footer">
             <button type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
             <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Personel Sil' : 'Temizle'}}</button>
+            <p class="card-text" style="float: right;">
+              <span *ngIf="supplierForm.get('created_date').value">Eklenen Tarih: {{supplierForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>
+              <br>
+              <span *ngIf="supplierForm.get('updated_date').value">Son Güncelleme: {{supplierForm.get('updated_date').value | date: 'dd/MM/yyyy'}}</span>
+            </p>
           </div>
         </div>
       </form>

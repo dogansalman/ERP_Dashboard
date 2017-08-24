@@ -21,6 +21,8 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
 
+import { TooltipModule } from 'ngx-bootstrap';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { ToastrModule } from 'ngx-toastr';
       preventDuplicates: true,
       closeButton: true
     }),
+    TooltipModule.forRoot()
   ],
   declarations: [
     AppComponent,
