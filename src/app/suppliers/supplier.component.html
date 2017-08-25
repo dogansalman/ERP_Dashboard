@@ -4,7 +4,7 @@
       <form [formGroup]="supplierForm" (ngSubmit)="onSubmit()" class="form-horizontal">
         <div class="card">
           <div class="card-header">
-            <strong>Personel</strong> {{this.id ? 'Düzenle' : 'Ekle'}}
+            <strong>Tedarikçi</strong> {{this.id ? 'Düzenle' : 'Ekle'}}
           </div>
           <div class="col-sm-12 col-md-5 card-body">
             <div class="form-group row">
@@ -30,7 +30,6 @@
               </div>
             </div>
 
-
             <div class="form-group row">
               <label class="col-md-3 form-control-label" for="town">İlçe</label>
               <div class="col-md-9">
@@ -41,14 +40,12 @@
               </div>
             </div>
 
-
             <div class="form-group row">
               <label class="col-md-3 form-control-label" for="phone">Telefon</label>
               <div class="col-md-9">
-                <input type="number" formControlName="phone" id="phone" name="phone" class="form-control" placeholder="Kullanıcı Adı">
+                <input type="number" formControlName="phone" id="phone" name="phone" class="form-control" placeholder="Telefon">
               </div>
             </div>
-
 
             <div class="form-group row">
               <label class="col-md-3 form-control-label" for="name">İlgili Adı</label>
@@ -71,11 +68,10 @@
               </div>
             </div>
 
-
           </div>
           <div class="card-footer">
             <button type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
-            <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Personel Sil' : 'Temizle'}}</button>
+            <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Tedarikçi Sil' : 'Temizle'}}</button>
             <p class="card-text" style="float: right;">
               <span *ngIf="supplierForm.get('created_date').value">Eklenen Tarih: {{supplierForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>
               <br>
