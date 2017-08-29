@@ -8,19 +8,19 @@
           </div>
           <div class="col-sm-12 col-md-5 card-body">
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="name">Personel Adı</label>
+              <label class="col-md-3 form-control-label" for="name">Personel Adı*</label>
               <div class="col-md-9">
                 <input  formControlName="name"  id="name" name="name" class="form-control" placeholder="Personel Adi">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="lastname">Personel Soyadı</label>
+              <label class="col-md-3 form-control-label" for="lastname">Personel Soyadı*</label>
               <div class="col-md-9">
                 <input formControlName="lastname" id="lastname" name="lastname" class="form-control" placeholder="Personel Soyadı">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="lastname">Kullanıcı Adı</label>
+              <label class="col-md-3 form-control-label" for="lastname">Kullanıcı Adı*</label>
               <div class="col-md-9">
                 <input formControlName="username" id="username" name="username" class="form-control" placeholder="Kullanıcı Adı">
               </div>
@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="department">Departman</label>
+              <label class="col-md-3 form-control-label" for="department">Departman*</label>
               <div class="col-md-9">
                 <select formControlName="department_id" name="department" appDepartments (departments)="departments = $event" class="form-control" id="department">
                   <option value="Seçiniz">Seçiniz</option>
@@ -50,9 +50,10 @@
                 </label>
               </div>
             </div>
+            <div class="card-text">* doldurulması zorunlu alanlar.</div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+            <button type="submit"  [disabled]="!personnelForm.valid" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
             <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Personel Sil' : 'Temizle'}}</button>
             <p class="card-text" style="float: right;">
               <span *ngIf="personnelForm.get('created_date').value">Eklenen Tarih: {{personnelForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>

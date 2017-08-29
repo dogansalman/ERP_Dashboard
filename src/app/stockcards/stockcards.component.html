@@ -74,13 +74,14 @@
         </blockquote>
       </div>
     </div>
-    <form [formGroup]="stockCardAddForm" class="form-horizontal">
+    <form [formGroup]="stockChangeForm" class="form-horizontal">
       <strong>Yeni stok kaydı girmek üzeresiniz !  </strong>
       <div class="form-group">
         <label class="form-control-label" for="unit">Adet</label>
         <div class="controls">
           <input [attr.disabled]="supplierdrp.length === 0 ? '' : null"  type="number" formControlName="unit" id="unit" name="unit" class="form-control" placeholder="Adet">
         </div>
+
       </div>
       <div class="form-group">
         <label class="form-control-label" for="waybill">İrsaliye No</label>
@@ -92,7 +93,8 @@
         <label class="form-control-label" for="supplier">Tedarikçi</label>
         <div class="controls">
           <select [attr.disabled]="supplierdrp.length === 0 ? '' : null"  formControlName="supplier" #supplierdrp name="supplier" appSuppliers (suppliers)="suppliers = $event" class="form-control" id="supplier">
-            <option *ngFor="let d of suppliers; let i = index" value="{{d.company}}" [selected]="i == 0 ? true : false"> {{d.company}}   </option>
+            <option selected value="Seçiniz">Seçiniz</option>
+            <option *ngFor="let d of suppliers; let i = index" value="{{d.company}}"> {{d.company}} </option>
           </select>
         </div>
       </div>
@@ -102,7 +104,7 @@
           <textarea [attr.disabled]="supplierdrp.length === 0 ? '' : null"  formControlName="not" id="not" name="not" class="form-control" placeholder="Not"></textarea>
         </div>
       </div>
-      <button [attr.disabled]="supplierdrp.length === 0 ? '' : null" type="button" (click)="changeStock(selectedStockCard.id)" class="btn btn-sm btn-primary">Ekle</button>
+      <button [disabled]="!stockChangeForm.valid" type="button" (click)="changeStock(selectedStockCard.id)" class="btn btn-sm btn-primary">Ekle</button>
       <button type="button" (click)="modalRef.hide()" class="btn btn-sm btn-danger">İptal</button>
     </form>
   </div>

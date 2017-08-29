@@ -8,13 +8,13 @@
         </div>
             <div class="col-sm-12 col-md-5 card-body">
               <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="company">Firma Adı</label>
+                <label class="col-md-3 form-control-label" for="company">Firma Adı*</label>
                 <div class="col-md-9">
-                  <input  formControlName="company" type="text" id="company" name="company" class="form-control" placeholder="Firma Adı">
+                  <input  formControlName="company"  id="company" name="company" class="form-control" placeholder="Firma Adı">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="adress">Adres</label>
+                <label class="col-md-3 form-control-label" for="adress">Adres*</label>
                 <div class="col-md-9">
                   <textarea formControlName="adress" id="adress" name="adress" rows="3" class="form-control" placeholder="Adres"></textarea>
                 </div>
@@ -28,7 +28,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="city">İl</label>
+                <label class="col-md-3 form-control-label" for="city">İl*</label>
                 <div class="col-md-9">
                   <select formControlName="city" name="city" appCities (cities)="cities = $event" class="form-control" id="city" #citydrp>
                     <option value="Seçiniz">Seçiniz</option>
@@ -37,7 +37,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="town">İlçe</label>
+                <label class="col-md-3 form-control-label" for="town">İlçe*</label>
                 <div class="col-md-9">
                   <select formControlName="town"  name="town" class="form-control" id="town" appTowns (towns)="towns = $event" [selectedCity]="citydrp.value">
                     <option value="Seçiniz">Seçiniz</option>
@@ -46,33 +46,33 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="email">E-posta</label>
+                <label class="col-md-3 form-control-label" for="email">E-posta*</label>
                 <div class="col-md-9">
                   <input formControlName="email" type="email" id="email" name="email" class="form-control" placeholder="E-posta">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="password">Şifre</label>
+                <label class="col-md-3 form-control-label" for="password">Şifre*</label>
                 <div class="col-md-9">
-                  <input formControlName="password" type="text" id="password" name="password" class="form-control" placeholder="Şifre">
+                  <input formControlName="password" type="password" id="password" name="password" class="form-control" placeholder="Şifre">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="phone">Telefon</label>
+                <label class="col-md-3 form-control-label" for="phone">Telefon*</label>
                 <div class="col-md-9">
                   <input formControlName="phone" type="number" id="phone" name="phone" class="form-control" placeholder="Telefon No">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="name">İlgili Adı</label>
+                <label class="col-md-3 form-control-label" for="name">İlgili Adı*</label>
                 <div class="col-md-9">
-                  <input formControlName="name" type="text" id="name" name="name" class="form-control" placeholder="İlgili Adı">
+                  <input formControlName="name"  id="name" name="name" class="form-control" placeholder="İlgili Adı">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="lastname">İlgili Soyadı</label>
+                <label class="col-md-3 form-control-label" for="lastname">İlgili Soyadı*</label>
                 <div class="col-md-9">
-                  <input formControlName="lastname" type="text" id="lastname" name="lastname" class="form-control" placeholder="İlgili Soyadı">
+                  <input formControlName="lastname"  id="lastname" name="lastname" class="form-control" placeholder="İlgili Soyadı">
                 </div>
               </div>
               <div class="form-group row">
@@ -85,9 +85,10 @@
                   </label>
                 </div>
               </div>
+              <div class="card-text">* doldurulması zorunlu alanlar.</div>
             </div>
         <div class="card-footer">
-          <button type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+          <button type="submit" [disabled]="!customerForm.valid" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
           <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Müşteri Sil' : 'Temizle'}}</button>
           <p class="card-text" style="float: right;">
           <span *ngIf="customerForm.get('created_date').value">Eklenen Tarih: {{customerForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>

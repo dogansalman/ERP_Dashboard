@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ApiServices} from '../services/api.services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {FormGroup, FormControl} from '@angular/forms';
+import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { ConditionalValidate } from '../shared/validations/conditional-validate';
 
 @Component({
   templateUrl: 'customer.component.html'
@@ -11,46 +12,47 @@ import { DatePipe } from '@angular/common';
 
 export class CustomerComponent  implements OnInit {
 
+  /*
+  Selecred customer id
+   */
   public id: number;
+  /*
+  Customer detail
+   */
   public customer: any;
-  public customerForm = new FormGroup({
-    company: new FormControl(),
-    adress: new FormControl(),
-    city: new FormControl('Seçiniz'),
-    town: new FormControl('Seçiniz'),
-    email: new FormControl(),
-    phone: new FormControl(),
-    name: new FormControl(),
-    lastname: new FormControl(),
-    password: new FormControl(),
-    state: new FormControl(),
-    created_date: new FormControl(),
-    updated_date: new FormControl()
-  });
 
-  constructor( private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router) {
+  /*
+  Customer form group
+   */
+  public customerForm: FormGroup;
+
+
+
+  constructor( private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router, private formBuilder: FormBuilder) {
+    /*
+    Customer form validation
+     */
+    this.customerForm = this.formBuilder.group({
+      'company': [null, Validators.required],
+      'adress': ['', Validators.required],
+      'city': ['Seçiniz', [Validators.required, ConditionalValidate('Seçiniz')]],
+      'town': ['Seçiniz', [Validators.required, ConditionalValidate('Seçiniz')]],
+      'email': [null, Validators.email],
+      'phone': [null, Validators.required],
+      'name': [null, Validators.required],
+      'lastname': [null, Validators.required],
+      'password': [null, Validators.required],
+      'state': [false, Validators.required],
+      'created_date': [],
+      'updated_date': [],
+    })
   }
 
-  onSubmit() {
-      if (this.id) {
-        this.api.put('customers/' + this.id, this.customerForm.value).subscribe(() => {
-          setTimeout(() => this.toastr.success('Müşteri kaydı güncellendi.'));
-          setTimeout(() => this.routes.navigateByUrl('customers/list'), 1000);
-        });
-      } else {
-        this.api.post('customers', this.customerForm.value).subscribe(() => {
-          setTimeout(() => this.toastr.success('Müşteri kaydı oluşturuldu.'));
-          setTimeout(() => this.routes.navigateByUrl('customers/list'), 1000);
-        });
-      }
-  }
-
-  onCheckboxChange(event) {
-    if (this.customerForm.get(event.target.id)) {
-      this.customerForm.patchValue({state: event.target.checked ? true : false});
-    }
-  }
   ngOnInit(): void {
+
+    /*
+    Get customer
+     */
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.id = +params['id'];
@@ -58,7 +60,35 @@ export class CustomerComponent  implements OnInit {
       }
     });
   }
-  // delete customer
+/*
+Active/pasive checkbox selected change
+ */
+  onCheckboxChange(event) {
+    if (this.customerForm.get(event.target.id)) {
+      this.customerForm.patchValue({state: event.target.checked ? true : false});
+    }
+  }
+
+  /*
+Submit form add or update
+ */
+  onSubmit() {
+    if (this.id) {
+      this.api.put('customers/' + this.id, this.customerForm.value).subscribe(() => {
+        setTimeout(() => this.toastr.success('Müşteri kaydı güncellendi.'));
+        setTimeout(() => this.routes.navigateByUrl('customers/list'), 1000);
+      });
+    } else {
+      this.api.post('customers', this.customerForm.value).subscribe(() => {
+        setTimeout(() => this.toastr.success('Müşteri kaydı oluşturuldu.'));
+        setTimeout(() => this.routes.navigateByUrl('customers/list'), 1000);
+      });
+    }
+  }
+
+ /*
+ Delete customer
+  */
   onDelete(): void {
     this.api.delete('customers/' + this.id)
       .subscribe(r => {

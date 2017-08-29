@@ -9,6 +9,8 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class ApiServices {
+
+
   private customHeader = new Headers({
     'Content-Type': 'application/json'
   });
@@ -16,6 +18,12 @@ export class ApiServices {
 
   constructor(private http: Http, private toastr: ToastrService) {
   }
+
+  isJson(r): any {
+   return  /^[\],:{}\s]*$/.test(r.replace(/\\["\\\/bfnrtu]/g, '@').
+      replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+      replace(/(?:^|:|,)(?:\s*\[)+/g, '')) ? true : false;
+ }
   get(url): Observable<any> {
     return this.http.get(this.apiUrl + url )
       .map((res: Response) =>  <any[]> res.json())
@@ -38,10 +46,10 @@ export class ApiServices {
     const headers = new Headers({ 'Accept': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     return this.http.put(this.apiUrl + url, data, options )
-      .map((res: Response) =>  <any[]> res.json())
+      .map((res: Response) => <any[]> res.json())
       .catch((error: any) => {
         setTimeout(() => this.toastr.error('İşlem başarısız. Lütfen tekrar deneyin.', 'İstek başarısız!'));
-        return Observable.throw(error.json().error || 'Server error');
+        return Observable.throw(error || 'Server error');
       })
   }
   delete(url): Observable<any> {
