@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {DatePipe} from '@angular/common';
-
+import { ConditionalValidate } from '../shared/validations/conditional-validate';
 @Component({
   templateUrl: 'personnel.component.html'
 })
@@ -32,8 +32,8 @@ export class PersonnelComponent implements OnInit {
     'name': [null, Validators.required],
     'lastname': [null, Validators.required],
     'password': [null, Validators.required],
-    'department_id': [null, Validators.required],
-    'state': [null, Validators.required],
+    'department_id': ['Seçiniz', [Validators.required, ConditionalValidate('Seçiniz') ]],
+    'state': [false, Validators.required],
     'created_date': [],
     'updated_date': [],
   })

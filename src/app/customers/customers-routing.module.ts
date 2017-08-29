@@ -6,14 +6,18 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Müşteriler',
+      title: 'Müşteri',
     },
     children: [
+      {
+        path: '',
+        redirectTo: 'list',
+      },
       {
         path: 'list',
         component: CustomersComponent,
         data: {
-          title: 'Müşteriler'
+          title: 'Liste'
         }
       },
       {

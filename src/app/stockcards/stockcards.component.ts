@@ -6,6 +6,7 @@ import {FormGroup, Validators, FormBuilder, AbstractControl, ValidatorFn} from '
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs/Subscription';
 import { ConditionalValidate } from '../shared/validations/conditional-validate';
+import { Router} from '@angular/router'
 @Component({
   templateUrl: 'stockcards.component.html'
 })
@@ -52,7 +53,7 @@ export class StockcardsComponent implements  OnInit {
   Stock change modal from group validation
    */
 
-  constructor(private api: ApiServices, private modalService: BsModalService, private toastr: ToastrService, private formBuilder: FormBuilder) {
+  constructor(private api: ApiServices, private modalService: BsModalService, private toastr: ToastrService, private formBuilder: FormBuilder, private router: Router) {
 
     /*
     Stock change form validations
@@ -93,7 +94,7 @@ export class StockcardsComponent implements  OnInit {
   Change stocks
    */
   changeStock(id): void {
-   if (!id) return;
+   if (!id) { return; }
     const stockMovemenet = Object.assign(this.stockChangeForm.value, {stockcard_id : id});
    if (this.isAdd) {
      this.api.post('stockmovements/add/' + id, stockMovemenet).subscribe( () => {
@@ -110,5 +111,13 @@ export class StockcardsComponent implements  OnInit {
    }
   }
 
+  /*
+  Navigate detail
+   */
+  navigateDetail(event, id): void {
+    if (!event.target.closest('.btn')) {
+      this.router.navigateByUrl('stockcards/edit/' + id);
+    }
+  }
 
 }

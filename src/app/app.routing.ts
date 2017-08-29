@@ -15,7 +15,7 @@ export const routes: Routes = [
     path: '',
     component: FullLayoutComponent,
     data: {
-      title: 'ERP'
+      title: 'Yönetim'
     },
     children: [
       {

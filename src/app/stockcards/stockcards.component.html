@@ -1,5 +1,4 @@
 <div class="animated fadeIn">
-
   <!--/.row-->
   <div class="row">
     <div class="col-lg-12">
@@ -19,7 +18,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="linked-table-row" *ngFor='let item of stockCardList'>
+            <tr class="linked-table-row" *ngFor='let item of stockCardList' (click)="navigateDetail($event, item.id)">
               <td>{{item.code | capitalizeFirst}}</td>
               <td>{{item.name}}</td>
               <td>{{item.unit}}</td>
@@ -32,10 +31,9 @@
                   <i class="fa fa-plus"></i>
                 </button>
                 <button class="btn btn-danger btn-sm" (click)="openModal(template, item, false)"  type="button" tooltip="Stok Çıkışı." container="body" placement="top">
-                  <i class="fa fa-times"></i>
+                  <i class="fa fa-minus"></i>
                 </button>
               </td>
-
             </tr>
             </tbody>
           </table>

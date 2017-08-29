@@ -8,9 +8,6 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    data: {
-      title: 'Yönetim Ekranı'
-    }
   }
 ];
 
