@@ -2,29 +2,38 @@ import {Component, OnInit} from '@angular/core';
 import {ApiServices} from '../services/api.services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {FormGroup, FormControl} from '@angular/forms';
+import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {DatePipe} from '@angular/common';
+import { ConditionalValidate } from '../shared/validations/conditional-validate';
 
 @Component({
   templateUrl: 'supplier.component.html'
 })
 
 export class SupplierComponent implements OnInit {
+  /*
+  Supplier id
+   */
   public id: number;
+  /*
+  Supplier detail
+   */
   public supplier: any;
-  public supplierForm = new FormGroup({
-    company: new FormControl(),
-    adress: new FormControl(),
-    city: new FormControl('Seçiniz'),
-    town: new FormControl('Seçiniz'),
-    phone: new FormControl(),
-    email: new FormControl(),
-    name: new FormControl(),
-    lastname: new FormControl(),
-    created_date: new FormControl(),
-    updated_date: new FormControl(),
-  })
-  constructor(private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router) {
+  public supplierForm: FormGroup;
+
+  constructor(private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router, private formBuilder: FormBuilder) {
+    this.supplierForm = this.formBuilder.group({
+      'company': [null, Validators.required],
+      'adress': [null, Validators.required],
+      'city': ['Seçiniz', [ Validators.required, ConditionalValidate('Seçiniz') ]],
+      'town': ['Seçiniz', [ Validators.required, ConditionalValidate('Seçiniz') ]],
+      'phone': [null, Validators.required],
+      'email': [],
+      'name': [null, Validators.required],
+      'lastname': [null, Validators.required],
+      'created_date': [],
+      'updated_date': [],
+    })
   }
 
   ngOnInit(): void {
@@ -35,6 +44,10 @@ export class SupplierComponent implements OnInit {
       }
     })
   }
+
+  /*
+  create or update supplier
+   */
   onSubmit(): void {
     if (this.id) {
       this.api.put('suppliers/' + this.id, this.supplierForm.value).subscribe(() => {
@@ -48,6 +61,9 @@ export class SupplierComponent implements OnInit {
       });
     }
   }
+  /*
+  delete supplier
+   */
   onDelete(): void {
     this.api.delete('suppliers/' + this.id)
       .subscribe(r => {

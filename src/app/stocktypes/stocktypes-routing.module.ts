@@ -7,14 +7,18 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Stok Modelleri',
+      title: 'Stok Model',
     },
     children: [
+      {
+        path: '',
+        redirectTo: 'list',
+      },
       {
         path: 'list',
         component: StocktypesComponent,
         data: {
-          title: 'Stok Modelleri'
+          title: 'Liste'
         }
       },
       {

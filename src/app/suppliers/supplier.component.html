@@ -7,21 +7,23 @@
             <strong>Tedarikçi</strong> {{this.id ? 'Düzenle' : 'Ekle'}}
           </div>
           <div class="col-sm-12 col-md-5 card-body">
+
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="company">Firma</label>
+              <label class="col-md-3 form-control-label" for="company">Firma*</label>
               <div class="col-md-9">
                 <input  formControlName="company"  id="company" name="company" class="form-control" placeholder="Firma">
               </div>
             </div>
+
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="adress">Adres</label>
+              <label class="col-md-3 form-control-label" for="adress">Adres*</label>
               <div class="col-md-9">
                 <textarea rows="3" formControlName="adress" id="adress" name="adress" class="form-control" placeholder="Adres"></textarea>
               </div>
             </div>
 
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="city">İl</label>
+              <label class="col-md-3 form-control-label" for="city">İl*</label>
               <div class="col-md-9">
                 <select formControlName="city" name="city" appCities (cities)="cities = $event" class="form-control" id="city" #citydrp>
                   <option value="Seçiniz">Seçiniz</option>
@@ -31,7 +33,7 @@
             </div>
 
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="town">İlçe</label>
+              <label class="col-md-3 form-control-label" for="town">İlçe*</label>
               <div class="col-md-9">
                 <select formControlName="town"  name="town" class="form-control" id="town" appTowns (towns)="towns = $event" [selectedCity]="citydrp.value">
                   <option value="Seçiniz">Seçiniz</option>
@@ -41,21 +43,21 @@
             </div>
 
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="phone">Telefon</label>
+              <label class="col-md-3 form-control-label" for="phone">Telefon*</label>
               <div class="col-md-9">
                 <input type="number" formControlName="phone" id="phone" name="phone" class="form-control" placeholder="Telefon">
               </div>
             </div>
 
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="name">İlgili Adı</label>
+              <label class="col-md-3 form-control-label" for="name">İlgili Adı*</label>
               <div class="col-md-9">
                 <input formControlName="name" id="name" name="name" class="form-control" placeholder="İlgili Adı">
               </div>
             </div>
 
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="lastname">İlgili Soyadı</label>
+              <label class="col-md-3 form-control-label" for="lastname">İlgili Soyadı*</label>
               <div class="col-md-9">
                 <input formControlName="lastname" id="lastname" name="lastname" class="form-control" placeholder="İlgili Soyadı">
               </div>
@@ -67,10 +69,10 @@
                 <input formControlName="email" id="email" name="email" class="form-control" placeholder="E-posta">
               </div>
             </div>
-
+            <div class="card-text">* doldurulması zorunlu alanlar.</div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+            <button type="submit"  [disabled]="!this.supplierForm.valid" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
             <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Tedarikçi Sil' : 'Temizle'}}</button>
             <p class="card-text" style="float: right;">
               <span *ngIf="supplierForm.get('created_date').value">Eklenen Tarih: {{supplierForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>
