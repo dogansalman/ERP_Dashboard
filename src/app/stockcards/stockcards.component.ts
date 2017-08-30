@@ -44,7 +44,6 @@ export class StockcardsComponent implements  OnInit {
       if (! condition()) {
         return null;
       }
-      console.log(validator(control));
       return validator(control);
     }
   }
