@@ -1,17 +1,20 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {ApiServices} from '../services/api.services';
+import { ApiServices } from '../services/api.services';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import {BsModalRef} from 'ngx-bootstrap/modal/modal-options.class';
-import {FormGroup, Validators, FormBuilder, AbstractControl, ValidatorFn} from '@angular/forms';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { FormGroup, Validators, FormBuilder, AbstractControl, ValidatorFn } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs/Subscription';
 import { ConditionalValidate } from '../shared/validations/conditional-validate';
-import { Router} from '@angular/router'
+import { Router } from '@angular/router'
 @Component({
   templateUrl: 'stockcards.component.html'
 })
 
 export class StockcardsComponent implements  OnInit {
+
+
+
   /*
   Stock card list
    */

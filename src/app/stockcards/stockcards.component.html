@@ -7,6 +7,21 @@
           <i class="fa fa-align-justify"></i> Stok Kartları ({{stockCardList.length}})
         </div>
         <div class="card-body">
+
+          <div class="col-xs-12 col-sm-12 col-md-3 float-right" style="padding: 0px;">
+            <div class="form-group">
+              <div class="controls">
+                <div class="input-group">
+                  <input class="form-control" placeholder="Aramak istediğiniz ürün kodu veya tanımı" id="appendedInputButtons" size="16" #searchTxt>
+                  <span class="input-group-btn">
+
+                    <button class="btn btn-primary" type="button"><i class="icon-magnifier icons"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+      ARANAN: {{searchTxt.value}}
           <table class="table table-bordered table-striped table-md">
             <thead>
             <tr>
@@ -18,7 +33,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="linked-table-row" *ngFor='let item of stockCardList' (click)="navigateDetail($event, item.id)">
+
+            <tr class="linked-table-row" *ngFor="let item of stockCardList | filter : 'code' : searchTxt.value" (click)="navigateDetail($event, item.id)">
               <td>{{item.code | capitalizeFirst}}</td>
               <td>{{item.name}}</td>
               <td>{{item.unit}}</td>

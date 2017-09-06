@@ -26,6 +26,13 @@ export class StockmovementsComponent implements  OnInit {
   /*
   total enter stocks
    */
+  public totalEnteredStock: number;
+  /*
+  Out of stocks
+   */
+  public totalOutStock: number;
+
+
   constructor(private api: ApiServices, private activeRouter: ActivatedRoute) {  }
 
   ngOnInit(): void {
@@ -38,7 +45,15 @@ export class StockmovementsComponent implements  OnInit {
         /*
         get stockcard movements
          */
-        this.api.get('stockmovements/' + this.stockcard_id).subscribe(sm => {console.log(sm); this.stockMovementList = sm } );
+        this.api.get('stockmovements/' + this.stockcard_id).subscribe(sm => {
+          this.stockMovementList = sm;
+          let n = 0;
+          sm.filter(stm => stm.movement_type === true).forEach(stmm => n += stmm.unit)
+          this.totalEnteredStock = n;
+          let m = 0;
+          sm.filter(stm => !stm.movement_type).forEach(stmm => m += stmm.unit)
+          this.totalOutStock = m;
+        });
 
         /*
         get stockcard detail

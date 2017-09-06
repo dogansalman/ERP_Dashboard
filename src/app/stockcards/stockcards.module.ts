@@ -16,6 +16,7 @@ import { TooltipModule } from 'ngx-bootstrap';
 import { TooltipConfig } from 'ngx-bootstrap';
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { FilterPipe } from '../shared/pipes/filter/filter.pipe';
 
 @NgModule({
   imports: [
@@ -32,10 +33,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     TooltipModule,
     ModalModule.forRoot(),
     ChartsModule
-
-
   ],
-  declarations: [ StockcardsComponent, StockcardComponent, StockmovementsComponent],
+  declarations: [ StockcardsComponent, StockcardComponent, StockmovementsComponent, FilterPipe],
   providers: [
     ApiServices,
     TooltipConfig,
