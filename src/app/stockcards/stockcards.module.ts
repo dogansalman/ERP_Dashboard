@@ -20,7 +20,7 @@ import { FilterPipe } from '../shared/pipes/filter/filter.pipe';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule } from 'ngx-bootstrap'
 import { BsDatepickerActions } from 'ngx-bootstrap/datepicker/reducer/bs-datepicker.actions';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker/bs-datepicker-config'
+
 
 @NgModule({
   imports: [
@@ -46,7 +46,6 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker/bs-datepicker-confi
     TooltipConfig,
     BsModalRef,
     BsDatepickerActions,
-    BsDatepickerConfig
   ]
 })
 export class StockcardsModule { }
