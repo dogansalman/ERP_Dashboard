@@ -7,6 +7,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs/Subscription';
 import { ConditionalValidate } from '../shared/validations/conditional-validate';
 import { Router } from '@angular/router'
+import {validate} from 'codelyzer/walkerFactory/walkerFn';
+
+
+
 @Component({
   templateUrl: 'stockcards.component.html'
 })
@@ -32,6 +36,16 @@ export class StockcardsComponent implements  OnInit {
   public subscriptions: Subscription[] = [];
 
   /*
+  Search term
+   */
+  public searchTerm: string;
+
+  /*
+  Search criteria
+   */
+  public searchCriteri = {name: 'Kodu', key: 'code'};
+
+  /*
   Is add stock
    */
   public isAdd: boolean;
@@ -41,6 +55,9 @@ export class StockcardsComponent implements  OnInit {
    */
   public stockChangeForm: FormGroup;
 
+  public stockRequestForm: FormGroup;
+
+  //public bsConfig: Partial<BsDatepickerConfig>;
 
   hasExclamationMark(condition: (() => boolean), validator: ValidatorFn): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} => {
@@ -50,6 +67,7 @@ export class StockcardsComponent implements  OnInit {
       return validator(control);
     }
   }
+
 
   /*
   Stock change modal from group validation
@@ -66,14 +84,36 @@ export class StockcardsComponent implements  OnInit {
       'not': [null],
       'supplier': ['Seçiniz', [Validators.required, ConditionalValidate('Seçiniz')]]
     })
+
+    /*
+    Stock request form validation
+     */
+    this.stockRequestForm = formBuilder.group({
+      'stockcard_id': [],
+      'supplier': ['Seçiniz', [Validators.required, ConditionalValidate('Seçiniz')]],
+      'unit': [0, Validators.required],
+      'state': [],
+      'reel_unit': [],
+      'created_date': [],
+      'updated_date': [],
+      'delivery_date': [],
+    })
   }
 
+
   ngOnInit(): void {
-    /*
+      /*
     Get stock cards
      */
     this.api.get('stockcards').subscribe(s => this.stockCardList = s);
 
+  }
+
+  /*
+  Set search criteria
+   */
+  setSearchCriteria(sc): void {
+    this.searchCriteri = sc;
   }
 
   /*

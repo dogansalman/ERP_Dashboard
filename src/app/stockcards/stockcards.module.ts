@@ -17,6 +17,10 @@ import { TooltipConfig } from 'ngx-bootstrap';
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { FilterPipe } from '../shared/pipes/filter/filter.pipe';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsDatepickerModule } from 'ngx-bootstrap'
+import { BsDatepickerActions } from 'ngx-bootstrap/datepicker/reducer/bs-datepicker.actions';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker/bs-datepicker-config'
 
 @NgModule({
   imports: [
@@ -32,13 +36,17 @@ import { FilterPipe } from '../shared/pipes/filter/filter.pipe';
     SuppliersModule,
     TooltipModule,
     ModalModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ],
   declarations: [ StockcardsComponent, StockcardComponent, StockmovementsComponent, FilterPipe],
   providers: [
     ApiServices,
     TooltipConfig,
-    BsModalRef
+    BsModalRef,
+    BsDatepickerActions,
+    BsDatepickerConfig
   ]
 })
 export class StockcardsModule { }

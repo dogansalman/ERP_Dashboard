@@ -5,6 +5,10 @@
  * Copyright (c) 2017 creativeLabs Łukasz Holeczek
  * @license MIT
  */
+
+// import ngx datepicker style
+@import "~ngx-bootstrap/datepicker/bs-datepicker.css";
+
 // Override Boostrap variables
 @import "bootstrap-variables";
 

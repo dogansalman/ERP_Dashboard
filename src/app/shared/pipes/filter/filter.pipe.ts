@@ -8,6 +8,6 @@ export class FilterPipe implements PipeTransform {
   transform(items: any[], field: string, value: string): any[] {
     if (!items || !value) return items;
 
-    return items.filter(i => i[field].indexOf(value) > -1);
+    return items.filter(i => i[field].toLowerCase().indexOf(value.toLowerCase()) > -1);
   }
 }
