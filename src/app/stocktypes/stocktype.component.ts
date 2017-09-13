@@ -36,6 +36,7 @@ export class StocktypeComponent implements OnInit {
         setTimeout(() => this.routes.navigateByUrl('stocktypes/list'), 1000);
       });
     } else {
+      delete this.stockTypeForm.value['created_date']
       this.api.post('stocktypes', this.stockTypeForm.value).subscribe(() => {
         setTimeout(() => this.toastr.success('Stok model kaydı oluşturuldu.'));
         setTimeout(() => this.routes.navigateByUrl('stocktypes/list'), 1000);

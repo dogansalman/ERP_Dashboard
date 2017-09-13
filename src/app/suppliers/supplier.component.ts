@@ -55,6 +55,7 @@ export class SupplierComponent implements OnInit {
         setTimeout(() => this.routes.navigateByUrl('suppliers/list'), 1000);
       });
     } else {
+      delete this.supplierForm.value['created_date']
       this.api.post('suppliers', this.supplierForm.value).subscribe(() => {
         setTimeout(() => this.toastr.success('Tedarikçi kaydı oluşturuldu.'));
         setTimeout(() => this.routes.navigateByUrl('suppliers/list'), 1000);

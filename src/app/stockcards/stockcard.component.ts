@@ -39,6 +39,7 @@ export class StockcardComponent implements OnInit, OnDestroy {
         setTimeout(() => this.routes.navigateByUrl('stockcards/list'), 1000);
       });
     } else {
+      delete this.stockCardForm.value['created_date']
       this.api.post('stockcards', this.stockCardForm.value).subscribe(() => {
         setTimeout(() => this.toastr.success('Stok Kartı kaydı oluşturuldu.'));
         setTimeout(() => this.routes.navigateByUrl('stockcards/list'), 1000);

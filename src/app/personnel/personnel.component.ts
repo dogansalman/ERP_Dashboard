@@ -61,6 +61,7 @@ export class PersonnelComponent implements OnInit {
         setTimeout(() => this.routes.navigateByUrl('personnel/list'), 1000);
       });
     } else {
+      delete this.personnelForm.value['created_date']
       this.api.post('personnel', this.personnelForm.value).subscribe(() => {
         setTimeout(() => this.toastr.success('Personel kaydı oluşturuldu.'));
         setTimeout(() => this.routes.navigateByUrl('personnel/list'), 1000);

@@ -79,6 +79,7 @@ Submit form add or update
         setTimeout(() => this.routes.navigateByUrl('customers/list'), 1000);
       });
     } else {
+      delete this.customerForm.value['created_date']
       this.api.post('customers', this.customerForm.value).subscribe(() => {
         setTimeout(() => this.toastr.success('Müşteri kaydı oluşturuldu.'));
         setTimeout(() => this.routes.navigateByUrl('customers/list'), 1000);
