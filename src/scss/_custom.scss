@@ -5,3 +5,7 @@
 .linked-table-row:hover, .linked-table-row:focus, .linked-table-row:active, .linked-table-row:focus:active{
   background-color: rgba(242, 242, 242, 0.48);
 }
+
+.zindex-inmodal {
+  z-index: 9999 !important;
+}

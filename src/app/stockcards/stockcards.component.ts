@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild, ElementRef, Input} from '@angular/core';
 import { ApiServices } from '../services/api.services';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
@@ -7,9 +7,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs/Subscription';
 import { ConditionalValidate } from '../shared/validations/conditional-validate';
 import { Router } from '@angular/router'
-import {validate} from 'codelyzer/walkerFactory/walkerFn';
-
-
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { enGb } from 'ngx-bootstrap/locale';
+import { defineLocale } from 'ngx-bootstrap/bs-moment';
+import { tr } from '../shared/configs/tr';
 
 @Component({
   templateUrl: 'stockcards.component.html'
@@ -17,7 +18,7 @@ import {validate} from 'codelyzer/walkerFactory/walkerFn';
 
 export class StockcardsComponent implements  OnInit {
 
-
+  bsConfig: Partial<BsDatepickerConfig>;
 
   /*
   Stock card list
@@ -51,22 +52,27 @@ export class StockcardsComponent implements  OnInit {
   public isAdd: boolean;
 
   /*
+  Is email send
+ */
+  public isEmailSend: boolean;
+
+
+  /*
   Stock change form/
    */
   public stockChangeForm: FormGroup;
 
+  /*
+  Stock request form
+   */
   public stockRequestForm: FormGroup;
 
-  //public bsConfig: Partial<BsDatepickerConfig>;
+  /*
+  Stock request message
+ */
+  public requestMessage: string;
 
-  hasExclamationMark(condition: (() => boolean), validator: ValidatorFn): ValidatorFn {
-    return (control: AbstractControl): {[key: string]: any} => {
-      if (! condition()) {
-        return null;
-      }
-      return validator(control);
-    }
-  }
+
 
 
   /*
@@ -92,16 +98,18 @@ export class StockcardsComponent implements  OnInit {
       'stockcard_id': [],
       'supplier': ['Seçiniz', [Validators.required, ConditionalValidate('Seçiniz')]],
       'unit': [0, Validators.required],
-      'state': [],
-      'reel_unit': [],
-      'created_date': [],
-      'updated_date': [],
-      'delivery_date': [],
+      'delivery_date': [Validators.required],
+      'notify': [false]
     })
   }
 
 
   ngOnInit(): void {
+    defineLocale('tr', tr)
+    /*
+    datetime picker config
+     */
+    this.bsConfig = Object.assign({}, { locale: 'tr', containerClass: 'theme-blue zindex-inmodal'});
       /*
     Get stock cards
      */
@@ -129,6 +137,7 @@ export class StockcardsComponent implements  OnInit {
      */
     this.modalService.onHide.subscribe((reason: string) => {
       this.stockChangeForm.reset();
+      this.stockRequestForm.reset();
     });
   }
 
@@ -152,6 +161,19 @@ export class StockcardsComponent implements  OnInit {
      });
    }
   }
+  /*
+  Stock request
+   */
+  addStockRequest(id): void {
+    if (!id) { return; }
+    const stockRequest = Object.assign(this.stockRequestForm.value, { stockcard_id : id, message: this.stockRequestForm.value.notify ? this.requestMessage : null });
+
+     this.api.post('supply/request', stockRequest).subscribe(() => {
+      this.modalRef.hide();
+      setTimeout(() => this.toastr.success('Stok istek kaydı oluşturuldu.'));
+    })
+
+  }
 
   /*
   Navigate detail
@@ -160,6 +182,11 @@ export class StockcardsComponent implements  OnInit {
     if (!event.target.closest('.btn')) {
       this.router.navigateByUrl('stockcards/edit/' + id);
     }
+  }
+
+
+  onCheckboxChange(event) {
+    this.isEmailSend = event.target.checked ? true : false;
   }
 
 }

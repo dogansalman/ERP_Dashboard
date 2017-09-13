@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { SuppliersComponent } from './suppliers.component';
 import { SupplierComponent } from './supplier.component';
 import { SuppliersRoutingModule } from './suppliers-routing.module';
+import { RequistionsComponent } from './requistions.component';
 import { HttpModule } from '@angular/http';
 import { ApiServices } from '../services/api.services';
 import { CommonModule } from '@angular/common';
@@ -9,6 +10,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CitiesModule } from '../shared/directive/cities/cities.module';
 import { TownsModule } from '../shared/directive/towns/towns.module';
 import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
+import { TooltipModule } from 'ngx-bootstrap';
+import { TooltipConfig } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -19,11 +22,13 @@ import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
     ReactiveFormsModule,
     CapitalizeModule,
     CitiesModule,
-    TownsModule
+    TownsModule,
+    TooltipModule
   ],
-  declarations: [ SuppliersComponent, SupplierComponent],
+  declarations: [ SuppliersComponent, SupplierComponent, RequistionsComponent],
   providers: [
-    ApiServices
+    ApiServices,
+    TooltipConfig
   ]
 })
 export class SuppliersModule { }

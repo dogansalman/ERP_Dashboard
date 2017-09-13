@@ -1,8 +1,8 @@
 <div class="animated fadeIn">
   <!--/.row-->
   <div class="row">
-    <div class="col-lg-12">
-      <div class="card">
+    <div class="col-lg-12 hidden-xs-down">
+      <div class="card ">
         <div class="card-header">
           <i class="fa fa-align-justify"></i> Stok Kartları ({{stockCardList.length}})
         </div>
@@ -39,7 +39,7 @@
             <tbody>
 
             <tr class="linked-table-row" *ngFor="let item of stockCardList | filter : searchCriteri.key : searchTerm" (click)="navigateDetail($event, item.id)">
-              <td>{{item.code | capitalizeFirst}} Adet</td>
+              <td>{{item.code | capitalizeFirst}}</td>
               <td>{{item.name}}</td>
               <td>{{item.unit}}</td>
               <td>{{item.stock_type | capitalizeFirst }}</td>
@@ -81,6 +81,7 @@
   <!--/.row-->
 </div>
 
+
 <!-- change stock of stock card-->
 <ng-template #template>
   <div class="modal-header">
@@ -90,7 +91,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <div *ngIf="supplierdrp.length == 1" class="card text-white bg-danger text-center">
+    <div *ngIf="supplierdrp.length === 1" class="card text-white bg-danger text-center">
       <div class="card-body">
         <blockquote class="card-bodyquote">
           <p>Stok kayıt etmeden önce sisteme en az 1 <b>Tedarikçi</b> tanımlamanız gerekmektedir.</p>
@@ -155,35 +156,62 @@
     </div>
     <form [formGroup]="stockRequestForm" class="form-horizontal">
       <div class="form-group">
-        <label class="form-control-label" for="_unit">Adet</label>
+        <label class="form-control-label" for="_unit">Sipariş Adedi</label>
         <div class="controls">
-          <input [attr.disabled]="supplierdrp.length === 1 ? '' : null"  type="number" formControlName="unit" id="_unit" name="unit" class="form-control" placeholder="Adet">
+          <input #unit [attr.disabled]="supplierdrp.length === 1 ? '' : null"  type="number" formControlName="unit" id="_unit" name="unit" class="form-control" placeholder="Adet">
         </div>
-
       </div>
 
       <div class="form-group">
-        <label class="form-control-label" for="_unit">Adet</label>
+        <label class="form-control-label" for="delivary_date">Teslim Tarihi</label>
         <div class="controls">
-          <input class="form-control" placeholder="Datepicker" bsDatepicker  formControlName="delivery_date" />
+          <input class="form-control" id="delivary_date" placeholder="Teslim tarihi belirtin." bsDatepicker [bsConfig]="bsConfig" formControlName="delivery_date" />
         </div>
-
       </div>
-
 
       <div class="form-group">
         <label class="form-control-label" for="_supplier">Tedarikçi</label>
         <div class="controls">
           <select [attr.disabled]="supplierdrp.length === 1 ? '' : null"  formControlName="supplier" #supplierdrp name="supplier" appSuppliers (suppliers)="suppliers = $event" class="form-control" id="_supplier">
-            <option selected value="Seçiniz">Seçiniz</option>
+            <option value="Seçiniz">Seçiniz</option>
             <option *ngFor="let d of suppliers; let i = index" value="{{d.company}}"> {{d.company}} </option>
           </select>
         </div>
       </div>
 
-      <button [disabled]="!stockRequestForm.valid" type="button" (click)="changeStock(selectedStockCard.id)" class="btn btn-sm btn-primary">Ekle</button>
+      <div class="form-group row">
+        <label class="col-md-6 form-control-label">İleti Gönder</label>
+        <div class="col-md-6 text-right">
+          <label class="switch switch-3d switch-primary">
+            <input formControlName="notify" name="notify" id="notify"  (change)="onCheckboxChange($event); this.requestMessage = rqMessage.value" class="switch-input" type="checkbox">
+            <span class="switch-label"></span>
+            <span class="switch-handle"></span>
+          </label>
+        </div>
+      </div>
+
+
+      <div *ngIf="this.isEmailSend === true" style="width: 100%;" class="btn btn-success active text-center">
+        <blockquote>
+          <p>Tedarikçi firmanın e-posta adresine otomatik ileti gönderilecektir.</p>
+        </blockquote>
+      </div>
+
+      <div class="form-group">
+        <div class="controls">
+          <textarea [disabled]="!this.isEmailSend" class="form-control" #rqMessage (keyup)="this.requestMessage = rqMessage.value" id="_message" rows="3">Merhaba, {{selectedStockCard.name}}kod üründen {{unit.value}} adet sipariş. Buraya otomatik sipariş metni oluşturulabilir.
+          </textarea>
+
+
+        </div>
+      </div>
+
+
+      <button [disabled]="!stockRequestForm.valid" type="button" (click)="addStockRequest(selectedStockCard.id, rqMessage.value)" class="btn btn-sm btn-primary">Ekle</button>
       <button type="button" (click)="modalRef.hide()" class="btn btn-sm btn-danger">İptal</button>
     </form>
+
+
   </div>
 </ng-template>
 <!--/  new stock requistions -->

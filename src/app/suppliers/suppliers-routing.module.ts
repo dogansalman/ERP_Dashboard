@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SuppliersComponent } from './suppliers.component';
 import { SupplierComponent } from './supplier.component';
+import { RequistionsComponent } from './requistions.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,13 @@ const routes: Routes = [
         component: SupplierComponent,
         data: {
           title: 'Düzenle'
+        }
+      },
+      {
+        path: 'requistion',
+        component: RequistionsComponent,
+        data: {
+          title: 'Tedarik İstekleri'
         }
       }
     ]

@@ -1,0 +1,49 @@
+<div class="animated fadeIn">
+
+  <!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Tedarik İstekleri ({{this.supplyRequistions.length}})
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped table-md">
+            <thead>
+            <tr>
+              <th>Tedarikçi</th>
+              <th>Adet</th>
+              <th>Sipariş / Teslim Tarih</th>
+              <th>Stok Kartı</th>
+              <th>Teslim Adet</th>
+              <th>Durum</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="linked-table-row" *ngFor='let item of supplyRequistions'>
+              <td>{{item.SupplyRequisitions.supplier | capitalizeFirst}}</td>
+              <td>{{item.SupplyRequisitions.unit}}</td>
+              <td>{{item.SupplyRequisitions.created_date | date: 'dd/MM/yyyy'}} / {{item.SupplyRequisitions.delivery_date | date: 'dd/MM/yyyy'}}</td>
+              <td>{{item.stockcard | capitalizeFirst }} <b>({{item.stockcard_code }})</b></td>
+              <td>{{item.SupplyRequisitions.real_unit}}</td>
+              <td>
+                  <span style="float: right; margin-left: 5px;" class="{{item.SupplyRequisitions.state ? 'badge badge-success' : 'badge badge-danger'}}">
+                  <i class=" {{item.SupplyRequisitions.state ? 'icon-check icons' : 'icon-clock icons'}}"></i>
+                  {{item.SupplyRequisitions.state ? ' Teslim' : ' Bekleniyor' }}
+                </span>
+
+                <span tooltip="{{item.SupplyRequisitions.message}}" style="float: right;" *ngIf="item.SupplyRequisitions.message" class="badge badge-warning">
+                  <i class="icon-note icons"></i> Mesaj
+                </span>
+                {{item.state}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>
