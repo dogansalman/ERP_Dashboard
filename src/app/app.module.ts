@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ViewContainerRef } from '@angular/core';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -12,6 +12,7 @@ import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
 
 // Routing Module
 import { AppRoutingModule } from './app.routing';
@@ -39,7 +40,8 @@ import { TooltipModule } from 'ngx-bootstrap';
       preventDuplicates: true,
       closeButton: true
     }),
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+
   ],
   declarations: [
     AppComponent,
@@ -48,7 +50,8 @@ import { TooltipModule } from 'ngx-bootstrap';
     NAV_DROPDOWN_DIRECTIVES,
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
-    AsideToggleDirective
+    AsideToggleDirective,
+
   ],
   providers: [{
     provide: [LocationStrategy],

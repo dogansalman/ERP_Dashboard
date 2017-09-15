@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import {ToastrService} from 'ngx-toastr';
+
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -25,12 +26,14 @@ export class ApiServices {
       replace(/(?:^|:|,)(?:\s*\[)+/g, '')) ? true : false;
  }
   get(url): Observable<any> {
+
+
     return this.http.get(this.apiUrl + url )
       .map((res: Response) =>  <any[]> res.json())
       .catch((error: any) => {
         setTimeout(() => { this.toastr.success('Lütfen tekrar deneyin', 'Kayıt bulunamadı!'); }, 100)
         return Observable.throw(error.json().error || 'Server error');
-      });
+      })._finally(() => console.log('ok'));
   }
   post(url, data): Observable<any> {
     const headers = new Headers({ 'Accept': 'application/json' });
@@ -40,7 +43,7 @@ export class ApiServices {
       .catch((error: any) => {
         setTimeout(() => this.toastr.error('İşlem başarısız. Lütfen tekrar deneyin.', 'İstek başarısız!'));
         return Observable.throw(error.json().error || 'Server error');
-      })
+      });
   }
   put(url, data): Observable<any> {
     const headers = new Headers({ 'Accept': 'application/json' });
