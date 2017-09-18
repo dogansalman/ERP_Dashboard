@@ -1,7 +1,9 @@
-import {Injectable} from '@angular/core';
+import {Injectable } from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import {ToastrService} from 'ngx-toastr';
+
+import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
 
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
@@ -17,7 +19,9 @@ export class ApiServices {
   });
   private apiUrl = 'http://192.168.1.222:8080/api/';
 
-  constructor(private http: Http, private toastr: ToastrService) {
+  constructor(private http: Http, private toastr: ToastrService, private slimLoadingBarService: SlimLoadingBarService) {
+
+
   }
 
   isJson(r): any {
@@ -26,16 +30,18 @@ export class ApiServices {
       replace(/(?:^|:|,)(?:\s*\[)+/g, '')) ? true : false;
  }
   get(url): Observable<any> {
-
-
+    this.slimLoadingBarService.start(() => {  });
     return this.http.get(this.apiUrl + url )
       .map((res: Response) =>  <any[]> res.json())
       .catch((error: any) => {
         setTimeout(() => { this.toastr.success('Lütfen tekrar deneyin', 'Kayıt bulunamadı!'); }, 100)
         return Observable.throw(error.json().error || 'Server error');
-      })._finally(() => console.log('ok'));
+      })._finally(() => this.slimLoadingBarService.complete())
   }
   post(url, data): Observable<any> {
+
+    this.slimLoadingBarService.start(() => {  });
+
     const headers = new Headers({ 'Accept': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     return this.http.post(this.apiUrl + url, data, options )
@@ -43,9 +49,12 @@ export class ApiServices {
       .catch((error: any) => {
         setTimeout(() => this.toastr.error('İşlem başarısız. Lütfen tekrar deneyin.', 'İstek başarısız!'));
         return Observable.throw(error.json().error || 'Server error');
-      });
+
+      })
+      ._finally(() => this.slimLoadingBarService.complete())
   }
   put(url, data): Observable<any> {
+    this.slimLoadingBarService.start(() => {  });
     const headers = new Headers({ 'Accept': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     return this.http.put(this.apiUrl + url, data, options )
@@ -54,13 +63,17 @@ export class ApiServices {
         setTimeout(() => this.toastr.error('İşlem başarısız. Lütfen tekrar deneyin.', 'İstek başarısız!'));
         return Observable.throw(error || 'Server error');
       })
+      ._finally(() => this.slimLoadingBarService.complete())
   }
+
   delete(url): Observable<any> {
+    this.slimLoadingBarService.start(() => {  });
     return this.http.delete(this.apiUrl + url )
       .catch((error: any) => {
         setTimeout(() => this.toastr.error('Kayıt silinemedi lütfen tekrar deneyin.', 'İşlem başarısız'));
         return Observable.throw(error || 'Server error')
-      });
+      })
+      ._finally(() => this.slimLoadingBarService.complete())
   }
 
 }

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   // tslint:disable-next-line
   selector: 'body',
-  template: '<router-outlet></router-outlet>'
+  template: '<ng2-slim-loading-bar></ng2-slim-loading-bar> <router-outlet></router-outlet>'
 })
 export class AppComponent {
   constructor() {

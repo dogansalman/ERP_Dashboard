@@ -9,9 +9,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CitiesModule } from '../shared/directive/cities/cities.module';
 import { TownsModule } from '../shared/directive/towns/towns.module';
 import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
-import { HttpService } from '../services/http.service';
-import { AngularReduxRequestOptions } from '../services/angular-redux-request.options';
-import { LoaderService } from '../shared/loader/loader.services';
 
 @NgModule({
   imports: [
@@ -26,10 +23,7 @@ import { LoaderService } from '../shared/loader/loader.services';
   ],
   declarations: [ CustomersComponent, CustomerComponent],
   providers: [
-    ApiServices,
-    HttpService,
-    LoaderService,
-    AngularReduxRequestOptions
+    ApiServices
   ]
 })
 export class CustomersModule { }

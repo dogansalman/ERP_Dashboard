@@ -13,6 +13,8 @@ import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
+
 
 // Routing Module
 import { AppRoutingModule } from './app.routing';
@@ -41,6 +43,7 @@ import { TooltipModule } from 'ngx-bootstrap';
       closeButton: true
     }),
     TooltipModule.forRoot(),
+    SlimLoadingBarModule.forRoot()
 
   ],
   declarations: [
@@ -51,6 +54,8 @@ import { TooltipModule } from 'ngx-bootstrap';
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
+
+
 
   ],
   providers: [{
