@@ -1,8 +1,8 @@
-import {Component, OnInit, TemplateRef, ViewChild, ElementRef, Input} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import { ApiServices } from '../services/api.services';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { FormGroup, Validators, FormBuilder, AbstractControl, ValidatorFn } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs/Subscription';
 import { ConditionalValidate } from '../shared/validations/conditional-validate';
@@ -165,13 +165,17 @@ export class StockcardsComponent implements  OnInit {
   Stock request
    */
   addStockRequest(id): void {
-    if (!id) { return; }
+
+
+     if (!id) { return; }
     const stockRequest = Object.assign(this.stockRequestForm.value, { stockcard_id : id, message: this.stockRequestForm.value.notify ? this.requestMessage : null });
 
      this.api.post('supply/request', stockRequest).subscribe(() => {
       this.modalRef.hide();
       setTimeout(() => this.toastr.success('Stok istek kaydı oluşturuldu.'));
     })
+
+
 
   }
 

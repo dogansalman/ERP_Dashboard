@@ -89,6 +89,10 @@
                   {{item.movement_type ? 'Giriş' : 'Çıkış' }}
                 </span>
 
+                <span *ngIf="item.on_requisition" style="float: right; margin-left: 5px;" class="badge badge-success">
+                  <i class="fa fa-truck"></i> Tedarik
+                </span>
+
                 <span tooltip="{{item.not}}" style="float: right;" *ngIf="item.not" class="badge badge-warning">
                   <i class="icon-note icons"></i> Not
                 </span>

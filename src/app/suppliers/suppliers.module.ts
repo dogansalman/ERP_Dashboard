@@ -12,6 +12,7 @@ import { TownsModule } from '../shared/directive/towns/towns.module';
 import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
 import { TooltipModule } from 'ngx-bootstrap';
 import { TooltipConfig } from 'ngx-bootstrap';
+import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 
 @NgModule({
   imports: [
@@ -23,12 +24,14 @@ import { TooltipConfig } from 'ngx-bootstrap';
     CapitalizeModule,
     CitiesModule,
     TownsModule,
-    TooltipModule
+    TooltipModule,
+    ModalModule.forRoot(),
   ],
   declarations: [ SuppliersComponent, SupplierComponent, RequistionsComponent],
   providers: [
     ApiServices,
-    TooltipConfig
+    TooltipConfig,
+    BsModalRef
   ]
 })
 export class SuppliersModule { }
