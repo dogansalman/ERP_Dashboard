@@ -11,6 +11,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { enGb } from 'ngx-bootstrap/locale';
 import { defineLocale } from 'ngx-bootstrap/bs-moment';
 import { tr } from '../shared/configs/tr';
+import { ExcelServices } from '../services/excel.services';
 
 @Component({
   templateUrl: 'stockcards.component.html'
@@ -79,7 +80,7 @@ export class StockcardsComponent implements  OnInit {
   Stock change modal from group validation
    */
 
-  constructor(private api: ApiServices, private modalService: BsModalService, private toastr: ToastrService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(private api: ApiServices, private modalService: BsModalService, private toastr: ToastrService, private formBuilder: FormBuilder, private router: Router, private excelSer: ExcelServices) {
 
     /*
     Stock change form validations
@@ -165,8 +166,6 @@ export class StockcardsComponent implements  OnInit {
   Stock request
    */
   addStockRequest(id): void {
-
-
      if (!id) { return; }
     const stockRequest = Object.assign(this.stockRequestForm.value, { stockcard_id : id, message: this.stockRequestForm.value.notify ? this.requestMessage : null });
 
@@ -174,9 +173,6 @@ export class StockcardsComponent implements  OnInit {
       this.modalRef.hide();
       setTimeout(() => this.toastr.success('Stok istek kaydı oluşturuldu.'));
     })
-
-
-
   }
 
   /*
@@ -191,6 +187,13 @@ export class StockcardsComponent implements  OnInit {
 
   onCheckboxChange(event) {
     this.isEmailSend = event.target.checked ? true : false;
+  }
+
+  /*
+  Save as excel
+   */
+  saveAsExcel(): void {
+    this.excelSer.exportAsExcelFile(this.stockCardList , 'Stok_Kart_Listesi');
   }
 
 }

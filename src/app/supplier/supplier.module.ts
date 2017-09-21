@@ -13,6 +13,10 @@ import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
 import { TooltipModule } from 'ngx-bootstrap';
 import { TooltipConfig } from 'ngx-bootstrap';
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
+import { SuppliersModule } from '../shared/directive/suppliers/suppliers.module';
+import { MultiFilterPipe } from '../shared/pipes/multi-filter/multi-filter.pipe';
+import { ExcelServices } from '../services/excel.services';
+
 
 @NgModule({
   imports: [
@@ -26,12 +30,15 @@ import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
     TownsModule,
     TooltipModule,
     ModalModule.forRoot(),
+    SuppliersModule
+
   ],
-  declarations: [ SuppliersComponent, SupplierComponent, RequistionsComponent],
+  declarations: [ SuppliersComponent, SupplierComponent, RequistionsComponent, MultiFilterPipe],
   providers: [
     ApiServices,
+    ExcelServices,
     TooltipConfig,
     BsModalRef
   ]
 })
-export class SuppliersModule { }
+export class SupplierModule { }

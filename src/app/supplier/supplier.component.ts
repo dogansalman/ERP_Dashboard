@@ -52,13 +52,13 @@ export class SupplierComponent implements OnInit {
     if (this.id) {
       this.api.put('suppliers/' + this.id, this.supplierForm.value).subscribe(() => {
         setTimeout(() => this.toastr.success('Tedarikçi kaydı güncellendi.'));
-        setTimeout(() => this.routes.navigateByUrl('suppliers/list'), 1000);
+        setTimeout(() => this.routes.navigateByUrl('supplier/list'), 1000);
       });
     } else {
       delete this.supplierForm.value['created_date']
       this.api.post('suppliers', this.supplierForm.value).subscribe(() => {
         setTimeout(() => this.toastr.success('Tedarikçi kaydı oluşturuldu.'));
-        setTimeout(() => this.routes.navigateByUrl('suppliers/list'), 1000);
+        setTimeout(() => this.routes.navigateByUrl('supplier/list'), 1000);
       });
     }
   }
@@ -69,7 +69,7 @@ export class SupplierComponent implements OnInit {
     this.api.delete('suppliers/' + this.id)
       .subscribe(r => {
         setTimeout(() => this.toastr.success('Tedarikçi kaydı silindi.'));
-        setTimeout(() => this.routes.navigateByUrl('suppliers/list'), 2000);
+        setTimeout(() => this.routes.navigateByUrl('supplier/list'), 2000);
       })
   }
 }

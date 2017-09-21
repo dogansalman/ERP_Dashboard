@@ -7,21 +7,28 @@
           <i class="fa fa-align-justify"></i> Stok Kartları ({{stockCardList.length}})
         </div>
         <div class="card-body">
-
-          <div class="col-xs-12 col-sm-12 col-md-3 float-right" style="padding: 0px;">
-            <div class="form-group">
-              <div class="controls">
-                <div class="input-group">
-                  <div class="input-group-btn" dropdown>
-                    <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>{{searchCriteri.name}}
-                      <span class="caret"></span>
-                    </button>
-                    <div class="dropdown-menu" *dropdownMenu>
-                      <a (click)="setSearchCriteria({name:'Kod', key: 'code'})" class="dropdown-item">Kod</a>
-                      <a (click)="setSearchCriteria({name:'Tanım', key: 'name'})" class="dropdown-item">Tanım</a>
+          <div class="card-group">
+            <div class="card">
+              <div class="card-header">Filtre</div>
+              <div class="card-body">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <div class="controls">
+                      <div class="input-group">
+                        <div class="input-group-btn" dropdown>
+                          <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>{{searchCriteri.name}}
+                            <span class="caret"></span>
+                          </button>
+                          <div class="dropdown-menu" *dropdownMenu>
+                            <a (click)="setSearchCriteria({name:'Kod', key: 'code'})" class="dropdown-item">Kod</a>
+                            <a (click)="setSearchCriteria({name:'Tanım', key: 'name'})" class="dropdown-item">Tanım</a>
+                          </div>
+                        </div>
+                        <input class="form-control"  (keydown)="searchTerm = searchTxt.value" placeholder="Aramak istediğiniz ürün kodu veya tanımı" id="appendedInputButtons" size="16" #searchTxt>
+                        <button style="margin-left: 5px;" class="btn btn-primary" (click)="saveAsExcel()" type="button"><i class="fa fa-file-excel-o"></i> Excel İndir</button>
+                      </div>
                     </div>
                   </div>
-                  <input class="form-control"  (keydown)="searchTerm = searchTxt.value" placeholder="Aramak istediğiniz ürün kodu veya tanımı" id="appendedInputButtons" size="16" #searchTxt>
                 </div>
               </div>
             </div>
@@ -60,9 +67,7 @@
             </tr>
             </tbody>
           </table>
-
           <p class="text-right"><span class="help-block">  {{(stockCardList | filter : 'code' : searchTxt.value).length}} sonuç bulundu. </span></p>
-
           <div class="card card-accent-warning">
             <div class="card-header">
               Bilgi !
@@ -95,7 +100,7 @@
       <div class="card-body">
         <blockquote class="card-bodyquote">
           <p>Stok kayıt etmeden önce sisteme en az 1 <b>Tedarikçi</b> tanımlamanız gerekmektedir.</p>
-          <button class="btn btn-success btn-sm"  [routerLink]="['/suppliers/add']" (click)="modalRef.hide()" type="button">Tedarikçi Ekle</button>
+          <button class="btn btn-success btn-sm"  [routerLink]="['/supplier/add']" (click)="modalRef.hide()" type="button">Tedarikçi Ekle</button>
         </blockquote>
       </div>
     </div>
@@ -150,7 +155,7 @@
       <div class="card-body">
         <blockquote class="card-bodyquote">
           <p>Stok kayıt etmeden önce sisteme en az 1 <b>Tedarikçi</b> tanımlamanız gerekmektedir.</p>
-          <button class="btn btn-success btn-sm"  [routerLink]="['/suppliers/add']" (click)="modalRef.hide()" type="button">Tedarikçi Ekle</button>
+          <button class="btn btn-success btn-sm"  [routerLink]="['/supplier/add']" (click)="modalRef.hide()" type="button">Tedarikçi Ekle</button>
         </blockquote>
       </div>
     </div>

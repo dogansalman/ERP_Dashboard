@@ -43,8 +43,8 @@ export const routes: Routes = [
         loadChildren: './personnel/personnel.module#PersonnelModule'
       },
       {
-        path: 'suppliers',
-        loadChildren: './suppliers/suppliers.module#SuppliersModule'
+        path: 'supplier',
+        loadChildren: './supplier/supplier.module#SupplierModule'
       },
       {
         path: 'stocktypes',

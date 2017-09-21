@@ -19,7 +19,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="linked-table-row" *ngFor='let item of supplierList'  [routerLink]="['/suppliers/edit', item.id]">
+            <tr class="linked-table-row" *ngFor='let item of supplierList'  [routerLink]="['/supplier/edit', item.id]">
               <td>{{item.company}}</td>
               <td>{{item.city | capitalizeFirst }} / {{item.town | capitalizeFirst}}</td>
               <td>{{item.phone}}</td>

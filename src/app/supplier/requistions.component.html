@@ -1,0 +1,225 @@
+<div class="animated fadeIn">
+
+
+  <!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Tedarik İstekleri ({{this.supplyRequistions.length}})
+        </div>
+        <div class="card-body">
+          <div class="card-group">
+            <div class="card">
+              <div class="card-body">
+                <div class="h1 text-muted text-right mb-4">
+                  <i class="icon-magnifier icons"></i>
+                </div>
+                <div class="h4 mb-0">
+                 Kriter
+                </div>
+
+                <ng-container *ngIf="!requistionsFilter.supplier && !requistionsFilter.state && !requistionsFilter.stockcard_code">
+                  <small class="text-muted text-uppercase font-weight-bold">
+                    Kriter bulunamadı
+                  </small>
+                  <br/>
+                </ng-container>
+
+
+                <ng-container *ngIf="requistionsFilter.supplier">
+                  <small class="text-muted text-uppercase font-weight-bold">
+                    {{requistionsFilter.supplier ? 'Tedarik: ' + requistionsFilter.supplier: ''}}
+                  </small>
+                  <br/>
+                </ng-container>
+
+                <ng-container *ngIf="requistionsFilter.state">
+                  <small class="text-muted text-uppercase font-weight-bold">
+                    {{requistionsFilter.state ? 'Durum: ' + tableIconSet[requistionsFilter.state].text: ''}}
+                  </small>
+                  <br/>
+                </ng-container>
+
+                <ng-container *ngIf="requistionsFilter.stockcard_code">
+                  <small class="text-muted text-uppercase font-weight-bold">
+                    {{requistionsFilter.stockcard_code ? 'Aranan: ' + requistionsFilter.stockcard_code: ''}}
+                  </small>
+                  <br/>
+                </ng-container>
+
+
+
+
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="h1 text-muted text-right mb-4">
+                  <i class="icon-check icons"></i>
+                </div>
+                <div class="h4 mb-0">{{deliveryStock}}</div>
+                <small class="text-muted text-uppercase font-weight-bold">Teslim Alınan Stok Adedi</small>
+                <div class="progress progress-xs mt-3 mb-0">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="385" aria-valuemin="0" aria-valuemax="1000"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="h1 text-muted text-right mb-4">
+                  <i class="icon-clock icons"></i>
+                </div>
+                <div class="h4 mb-0">{{expectedStock}}</div>
+                <small class="text-muted text-uppercase font-weight-bold">Beklenen Stok Adedi</small>
+                <div class="progress progress-xs mt-3 mb-0">
+                  <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="h1 text-muted text-right mb-4">
+                  <i class="icon-ban icons"></i>
+                </div>
+                <div class="h4 mb-0">{{reverseStock}}</div>
+                <small class="text-muted text-uppercase font-weight-bold">İptal Edilen Tedarik Talepleri</small>
+                <div class="progress progress-xs mt-3 mb-0">
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-group">
+            <div class="card">
+              <div class="card-header">Filtrele</div>
+              <div class="card-body">
+                <div class="col-xs-12 col-sm-8 col-md-7">
+                  <div class="form-group">
+                    <div class="controls">
+                      <div class="input-group">
+                        <select style="margin-right: 5px;" (change)="onChangeState(drpState.value)" #drpState class="form-control">
+                          <option value="Durum">Durum</option>
+                          <option value="1">Teslim</option>
+                          <option value="0">Bekleniyor</option>
+                          <option value="2">İptal</option>
+                        </select>
+                        <select style="margin-right: 5px;" (change)="onChangeSupplier(supplierdrp.value)" [attr.disabled]="supplierdrp.length === 1 ? '' : null"  #supplierdrp name="supplier" appSuppliers (suppliers)="suppliers = $event" class="form-control">
+                          <option value="Tedarikçi">Tedarikçi</option>
+                          <option *ngFor="let d of suppliers; let i = index" value="{{d.company}}"> {{d.company}} </option>
+                        </select>
+                        <input style="margin-right: 5px;" class="form-control" (keyup)="onChangeSearchTerm(searchTermInput.value)" #searchTermInput id="input2-group2" name="input2-group2" placeholder="Stok Kodu">
+                        <button style="margin-right: 5px;" class="btn btn-primary" (click)="filter()" type="button"><i class="fa fa-search"></i> Filtrele</button>
+                        <button style="margin-right: 5px;" class="btn btn-primary" (click)="excel()" type="button"><i class="fa fa-file-excel-o"></i> Excel İndir</button>
+                      </div>
+                    </div>
+
+
+
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px;">
+            <table class="table table-bordered table-striped table-md">
+              <thead>
+              <tr>
+                <th>Tedarikçi</th>
+                <th>Adet</th>
+                <th>Sipariş Tarihi</th>
+                <th>Teslim Tarihi</th>
+                <th>Stok Kartı</th>
+                <th>Teslim Adet</th>
+                <th>Durum</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr class="linked-table-row" *ngFor='let item of supplyRequistions | multiFilter: requistionsFilter;' (click)="openModal(requisition, item, true)">
+                <td>{{item.supplier | capitalizeFirst}}</td>
+                <td>{{item.unit}}</td>
+                <td>{{item.created_date | date: 'dd/MM/yyyy'}}</td>
+                <td>{{item.delivery_date | date: 'dd/MM/yyyy'}}</td>
+                <td>{{item.stockcard | capitalizeFirst }} <b>({{item.stockcard_code }})</b></td>
+                <td>{{item.real_unit}}</td>
+                <td>
+                  <span style="float: right; margin-left: 5px;" class="{{this.tableIconSet[item.state].class}}">
+                  <i class="{{this.tableIconSet[item.state].icon}}"></i>
+                  {{this.tableIconSet[item.state].text}}
+                </span>
+                  <span tooltip="{{item.message}}" style="float: right;" *ngIf="item.message" class="badge badge-warning">
+                  <i class="icon-note icons"></i> Oto. Mesaj
+                </span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>
+
+<!--/  requisition -->
+<ng-template #requisition>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{selectedRequstions.stockcard}} <span style="font-size:14px">({{selectedRequstions.stockcard_code}})</span></h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+
+    <div *ngIf="selectedRequstions.state === 1" class="btn btn-success active text-center" style="width: 100%;">
+      <blockquote>
+        <p>Bu sipariş <b> {{selectedRequstions.updated_date | date: 'dd/MM/yyyy'}} </b> tarihinde teslim alınmıştır. </p>
+        <p>Teslim olarak işaretlenmiş sipariş kayıtları üzerinde işlem gerçekleştirilemez.</p>
+      </blockquote>
+    </div>
+
+    <div *ngIf="selectedRequstions.state === 2" class="btn btn-danger active text-center" style="width: 100%;">
+      <blockquote>
+        <p>Bu sipariş <b> {{selectedRequstions.updated_date | date: 'dd/MM/yyyy'}} </b> tarihinde <b>iptal</b> edilmiş. </p>
+        <p>Yinede işlem gerçekleştirmek istediğinizden emin misiniz ?</p>
+      </blockquote>
+    </div>
+
+    <form *ngIf="selectedRequstions.state === 0 || selectedRequstions.state === 2" [formGroup]="requistionsForm" class="form-horizontal">
+      <div class="form-group">
+        <label class="form-control-label" for="waybill">İrsaliye No</label>
+        <div class="controls">
+          <input [attr.disabled]="this.isCancel || drpstate.value === '2'?'':null" formControlName="waybill" id="waybill" name="waybill" class="form-control" placeholder="İrsaliye numarası">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-control-label" for="real_unit">Teslim Alınan Adet</label>
+        <div class="controls">
+          <input [attr.disabled]="this.isCancel || drpstate.value === '2'?'':null" formControlName="real_unit" id="real_unit" name="real_unit" class="form-control" placeholder="Teslim alınan adet">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="state">Durum</label>
+        <div class="controls">
+          <select id="state" #drpstate (change)="onStateChange(drpstate.value)"  class="form-control" formControlName="state">
+            <option value="0">Bekleniyor</option>
+            <option value="1">Teslim</option>
+            <option value="2">İptal</option>
+          </select>
+        </div>
+      </div>
+
+      <button [disabled]="!this.isCancel ? !requistionsForm.valid : null" type="button" (click)="send(selectedRequstions.id)" class="btn btn-sm btn-primary">Tamam</button>
+      <button type="button" (click)="modalRef.hide()" class="btn btn-sm btn-danger">İptal</button>
+    </form>
+
+
+  </div>
+</ng-template>
+<!--/  requisition -->

@@ -20,6 +20,7 @@ import { FilterPipe } from '../shared/pipes/filter/filter.pipe';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule } from 'ngx-bootstrap'
 import { BsDatepickerActions } from 'ngx-bootstrap/datepicker/reducer/bs-datepicker.actions';
+import { ExcelServices } from '../services/excel.services';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { BsDatepickerActions } from 'ngx-bootstrap/datepicker/reducer/bs-datepic
   declarations: [ StockcardsComponent, StockcardComponent, StockmovementsComponent, FilterPipe],
   providers: [
     ApiServices,
+    ExcelServices,
     TooltipConfig,
     BsModalRef,
     BsDatepickerActions,
