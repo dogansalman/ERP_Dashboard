@@ -14,6 +14,7 @@
               <th>Firma</th>
               <th>İl / İlçe</th>
               <th>Telefon</th>
+              <th>E-posta</th>
               <th>İlgili</th>
               <th>Kayıt</th>
             </tr>
@@ -23,8 +24,9 @@
               <td>{{item.company}}</td>
               <td>{{item.city | capitalizeFirst }} / {{item.town | capitalizeFirst}}</td>
               <td>{{item.phone}}</td>
+              <td>{{item.email}}</td>
               <td>{{item.name | capitalizeFirst }} {{item.lastname | capitalizeFirst}}</td>
-              <td>{{item.created_date}}</td>
+              <td>{{item.created_date | date: 'dd/MM/yyyy'}}</td>
             </tr>
             </tbody>
           </table>

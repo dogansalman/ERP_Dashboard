@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild, ElementRef} from '@angular/core';
 import { ApiServices } from '../services/api.services';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
@@ -12,6 +12,9 @@ import { enGb } from 'ngx-bootstrap/locale';
 import { defineLocale } from 'ngx-bootstrap/bs-moment';
 import { tr } from '../shared/configs/tr';
 import { ExcelServices } from '../services/excel.services';
+import * as FileSaver from 'file-saver';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
 
 @Component({
   templateUrl: 'stockcards.component.html'
@@ -25,6 +28,11 @@ export class StockcardsComponent implements  OnInit {
   Stock card list
    */
   public stockCardList = [];
+
+  /*
+  Selected stock card files
+   */
+  public stockCardFiles = [];
 
   /*
   Selected stock card
@@ -73,14 +81,18 @@ export class StockcardsComponent implements  OnInit {
  */
   public requestMessage: string;
 
-
-
+  /*
+  File uploader
+ */
+  @ViewChild('uploader') uploader: ElementRef;
 
   /*
   Stock change modal from group validation
    */
 
   constructor(private api: ApiServices, private modalService: BsModalService, private toastr: ToastrService, private formBuilder: FormBuilder, private router: Router, private excelSer: ExcelServices) {
+
+
 
     /*
     Stock change form validations
@@ -131,8 +143,9 @@ export class StockcardsComponent implements  OnInit {
   public openModal(template: TemplateRef<any>, stockcard, add) {
     this.selectedStockCard = stockcard;
     this.isAdd = add;
-    this.modalRef = this.modalService.show(template, {keyboard: false, ignoreBackdropClick: true});
+    this.api.get('files/' + stockcard.id).subscribe(files => this.stockCardFiles = files);
 
+    this.modalRef = this.modalService.show(template, {keyboard: false, ignoreBackdropClick: true});
     /*
     Modal closing
      */
@@ -194,6 +207,67 @@ export class StockcardsComponent implements  OnInit {
    */
   saveAsExcel(): void {
     this.excelSer.exportAsExcelFile(this.stockCardList , 'Stok_Kart_Listesi');
+  }
+
+  /*
+  Get icon from extentions
+   */
+  Icons(filename): string {
+    const extention = filename.split('.')[filename.split('.').length - 1].toLowerCase();
+    const icons = {
+      'jpg': 'fa fa-file-image-o',
+      'png': 'fa fa-file-image-o',
+      'gif': 'fa fa-file-image-o',
+      'jpeg': 'fa fa-file-image-o',
+      'rar': 'fa fa-file-archive-o',
+      'zip': 'fa fa-file-archive-o',
+      'doc': 'fa fa-file-word-o',
+      'docx': 'fa fa-file-word-o',
+      'rtf': 'fa fa-file-word-o',
+      'pdf': 'fa fa-file-pdf-o',
+
+    }
+
+    return icons[extention];
+  }
+
+  fileChange(event) {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      const file: File = fileList[0];
+      const formData: FormData = new FormData();
+      formData.append('uploadFile', file, file.name);
+      const headers = new Headers();
+
+      /*
+      headers.append('Content-Type', 'multipart/form-data');
+      headers.append('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      this.http.post(`${this.apiEndPoint}`, formData, options)
+        .map(res => res.json())
+        .catch(error => Observable.throw(error))
+        .subscribe(
+          data => console.log('success'),
+          error => console.log(error)
+        )
+       */
+    }
+  }
+  openFile(): void {
+    //const el: HTMLElement = this.uploader as HTMLElement;
+    //el.click();
+  }
+  Download(): void {
+    window.open( 'http://localhost:8080/files/2/abkar.jpg');
+/*
+ this.api.download('http://localhost:8080/files/2/abkar.jpg').subscribe(
+     data => {
+       //FileSaver.saveAs(data, 'Export.xlsx');
+     });
+ */
+
+
+
   }
 
 }

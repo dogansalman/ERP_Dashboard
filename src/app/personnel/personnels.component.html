@@ -13,17 +13,19 @@
             <tr>
               <th>Ad Soyad</th>
               <th>Kullanıcı Adi</th>
+              <th>Departman</th>
               <th>Kayıt</th>
               <th>Durum</th>
             </tr>
             </thead>
             <tbody>
-            <tr class="linked-table-row" *ngFor='let item of personnelList'  [routerLink]="['/personnel/edit', item.id]">
-              <td>{{item.name | capitalizeFirst }} {{item.lastname | capitalizeFirst}}</td>
-              <td>{{item.username}}</td>
-              <td>{{item.created_date}}</td>
+            <tr class="linked-table-row" *ngFor='let item of personnelList'  [routerLink]="['/personnel/edit', item.Personnel.id]">
+              <td>{{item.Personnel.name | capitalizeFirst }} {{item.Personnel.lastname | capitalizeFirst}}</td>
+              <td>{{item.Personnel.username}}</td>
+              <td>{{item.Department.name}}</td>
+              <td>{{item.Personnel.created_date  | date: 'dd/MM/yyyy'}}</td>
               <td>
-                <span [ngClass]="item.state ? 'badge badge-success' : 'badge badge-danger'">{{item.state ? 'Aktif' : 'Pasif'}}</span>
+                <span [ngClass]="item.Personnel.state ? 'badge badge-success' : 'badge badge-danger'">{{item.Personnel.state ? 'Aktif' : 'Pasif'}}</span>
               </td>
             </tr>
             </tbody>

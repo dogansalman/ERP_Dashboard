@@ -1,13 +1,13 @@
 import {Injectable } from '@angular/core';
-import {Http, Response, RequestOptions, Headers} from '@angular/http';
+import {Http, Response, RequestOptions, Headers, ResponseContentType} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import {ToastrService} from 'ngx-toastr';
-
 import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
 
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import {subscribeOn} from "rxjs/operator/subscribeOn";
 
 
 @Injectable()
@@ -34,7 +34,7 @@ export class ApiServices {
     return this.http.get(this.apiUrl + url )
       .map((res: Response) =>  <any[]> res.json())
       .catch((error: any) => {
-        setTimeout(() => { this.toastr.success('Lütfen tekrar deneyin', 'Kayıt bulunamadı!'); }, 100)
+        setTimeout(() => { this.toastr.error('Lütfen tekrar deneyin', 'Kayıt bulunamadı!'); }, 100)
         return Observable.throw(error.json().error || 'Server error');
       })._finally(() => this.slimLoadingBarService.complete())
   }
@@ -74,6 +74,19 @@ export class ApiServices {
         return Observable.throw(error || 'Server error')
       })
       ._finally(() => this.slimLoadingBarService.complete())
+  }
+
+  download(url): Observable<any> {
+
+    const headers = new Headers({ 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'});
+    const options = new RequestOptions({ headers: headers });
+    this.slimLoadingBarService.start(() => {  });
+    return this.http.get(url, options)
+      .map(res => res.blob())
+      .catch((error: any) => {
+        setTimeout(() => { this.toastr.error('Yükleme başarısız. Tekrar deneyin', 'Yükleme başarısız!'); }, 100)
+        return Observable.throw(error.json().error || 'Server error');
+      })._finally(() => this.slimLoadingBarService.complete())
   }
 
 }

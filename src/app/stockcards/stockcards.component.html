@@ -63,6 +63,9 @@
                 <button class="btn btn-primary btn-sm"  (click)="openModal(stockRequest, item, false)" type="button" tooltip="Tedarik talebi kaydı" container="body" placement="top">
                   <i class="icon-basket icons"></i>
                 </button>
+                <button class="btn btn-warning btn-sm"  (click)="openModal(stockFiles, item, false)" type="button" tooltip="Dosyaları incele" container="body" placement="top">
+                  <i class="icon-folder icons"></i>
+                </button>
               </td>
             </tr>
             </tbody>
@@ -85,7 +88,6 @@
   </div>
   <!--/.row-->
 </div>
-
 
 <!-- change stock of stock card-->
 <ng-template #template>
@@ -141,7 +143,6 @@
 </ng-template>
 <!--/  change stock of stock card -->
 
-
 <!--/  new stock requistions -->
 <ng-template #stockRequest>
   <div class="modal-header">
@@ -166,14 +167,12 @@
           <input #unit [attr.disabled]="supplierdrp.length === 1 ? '' : null"  type="number" formControlName="unit" id="_unit" name="unit" class="form-control" placeholder="Adet">
         </div>
       </div>
-
       <div class="form-group">
         <label class="form-control-label" for="delivary_date">Teslim Tarihi</label>
         <div class="controls">
           <input class="form-control" id="delivary_date" placeholder="Teslim tarihi belirtin." bsDatepicker [bsConfig]="bsConfig" formControlName="delivery_date" />
         </div>
       </div>
-
       <div class="form-group">
         <label class="form-control-label" for="_supplier">Tedarikçi</label>
         <div class="controls">
@@ -183,7 +182,6 @@
           </select>
         </div>
       </div>
-
       <div class="form-group row">
         <label class="col-md-6 form-control-label">İleti Gönder</label>
         <div class="col-md-6 text-right">
@@ -194,32 +192,54 @@
           </label>
         </div>
       </div>
-
-
       <div *ngIf="this.isEmailSend === true" style="width: 100%;" class="btn btn-success active text-center">
         <blockquote>
           <p>Tedarikçi firmanın e-posta adresine otomatik ileti gönderilecektir.</p>
         </blockquote>
       </div>
-
       <div class="form-group">
         <div class="controls">
           <textarea [disabled]="!this.isEmailSend" class="form-control" #rqMessage (keyup)="this.requestMessage = rqMessage.value" id="_message" rows="3">Merhaba, {{selectedStockCard.name}}kod üründen {{unit.value}} adet sipariş. Buraya otomatik sipariş metni oluşturulabilir.
           </textarea>
-
-
         </div>
       </div>
-
 
       <button [disabled]="!stockRequestForm.valid" type="button" (click)="addStockRequest(selectedStockCard.id, rqMessage.value)" class="btn btn-sm btn-primary">Ekle</button>
       <button type="button" (click)="modalRef.hide()" class="btn btn-sm btn-danger">İptal</button>
     </form>
-
-
   </div>
 </ng-template>
 <!--/  new stock requistions -->
 
+<!--/  stockcards files -->
+<ng-template #stockFiles>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{selectedStockCard.name}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="stockCardFiles.length === 0" class="text-center" style="width: 100%;">
+      <p><i class="icon-folder icons"></i> Yüklü dosya bulunamadı..</p>
+    </div>
+    <div *ngIf="stockCardFiles.length !== 0">
+      <p>{{stockCardFiles.length}} adet dosya bulundu.</p>
+      <button style="margin-right: 5px; margin-top:5px;"  *ngFor="let item of stockCardFiles"  (click)="Download(item.name)" class="btn btn-outline-primary" type="button"><i class="{{Icons(item.name)}}"></i>&nbsp; {{item.name}}</button>
+    </div>
+
+    <div class="card" style="margin-top:15px;">
+      <div class="card-body">
+        <p style="font-size:13px;">
+        <b>Not:</b> Dosya yüklenene kadar farklı bir işlem yapmayın. İşlemin tamamlanması dosyanın boyuna göre değişiklik göstermektedir.
+        </p>
+        <input #uploader type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.gif,.rar,.zip">
+        <button class="btn btn-success" (click)="openFile()" type="button"><i class="icon-cloud-upload icons"></i>&nbsp; Yükle</button>
+      </div>
+    </div>
+
+  </div>
+</ng-template>
+<!--/  stockcards files -->
 
 
