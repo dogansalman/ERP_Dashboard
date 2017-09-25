@@ -225,7 +225,7 @@
     </div>
     <div *ngIf="stockCardFiles.length !== 0">
       <p>{{stockCardFiles.length}} adet dosya bulundu.</p>
-      <button style="margin-right: 5px; margin-top:5px;"  *ngFor="let item of stockCardFiles"  (click)="Download(item.name)" class="btn btn-outline-primary" type="button"><i class="{{Icons(item.name)}}"></i>&nbsp; {{item.name}}</button>
+      <button style="margin-right: 5px; margin-top:5px;"  *ngFor="let item of stockCardFiles"  (click)="Download(item.name, item.id)" class="btn btn-outline-primary" type="button"><i class="{{Icons(item.name)}}"></i>&nbsp; {{item.name}}</button>
     </div>
 
     <div class="card" style="margin-top:15px;">
@@ -233,8 +233,8 @@
         <p style="font-size:13px;">
         <b>Not:</b> Dosya yüklenene kadar farklı bir işlem yapmayın. İşlemin tamamlanması dosyanın boyuna göre değişiklik göstermektedir.
         </p>
-        <input #uploader type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.gif,.rar,.zip">
-        <button class="btn btn-success" (click)="openFile()" type="button"><i class="icon-cloud-upload icons"></i>&nbsp; Yükle</button>
+        <input #uploader type="file" style="display: none" (change)="fileChange($event, this.selectedStockCard.id)" placeholder="Upload file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.gif,.rar,.zip">
+        <button class="btn btn-success" style="width: 100%;" (click)="uploader.click()" type="button"><i class="icon-cloud-upload icons"></i>&nbsp; Yükle (Maks. 25MB)</button>
       </div>
     </div>
 

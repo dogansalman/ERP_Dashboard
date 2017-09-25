@@ -231,43 +231,21 @@ export class StockcardsComponent implements  OnInit {
     return icons[extention];
   }
 
-  fileChange(event) {
+  fileChange(event, id) {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       const file: File = fileList[0];
       const formData: FormData = new FormData();
       formData.append('uploadFile', file, file.name);
-      const headers = new Headers();
-
-      /*
-      headers.append('Content-Type', 'multipart/form-data');
-      headers.append('Accept', 'application/json');
-      let options = new RequestOptions({ headers: headers });
-      this.http.post(`${this.apiEndPoint}`, formData, options)
-        .map(res => res.json())
-        .catch(error => Observable.throw(error))
-        .subscribe(
-          data => console.log('success'),
-          error => console.log(error)
-        )
-       */
+      this.api.upload('files' + '/' + id, formData).subscribe(() => {
+        setTimeout(() => this.toastr.success('Dosya yüklendi.'));
+      });
+      this.stockCardFiles.push({name: file.name, id: id});
     }
   }
-  openFile(): void {
-    //const el: HTMLElement = this.uploader as HTMLElement;
-    //el.click();
-  }
-  Download(): void {
-    window.open( 'http://localhost:8080/files/2/abkar.jpg');
-/*
- this.api.download('http://localhost:8080/files/2/abkar.jpg').subscribe(
-     data => {
-       //FileSaver.saveAs(data, 'Export.xlsx');
-     });
- */
 
-
-
+  Download(name, id): void {
+    window.open( 'http://localhost:8080/api/files/download/' + id + '/' + name.split('.')[0] + '/' + name.split('.').pop());
   }
 
 }

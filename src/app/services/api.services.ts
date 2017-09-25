@@ -76,14 +76,17 @@ export class ApiServices {
       ._finally(() => this.slimLoadingBarService.complete())
   }
 
-  download(url): Observable<any> {
-
-    const headers = new Headers({ 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'});
-    const options = new RequestOptions({ headers: headers });
+  upload(url, formData): Observable<any> {
     this.slimLoadingBarService.start(() => {  });
-    return this.http.get(url, options)
-      .map(res => res.blob())
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'multipart/form-data');
+   // const options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.apiUrl + url, formData)
+      .map(res => res.json())
       .catch((error: any) => {
+      console.log(error);
         setTimeout(() => { this.toastr.error('Yükleme başarısız. Tekrar deneyin', 'Yükleme başarısız!'); }, 100)
         return Observable.throw(error.json().error || 'Server error');
       })._finally(() => this.slimLoadingBarService.complete())
