@@ -55,6 +55,10 @@ export const routes: Routes = [
         loadChildren: './stockcards/stockcards.module#StockcardsModule'
       },
       {
+        path: 'orders',
+        loadChildren: './orders/orders.module#OrdersModule'
+      },
+      {
         path: 'charts',
         loadChildren: './chartjs/chartjs.module#ChartJSModule'
       }

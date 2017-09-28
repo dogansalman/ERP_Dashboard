@@ -1,0 +1,75 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+        <div class="card">
+          <div class="card-body">
+            <div class="card">
+              <div class="card-header">
+                <strong>Sipariş</strong> Ekle
+              </div>
+              <div class="col-sm-12 col-md-5 card-body">
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label" for="customer_id">Müşteri*</label>
+                  <div class="col-md-9">
+                    <select formControlName="customer_id" name="customer_id" appCustomers (customers)="customers = $event" class="form-control" id="customer_id">
+                      <option value="Seçiniz">Seçiniz</option>
+                      <option *ngFor="let d of customers" value="{{d.company}}"> {{d.company}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label" for="order_note">Sipariş Notu</label>
+                  <div class="col-md-9">
+                    <textarea formControlName="order_note" id="order_note" name="order_note" rows="3" class="form-control" placeholder="Not"></textarea>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label" for="over_date">Sipariş Tarihi*</label>
+                  <div class="col-md-9">
+                    <input class="form-control" id="over_date" placeholder="Siparişin teslim tarihi belirtin." bsDatepicker [bsConfig]="bsConfig" formControlName="over_date" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label" for="over_date">Stok Seçin*</label>
+                  <div class="col-md-9">
+                    <input class="form-control" #searchStockCard id="stockcard"  placeholder="Stok kodu veya tanım" ngui-auto-complete [max-num-list]="10" (valueChanged)="customCallback($event)" [list-formatter]="autocompleListFormatter" value-property-name="id" display-property-name="name" [source]="stockCardList" />
+                    <button class="btn btn-primary" style="margin-top:10px;" (click)="addStockCard()">Stok Kartını Ekle</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <strong>Stok Kartı</strong> Listesi
+                <span class="badge badge-success float-right">{{selectedStockCardList.length}}</span>
+              </div>
+              <div class="card-body">
+                <p *ngIf="this.selectedStockCardList.length === 0" >Siparişe ekli bir stok kartı bulunmamaktadır.</p>
+                <div *ngFor="let item of selectedStockCardList; let i=index" class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">{{item.name}}</span>
+                    <input type="hidden" value="{{item.id}}" />
+                    <input type="number" min="1" max="{{item.unit}}" class="form-control" placeholder="Max adet {{item.unit}}">
+                    <span style="background:none;" class="input-group-addon">  <button (click)="removeStockCard(item)" class="btn btn-sm btn-danger"><i class="icon-trash icons"></i></button></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-text">* doldurulması zorunlu alanlar.</div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+            <p class="card-text" style="float: right;">
+              <span *ngIf="orderForm.get('created_date').value">Eklenen Tarih: {{orderForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>
+              <br>
+              <span *ngIf="orderForm.get('updated_date').value">Son Güncelleme: {{orderForm.get('updated_date').value | date: 'dd/MM/yyyy'}}</span>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div><!--/.row-->
+</div>
+
+
