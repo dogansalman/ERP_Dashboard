@@ -45,8 +45,6 @@ export class OrderComponent implements  OnInit {
   public id: number;
 
 
-
-
   constructor(private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router, private formBuilder: FormBuilder, private _sanitizer: DomSanitizer) {
 
   }
@@ -56,21 +54,7 @@ export class OrderComponent implements  OnInit {
     create or update order
    */
   onSubmit(): void {
-    console.log(this.orderForm.value);
-  }
-  addStockCard(): void {
-    if (this.selectedStockCard) {
-      this.selectedStockCardList.push(this.selectedStockCard);
-      this.searchCardInput.nativeElement.value = '';
-      this.stockCardList.splice(this.stockCardList.findIndex(sc => sc === this.selectedStockCard), 1);
-      this.selectedStockCard = null;
-    }
-  }
-
-  removeStockCard(stockCard): void {
-    this.selectedStockCardList.splice(this.selectedStockCardList.findIndex(sc => sc === stockCard), 1);
-    this.stockCardList.push(stockCard);
-
+   // console.log(this.orderForm.value);
   }
 
   autocompleListFormatter = (data: any): SafeHtml => {
@@ -78,9 +62,30 @@ export class OrderComponent implements  OnInit {
     return this._sanitizer.bypassSecurityTrustHtml(html);
   }
 
-  customCallback(event): void {
-   this.selectedStockCard = event;
+  initStockCard() {
+
+    return this.formBuilder.group({
+      order_stock: ['', Validators.required],
+      order_unit: ['', Validators.required]
+    });
   }
+
+  onStockCardChange(sc): void {
+    this.selectedStockCard = sc;
+    this.stockCardList.splice(this.stockCardList.findIndex(scard => scard === sc), 1);
+    this.selectedStockCard = null;
+  }
+  addStockCard() {
+    const control = <FormArray>this.orderForm.controls['order_stocks'];
+    control.push(this.initStockCard());
+  }
+
+  removeStockCard(i: number) {
+    const control = <FormArray>this.orderForm.controls['order_stocks'];
+    this.stockCardList.push(control.value[i]);
+    control.removeAt(i);
+  }
+
 
   ngOnInit(): void {
 
@@ -92,8 +97,12 @@ export class OrderComponent implements  OnInit {
       'over_date': [null, Validators.required],
       'order_note': [''],
       'created_date': [''],
-      'updated_date': ['']
+      'updated_date': [''],
+      'order_stocks': this.formBuilder.array([
+        this.initStockCard(),
+      ])
     })
+
 
     defineLocale('tr', tr)
     /*

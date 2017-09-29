@@ -30,36 +30,56 @@
                     <input class="form-control" id="over_date" placeholder="Siparişin teslim tarihi belirtin." bsDatepicker [bsConfig]="bsConfig" formControlName="over_date" />
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label class="col-md-3 form-control-label" for="over_date">Stok Seçin*</label>
-                  <div class="col-md-9">
-                    <input class="form-control" #searchStockCard id="stockcard"  placeholder="Stok kodu veya tanım" ngui-auto-complete [max-num-list]="10" (valueChanged)="customCallback($event)" [list-formatter]="autocompleListFormatter" value-property-name="id" display-property-name="name" [source]="stockCardList" />
-                    <button class="btn btn-primary" style="margin-top:10px;" (click)="addStockCard()">Stok Kartını Ekle</button>
-                  </div>
-                </div>
               </div>
             </div>
+
             <div class="card">
               <div class="card-header">
                 <strong>Stok Kartı</strong> Listesi
-                <span class="badge badge-success float-right">{{selectedStockCardList.length}}</span>
+                <span class="badge badge-success float-right">deneme</span>
               </div>
               <div class="card-body">
-                <p *ngIf="this.selectedStockCardList.length === 0" >Siparişe ekli bir stok kartı bulunmamaktadır.</p>
-                <div *ngFor="let item of selectedStockCardList; let i=index" class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon">{{item.name}}</span>
-                    <input type="hidden" value="{{item.id}}" />
-                    <input type="number" min="1" max="{{item.unit}}" class="form-control" placeholder="Max adet {{item.unit}}">
-                    <span style="background:none;" class="input-group-addon">  <button (click)="removeStockCard(item)" class="btn btn-sm btn-danger"><i class="icon-trash icons"></i></button></span>
+
+                <div formArrayName="order_stocks" class="row">
+
+                  <div *ngFor="let address of orderForm.controls.order_stocks.controls; let i=index" class="col-sm-6 col-md-4">
+                    <div class="card">
+
+                      <div class="card-body">
+                        <div class="panel-heading">
+                          <span><strong>Stok Kartı :</strong> {{i + 1}}</span>
+                          <button  style="float: right;" class="btn btn-danger" *ngIf="orderForm.controls.order_stocks.controls.length > 1" (click)="removeStockCard(i)" type="button"><i class="icon-trash icons"></i></button>
+                        </div>
+                        <div class="panel-body" [formGroupName]="i">
+                          <div class="form-group col-xs-6">
+                            <label>Stok kartı seçiniz.</label>
+                            <input class="form-control" #searchStockCard formControlName="order_stock" placeholder="Stok kodu veya tanım" ngui-auto-complete [max-num-list]="10" (valueChanged)="onStockCardChange($event)" [list-formatter]="autocompleListFormatter" value-property-name="id" display-property-name="name" [source]="stockCardList" />
+                            <small [hidden]="orderForm.controls.order_stocks.controls[i].controls.order_stock.valid" class="text-danger">
+                             Lütfen stok kartını seçin
+                            </small>
+                          </div>
+                          <div class="form-group col-xs-6">
+                            <label>Sipariş Adedi</label>
+                            <input type="number" class="form-control" formControlName="order_unit">
+                            <small [hidden]="orderForm.controls.order_stocks.controls[i].controls.order_unit.valid" class="text-danger">
+                              Sipariş adedi belitin.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                </div>
+                <div class="margin-20">
+                  <button class="btn btn-primary"(click)="addStockCard()" style="margin-top:10px;">Stok Kartını Ekle +</button>
                 </div>
               </div>
             </div>
+
             <div class="card-text">* doldurulması zorunlu alanlar.</div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+            <button [disabled]="!orderForm.valid" type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
             <p class="card-text" style="float: right;">
               <span *ngIf="orderForm.get('created_date').value">Eklenen Tarih: {{orderForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>
               <br>
