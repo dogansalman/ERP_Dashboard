@@ -28,10 +28,6 @@ export class OrderComponent implements  OnInit {
    */
   public stockCardList = [];
   /*
-  Selected stock card
-   */
-  public selectedStockCard = null;
-  /*
   Selected stock card list
    */
   public selectedStockCardList = [];
@@ -44,17 +40,20 @@ export class OrderComponent implements  OnInit {
    */
   public id: number;
 
-
   constructor(private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router, private formBuilder: FormBuilder, private _sanitizer: DomSanitizer) {
 
   }
-
 
   /*
     create or update order
    */
   onSubmit(): void {
-   // console.log(this.orderForm.value);
+    console.log(this.orderForm.value);
+    delete this.orderForm.value['created_date']
+    this.api.post('orders', this.orderForm.value).subscribe(() => {
+      setTimeout(() => this.toastr.success('Sipariş kaydı oluşturuldu.'));
+      setTimeout(() => this.routes.navigateByUrl('orders/list'), 1000)
+    })
   }
 
   autocompleListFormatter = (data: any): SafeHtml => {
@@ -70,10 +69,10 @@ export class OrderComponent implements  OnInit {
     });
   }
 
-  onStockCardChange(sc): void {
-    this.selectedStockCard = sc;
+  onStockCardChange(sc, el): void {
+    el.disabled = true;
     this.stockCardList.splice(this.stockCardList.findIndex(scard => scard === sc), 1);
-    this.selectedStockCard = null;
+    this.selectedStockCardList.push(sc);
   }
   addStockCard() {
     const control = <FormArray>this.orderForm.controls['order_stocks'];
@@ -82,7 +81,8 @@ export class OrderComponent implements  OnInit {
 
   removeStockCard(i: number) {
     const control = <FormArray>this.orderForm.controls['order_stocks'];
-    this.stockCardList.push(control.value[i]);
+    this.stockCardList.push(control.value[i].order_stock);
+    this.selectedStockCardList.splice(this.selectedStockCardList.findIndex(scard => scard === control.value[i].order_stock), 1);
     control.removeAt(i);
   }
 
@@ -102,6 +102,21 @@ export class OrderComponent implements  OnInit {
         this.initStockCard(),
       ])
     })
+
+
+    /*
+    Get order details
+     */
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.id = params['id'];
+        this.api.get('orders/' + this.id).subscribe(o =>  {
+          this.orderForm.patchValue(o);
+
+          console.log(o,      this.orderForm.value);
+        });
+      }
+    });
 
 
     defineLocale('tr', tr)

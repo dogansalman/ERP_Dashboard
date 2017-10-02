@@ -9,3 +9,9 @@
 .zindex-inmodal {
   z-index: 9999 !important;
 }
+
+.stock-selection.form-control:disabled, .stock-selection.form-control[readonly]{
+  background-color: #4dbd74;
+  opacity: 1;
+  color: #fff;
+}
