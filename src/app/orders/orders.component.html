@@ -1,0 +1,73 @@
+<div class="animated fadeIn">
+
+  <!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Siparişler ({{orderList.length}})
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped table-md">
+            <thead>
+            <tr>
+              <th>Müşteri</th>
+              <th>Sipariş Sonu</th>
+              <th>Kayıt</th>
+              <th>İşlem</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="linked-table-row" *ngFor='let item of orderList'  [routerLink]="['/orders/edit', item.order.id]">
+              <td>
+                {{item.customer.company | capitalizeFirst}}
+
+                <span *ngIf="!item.order.is_production && !item.order.is_complated" style="float: right; margin-left: 5px;" class="badge badge-warning">
+                  <i class="icon-clock icons"></i>
+                  İşlem Bekleniyor
+                </span>
+
+                <span *ngIf="item.order.is_production" style="float: right; margin-left: 5px;" class="badge badge-primary">
+                  <i class="icon-speedometer icons"></i>
+                  Henüz Üretimde
+                </span>
+
+                <span *ngIf="item.order.is_complated" style="float: right; margin-left: 5px;" class="badge badge-success">
+                  <i class="icon-check icons"></i>
+                  Üretim Tamamlandı
+                </span>
+
+              </td>
+              <td>{{item.order.over_date | date: 'dd/MM/yyyy'}}</td>
+              <td>{{item.order.created_date | date: 'dd/MM/yyyy'}}</td>
+              <td>
+                <button class="btn btn-primary btn-sm"  [routerLink]="['/stockcards/stockmovement', item.id]" type="button" tooltip="Üretim hareketlerini incele." container="body" placement="top">
+                  <i class="icon-graph icons"></i>
+                </button>
+                <button class="btn btn-success btn-sm" type="button" tooltip="Üretim kaydı oluştur." container="body" placement="top">
+                  <i class="fa fa-plus"></i>
+                </button>
+
+              </td>
+
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card card-accent-warning">
+        <div class="card-header">
+          Bilgi !
+        </div>
+        <div class="card-body">
+         Sipariş ile ilgili işlemler <b>İşlem</b> alından gerçekleşmektedir. <br> <b>Üretim Kaydı</b> oluşturmak için  <button class="btn btn-success btn-sm" type="button"><i class="fa fa-plus"></i></button>
+          seçeneği <b>Üretim hareketlerini incelemek için </b>
+          <button class="btn btn-primary btn-sm" type="button"><i class="icon-graph icons"></i></button> seçeneğini kullanınız.
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>

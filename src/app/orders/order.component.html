@@ -4,7 +4,21 @@
       <form [formGroup]="orderForm" class="form-horizontal">
         <div class="card">
           <div class="card-body">
-            <div class="card">
+
+            <div *ngIf="orderDetail.is_production" class="card text-white bg-primary">
+              <div class="card-body">
+                <p><i class="icon-bell icons"></i> Sipariş üretimde görünmektedir.</p>
+
+              </div>
+            </div>
+
+            <div *ngIf="orderDetail.is_complated" class="card text-white bg-success">
+              <div class="card-body">
+                <p><i class="icon-check icons"></i> Siparişin tüm üretimi tamamlanmış.</p>
+              </div>
+            </div>
+
+            <div class="card  {{isDisableForm() ? 'blurred' : ''}}">
               <div class="card-header">
                 <strong>Sipariş</strong> Ekle
               </div>
@@ -12,7 +26,7 @@
                 <div class="form-group row">
                   <label class="col-md-3 form-control-label" for="customer_id">Müşteri*</label>
                   <div class="col-md-9">
-                    <select formControlName="customer_id" name="customer_id" appCustomers (customers)="customers = $event" class="form-control" id="customer_id">
+                    <select [attr.disabled]="isDisableForm()" formControlName="customer_id" name="customer_id" appCustomers (customers)="customers = $event" class="form-control" id="customer_id">
                       <option value="Seçiniz">Seçiniz</option>
                       <option *ngFor="let d of customers" value="{{d.id}}"> {{d.company}}</option>
                     </select>
@@ -21,35 +35,31 @@
                 <div class="form-group row">
                   <label class="col-md-3 form-control-label" for="order_note">Sipariş Notu</label>
                   <div class="col-md-9">
-                    <textarea formControlName="order_note" id="order_note" name="order_note" rows="3" class="form-control" placeholder="Not"></textarea>
+                    <textarea [attr.disabled]="isDisableForm()" formControlName="order_note" id="order_note" name="order_note" rows="3" class="form-control" placeholder="Not"></textarea>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-3 form-control-label" for="over_date">Sipariş Tarihi*</label>
                   <div class="col-md-9">
-                    <input class="form-control" id="over_date" placeholder="Siparişin teslim tarihi belirtin." bsDatepicker [bsConfig]="bsConfig" formControlName="over_date" />
+                    <input [attr.disabled]="isDisableForm()" class="form-control" id="over_date" placeholder="Siparişin teslim tarihi belirtin." bsDatepicker [bsConfig]="bsConfig" formControlName="over_date" />
                   </div>
                 </div>
               </div>
             </div>
 
 
-            <div class="card">
+            <div class="card  {{isDisableForm() ? 'blurred' : ''}}">
               <div class="card-header">
                 <strong>Stok Kartı</strong> Listesi
-                <span class="badge badge-success float-right">deneme</span>
               </div>
               <div class="card-body">
-
                 <div formArrayName="order_stocks" class="row">
-
                   <div *ngFor="let address of orderForm.controls.order_stocks.controls; let i=index" class="col-sm-6 col-md-4">
                     <div class="card">
-
                       <div class="card-body">
                         <div class="panel-heading">
                           <span><strong>Stok Kartı :</strong> {{i + 1}}</span>
-                          <button  style="float: right;" class="btn btn-danger" *ngIf="orderForm.controls.order_stocks.controls.length > 0" (click)="removeStockCard(i)" type="button"><i class="icon-trash icons"></i></button>
+                          <button [attr.disabled]="isDisableForm()"  style="float: right;" class="btn btn-danger" *ngIf="orderForm.controls.order_stocks.controls.length > 0" (click)="removeStockCard(i)" type="button"><i class="icon-trash icons"></i></button>
                         </div>
                         <div class="panel-body" [formGroupName]="i">
                           <div class="form-group col-xs-6">
@@ -63,7 +73,7 @@
                           </div>
                           <div class="form-group col-xs-6">
                             <label>Sipariş Adedi</label>
-                            <input type="number" class="form-control" formControlName="order_unit">
+                            <input [attr.disabled]="isDisableForm()" type="number" class="form-control" formControlName="order_unit">
                             <small [hidden]="orderForm.controls.order_stocks.controls[i].controls.order_unit.valid" class="text-danger">
                               Sipariş adedi belitin.
                             </small>
@@ -74,7 +84,7 @@
                   </div>
                 </div>
                 <div class="margin-20">
-                  <button class="btn btn-primary"(click)="addStockCard()" style="margin-top:10px;">Stok Kartını Ekle +</button>
+                  <button [attr.disabled]="isDisableForm()" class="btn btn-primary"(click)="addStockCard()" style="margin-top:10px;">Stok Kartını Ekle +</button>
                 </div>
               </div>
             </div>
@@ -82,7 +92,7 @@
             <div class="card-text">* doldurulması zorunlu alanlar.</div>
           </div>
           <div class="card-footer">
-            <button [disabled]="!orderForm.valid" type="submit" (click)="onSubmit()" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+            <button [disabled]="!orderForm.valid || isDisableForm()" type="submit" (click)="onSubmit()" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
             <p class="card-text" style="float: right;">
               <span *ngIf="orderForm.get('created_date').value">Eklenen Tarih: {{orderForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>
               <br>

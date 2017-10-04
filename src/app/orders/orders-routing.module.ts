@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OrderComponent } from './order.component';
+import { OrdersComponent } from './orders.component';
 
 
 const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Müşteri',
+      title: 'Siparişler',
     },
     children: [
       {
@@ -16,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'list',
-        component: OrderComponent,
+        component: OrdersComponent,
         data: {
           title: 'Liste'
         }

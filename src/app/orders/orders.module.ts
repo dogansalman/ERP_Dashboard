@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { OrderComponent } from './order.component';
+import { OrdersComponent } from './orders.component';
 import { HttpModule } from '@angular/http';
 import { ApiServices } from '../services/api.services';
 import { CommonModule } from '@angular/common';
@@ -12,6 +13,8 @@ import { CustomersModule } from '../shared/directive/customers/customers.module'
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { BsDatepickerActions } from 'ngx-bootstrap/datepicker/reducer/bs-datepicker.actions';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+import { TooltipModule } from 'ngx-bootstrap';
+import { TooltipConfig } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -22,15 +25,17 @@ import { NguiAutoCompleteModule } from '@ngui/auto-complete';
     ReactiveFormsModule,
     CapitalizeModule,
     CitiesModule,
+    TooltipModule,
     TownsModule,
     CustomersModule,
     BsDatepickerModule.forRoot(),
     NguiAutoCompleteModule
   ],
-  declarations: [ OrderComponent],
+  declarations: [ OrderComponent, OrdersComponent],
   providers: [
     ApiServices,
-    BsDatepickerActions
+    BsDatepickerActions,
+    TooltipConfig
   ]
 })
 export class OrdersModule { }

@@ -39,6 +39,10 @@ export class OrderComponent implements  OnInit {
   Selecred order id
    */
   public id: number;
+  /*
+  Orders
+   */
+  public orderDetail  = {is_complated: false, is_production: false};
 
   constructor(private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router, private formBuilder: FormBuilder, private _sanitizer: DomSanitizer) {
 
@@ -48,7 +52,6 @@ export class OrderComponent implements  OnInit {
     create or update order
    */
   onSubmit(): void {
-    console.log(this.orderForm.value);
     delete this.orderForm.value['created_date']
     this.api.post('orders', this.orderForm.value).subscribe(() => {
       setTimeout(() => this.toastr.success('Sipariş kaydı oluşturuldu.'));
@@ -64,8 +67,8 @@ export class OrderComponent implements  OnInit {
   initStockCard() {
 
     return this.formBuilder.group({
-      order_stock: ['', Validators.required],
-      order_unit: ['', Validators.required]
+      order_stock: [null, Validators.required],
+      order_unit: [null, Validators.required]
     });
   }
 
@@ -78,14 +81,15 @@ export class OrderComponent implements  OnInit {
     const control = <FormArray>this.orderForm.controls['order_stocks'];
     control.push(this.initStockCard());
   }
-
   removeStockCard(i: number) {
     const control = <FormArray>this.orderForm.controls['order_stocks'];
     this.stockCardList.push(control.value[i].order_stock);
     this.selectedStockCardList.splice(this.selectedStockCardList.findIndex(scard => scard === control.value[i].order_stock), 1);
     control.removeAt(i);
   }
-
+  isDisableForm(): any {
+    return this.orderDetail.is_complated || this.orderDetail.is_production ? true : null;
+  }
 
   ngOnInit(): void {
 
@@ -99,10 +103,9 @@ export class OrderComponent implements  OnInit {
       'created_date': [''],
       'updated_date': [''],
       'order_stocks': this.formBuilder.array([
-        this.initStockCard(),
+        this.initStockCard()
       ])
-    })
-
+    });
 
     /*
     Get order details
@@ -111,13 +114,21 @@ export class OrderComponent implements  OnInit {
       if (params['id']) {
         this.id = params['id'];
         this.api.get('orders/' + this.id).subscribe(o =>  {
-          this.orderForm.patchValue(o);
 
-          console.log(o,      this.orderForm.value);
+          this.orderForm.patchValue(o);
+          const orderstocks = <FormArray>this.orderForm.controls['order_stocks'];
+          orderstocks.removeAt(0);
+          o.order_stocks.forEach(os => {
+            orderstocks.push(   this.formBuilder.group({
+              order_stock: os.order_stock,
+              order_unit: os.order_unit
+            }));
+          });
+
+          this.orderDetail = o;
         });
       }
     });
-
 
     defineLocale('tr', tr)
     /*
