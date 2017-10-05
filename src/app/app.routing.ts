@@ -59,6 +59,14 @@ export const routes: Routes = [
         loadChildren: './orders/orders.module#OrdersModule'
       },
       {
+        path: 'machines',
+        loadChildren: './machines/machines.module#MachinesModule'
+      },
+      {
+        path: 'operations',
+        loadChildren: './operations/operations.module#OperationsModule'
+      },
+      {
         path: 'charts',
         loadChildren: './chartjs/chartjs.module#ChartJSModule'
       }

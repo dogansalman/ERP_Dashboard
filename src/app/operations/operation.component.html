@@ -1,0 +1,43 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="operationForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+        <div class="card">
+          <div class="card-header">
+            <strong>Operasyon</strong> {{this.id ? 'Düzenle' : 'Ekle'}}
+          </div>
+          <div class="col-sm-12 col-md-5 card-body">
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="name">Operasyon Tanımı</label>
+              <div class="col-md-9">
+                <input formControlName="name" id="name" name="name" class="form-control" placeholder="Operasyon Tanımı">
+              </div>
+            </div>
+            <div class="form-group row">
+
+
+
+
+              <label class="col-md-3 form-control-label" for="operation_time">Operasyon Süresi</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <input  formControlName="operation_time" id="operation_time" name="operation_time" class="form-control" id="appendedInput" size="16" type="number" placeholder="Operasyon Süresi (dk)">
+                  <span class="input-group-addon"> <i class="icon-clock icons"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+            <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Operasyon Sil' : 'Temizle'}}</button>
+            <p class="card-text" style="float: right;">
+              <span *ngIf="operationForm.get('created_date').value">Eklenen Tarih: {{operationForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>
+              <br>
+              <span *ngIf="operationForm.get('updated_date').value">Son Güncelleme: {{operationForm.get('updated_date').value | date: 'dd/MM/yyyy'}}</span>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div><!--/.row-->
+  </div>
+</div>

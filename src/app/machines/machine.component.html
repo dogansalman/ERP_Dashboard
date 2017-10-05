@@ -1,0 +1,31 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="machineForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+        <div class="card">
+          <div class="card-header">
+            <strong>Üretim Makine</strong> {{this.id ? 'Düzenle' : 'Ekle'}}
+          </div>
+          <div class="col-sm-12 col-md-5 card-body">
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="name">Makine Adı</label>
+              <div class="col-md-9">
+                <input  formControlName="name"  id="name" name="name" class="form-control" placeholder="Makine adı (marka model)">
+              </div>
+            </div>
+
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+            <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Makine Sil' : 'Temizle'}}</button>
+            <p class="card-text" style="float: right;">
+              <span *ngIf="machineForm.get('created_date').value">Eklenen Tarih: {{machineForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>
+              <br>
+              <span *ngIf="machineForm.get('updated_date').value">Son Güncelleme: {{machineForm.get('updated_date').value | date: 'dd/MM/yyyy'}}</span>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div><!--/.row-->
+  </div>
+</div>
