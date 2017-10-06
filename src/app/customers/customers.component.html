@@ -8,7 +8,7 @@
           <i class="fa fa-align-justify"></i> Müşteriler ({{custumerList.length}})
         </div>
         <div class="card-body">
-          <table class="table table-bordered table-striped table-md">
+          <table *ngIf="custumerList.length > 0" class="table table-bordered table-striped table-md">
             <thead>
             <tr>
               <th>Firma</th>
@@ -20,7 +20,6 @@
             </tr>
             </thead>
             <tbody>
-
             <tr class="linked-table-row" *ngFor='let item of custumerList'  [routerLink]="['/customers/edit', item.id]">
               <td>{{item.company | capitalizeFirst }} </td>
               <td>{{item.name | capitalizeFirst}} {{item.lastname | capitalizeFirst}}</td>
@@ -31,9 +30,9 @@
                 <span [ngClass]="item.state ? 'badge badge-success' : 'badge badge-danger'">{{item.state ? 'Aktif' : 'Pasif'}}</span>
               </td>
             </tr>
-
             </tbody>
           </table>
+          <p *ngIf="custumerList.length == 0">Müşteri kaydı bulunamadı.</p>
         </div>
       </div>
     </div>

@@ -6,38 +6,31 @@
           <div class="card-header">
             <strong>Stok Kartı</strong> {{this.id ? 'Düzenle' : 'Ekle'}}
           </div>
-          <div class="col-sm-12 col-md-5 card-body">
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="code">Stok Kodu</label>
-              <div class="col-md-9">
-                <input  formControlName="code"  id="code" name="code" class="form-control" placeholder="Stok Kodu">
-              </div>
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-5 card-body">
+            <div class="form-group">
+              <label for="code">Stok Kodu*</label>
+              <input  formControlName="code"  id="code" name="code" class="form-control" placeholder="Stok Kodu">
             </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="name">Stok Tanımı</label>
-              <div class="col-md-9">
-                <input formControlName="name" id="name" name="name" class="form-control" placeholder="Stok Tanımı">
-              </div>
+            <div class="form-group">
+              <label for="name">Stok Tanımı*</label>
+              <input formControlName="name" id="name" name="name" class="form-control" placeholder="Stok Tanımı">
             </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="unit">Stok Adedi</label>
-              <div class="col-md-9">
-                <input disabled  formControlName="unit" id="unit" name="unit" class="form-control" placeholder="Stok Adedi">
-              </div>
+            <div class="form-group">
+              <label for="unit">Stok Adedi</label>
+              <input disabled  formControlName="unit" id="unit" name="unit" class="form-control" placeholder="Stok Adedi">
             </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="stock_type">Stok Modeli</label>
-              <div class="col-md-9">
-                <select formControlName="stock_type" name="stock_type" appStockType (stocktypes)="stocktypes = $event" class="form-control" id="stock_type">
-                  <option value="Seçiniz">Seçiniz</option>
-                  <option *ngFor="let d of stocktypes" value="{{d.name}}"> {{d.name}}</option>
-                </select>
-              </div>
+            <div class="form-group">
+              <label for="stock_type">Stok Modeli*</label>
+              <select formControlName="stock_type" name="stock_type" appStockType (stocktypes)="stocktypes = $event" class="form-control" id="stock_type">
+                <option value="Seçiniz">Seçiniz</option>
+                <option *ngFor="let d of stocktypes" value="{{d.name}}"> {{d.name}}</option>
+              </select>
             </div>
+            <div class="card-text">* doldurulması zorunlu alanlar.</div>
           </div>
 
           <div class="card-footer">
-            <button type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+            <button [disabled]="!stockCardForm.valid" type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
             <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Stok Kart Sil' : 'Temizle'}}</button>
             <p class="card-text" style="float: right;">
               <span *ngIf="stockCardForm.get('created_date').value">Eklenen Tarih: {{stockCardForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>

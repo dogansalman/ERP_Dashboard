@@ -8,7 +8,7 @@
           <i class="fa fa-align-justify"></i> Siparişler ({{orderList.length}})
         </div>
         <div class="card-body">
-          <table class="table table-bordered table-striped table-md">
+          <table *ngIf="orderList.length > 0"  class="table table-bordered table-striped table-md">
             <thead>
             <tr>
               <th>Müşteri</th>
@@ -53,10 +53,11 @@
             </tr>
             </tbody>
           </table>
+          <p *ngIf="orderList.length == 0">Sipariş kaydı bulunamadı.</p>
         </div>
       </div>
 
-      <div class="card card-accent-warning">
+      <div *ngIf="orderList.length > 0"  class="card card-accent-warning">
         <div class="card-header">
           Bilgi !
         </div>

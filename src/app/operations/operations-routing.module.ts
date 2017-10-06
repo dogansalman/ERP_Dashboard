@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Üretim IO Model',
+      title: 'Üretim Operasyonları',
     },
     children: [
       {

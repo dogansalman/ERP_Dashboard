@@ -6,68 +6,52 @@
           <div class="card-header">
             <strong>Tedarikçi</strong> {{this.id ? 'Düzenle' : 'Ekle'}}
           </div>
-          <div class="col-sm-12 col-md-5 card-body">
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-5 card-body">
 
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="company">Firma*</label>
-              <div class="col-md-9">
-                <input  formControlName="company"  id="company" name="company" class="form-control" placeholder="Firma">
-              </div>
+            <div class="form-group">
+              <label for="company">Firma*</label>
+              <input  formControlName="company"  id="company" name="company" class="form-control" placeholder="Firma">
             </div>
 
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="adress">Adres*</label>
-              <div class="col-md-9">
-                <textarea rows="3" formControlName="adress" id="adress" name="adress" class="form-control" placeholder="Adres"></textarea>
-              </div>
+            <div class="form-group">
+              <label for="adress">Adres*</label>
+              <textarea rows="3" formControlName="adress" id="adress" name="adress" class="form-control" placeholder="Adres"></textarea>
             </div>
 
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="city">İl*</label>
-              <div class="col-md-9">
-                <select formControlName="city" name="city" appCities (cities)="cities = $event" class="form-control" id="city" #citydrp>
-                  <option value="Seçiniz">Seçiniz</option>
-                  <option *ngFor="let c of cities" value="{{c.city.name}}"> {{c.city.name}}</option>
-                </select>
-              </div>
+            <div class="form-group">
+              <label for="city">İl*</label>
+              <select formControlName="city" name="city" appCities (cities)="cities = $event" class="form-control" id="city" #citydrp>
+                <option value="Seçiniz">Seçiniz</option>
+                <option *ngFor="let c of cities" value="{{c.city.name}}"> {{c.city.name}}</option>
+              </select>
             </div>
 
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="town">İlçe*</label>
-              <div class="col-md-9">
-                <select formControlName="town"  name="town" class="form-control" id="town" appTowns (towns)="towns = $event" [selectedCity]="citydrp.value">
-                  <option value="Seçiniz">Seçiniz</option>
-                  <option *ngFor="let t of towns" value="{{t.name}}"> {{t.name}} </option>
-                </select>
-              </div>
+            <div class="form-group">
+              <label for="town">İlçe*</label>
+              <select formControlName="town"  name="town" class="form-control" id="town" appTowns (towns)="towns = $event" [selectedCity]="citydrp.value">
+                <option value="Seçiniz">Seçiniz</option>
+                <option *ngFor="let t of towns" value="{{t.name}}"> {{t.name}} </option>
+              </select>
             </div>
 
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="phone">Telefon*</label>
-              <div class="col-md-9">
-                <input type="number" formControlName="phone" id="phone" name="phone" class="form-control" placeholder="Telefon">
-              </div>
+            <div class="form-group">
+              <label for="phone">Telefon*</label>
+              <input type="number" formControlName="phone" id="phone" name="phone" class="form-control" placeholder="Telefon">
             </div>
 
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="name">İlgili Adı*</label>
-              <div class="col-md-9">
-                <input formControlName="name" id="name" name="name" class="form-control" placeholder="İlgili Adı">
-              </div>
+            <div class="form-group">
+              <label for="name">İlgili Adı*</label>
+              <input formControlName="name" id="name" name="name" class="form-control" placeholder="İlgili Adı">
             </div>
 
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="lastname">İlgili Soyadı*</label>
-              <div class="col-md-9">
-                <input formControlName="lastname" id="lastname" name="lastname" class="form-control" placeholder="İlgili Soyadı">
-              </div>
+            <div class="form-group">
+              <label for="lastname">İlgili Soyadı*</label>
+              <input formControlName="lastname" id="lastname" name="lastname" class="form-control" placeholder="İlgili Soyadı">
             </div>
 
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="email">E-posta</label>
-              <div class="col-md-9">
-                <input formControlName="email" id="email" name="email" class="form-control" placeholder="E-posta">
-              </div>
+            <div class="form-group">
+              <label for="email">E-posta</label>
+              <input formControlName="email" id="email" name="email" class="form-control" placeholder="E-posta">
             </div>
             <div class="card-text">* doldurulması zorunlu alanlar.</div>
           </div>

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ApiServices} from '../services/api.services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {FormGroup, FormControl} from '@angular/forms';
+import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import{ DatePipe} from '@angular/common';
 
 @Component({
@@ -12,13 +12,15 @@ import{ DatePipe} from '@angular/common';
 export class OperationComponent implements OnInit {
   public id: number;
   public operation: any;
-  public operationForm = new FormGroup({
-    name: new FormControl(),
-    operation_time: new FormControl(),
-    created_date: new FormControl(),
-    updated_date: new FormControl(),
-  })
-  constructor(private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router) {
+  public operationForm: FormGroup;
+
+  constructor(private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router, private formBuilder: FormBuilder) {
+    this.operationForm = formBuilder.group({
+      'name': [null, Validators.required],
+      'operation_time': [null, Validators.required],
+      'created_date': [],
+      'updated_date': [],
+    });
   }
 
   ngOnInit(): void {

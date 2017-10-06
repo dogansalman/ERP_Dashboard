@@ -2,8 +2,9 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ApiServices} from '../services/api.services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {FormGroup, FormControl} from '@angular/forms';
+import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {DatePipe} from '@angular/common';
+import { ConditionalValidate } from '../shared/validations/conditional-validate';
 
 @Component({
   templateUrl: 'stockcard.component.html'
@@ -12,16 +13,17 @@ import {DatePipe} from '@angular/common';
 export class StockcardComponent implements OnInit, OnDestroy {
   public id: number;
   public stockCard: any;
-  public stockCardForm = new FormGroup({
-    code: new FormControl(),
-    name: new FormControl(),
-    stock_type: new FormControl('Seçiniz'),
-    unit: new FormControl(),
-    state: new FormControl(),
-    created_date: new FormControl(),
-    updated_date: new FormControl()
-  })
-  constructor(private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router) {
+  public stockCardForm: FormGroup;
+
+  constructor(private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router, private formBuilder: FormBuilder) {
+    this.stockCardForm = this.formBuilder.group({
+      'code': [null, Validators.required],
+      'name': [null, Validators.required],
+      'stock_type': ['Seçiniz', [Validators.required, ConditionalValidate('Seçiniz')]],
+      'unit': [0, Validators.required],
+      'created_date': [],
+      'updated_date': []
+    });
   }
 
   ngOnInit(): void {

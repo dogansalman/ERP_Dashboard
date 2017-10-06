@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Stok Model',
+      title: 'Üretim Makineleri',
     },
     children: [
       {

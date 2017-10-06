@@ -8,7 +8,7 @@
           <i class="fa fa-align-justify"></i> Stok Modelleri ({{stocktpesList.length}})
         </div>
         <div class="card-body">
-          <table class="table table-bordered table-striped table-md">
+          <table *ngIf="stocktpesList.length > 0" class="table table-bordered table-striped table-md">
             <thead>
             <tr>
               <th>Stok Modeli</th>
@@ -22,6 +22,7 @@
             </tr>
             </tbody>
           </table>
+          <p *ngIf="stocktpesList.length == 0">Stok modeli bulunamadı.</p>
         </div>
       </div>
     </div>

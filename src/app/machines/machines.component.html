@@ -8,7 +8,7 @@
           <i class="fa fa-align-justify"></i> Stok Modelleri ({{machineList.length}})
         </div>
         <div class="card-body">
-          <table class="table table-bordered table-striped table-md">
+          <table *ngIf="machineList.length > 0" class="table table-bordered table-striped table-md">
             <thead>
             <tr>
               <th>Makine Adı</th>
@@ -22,6 +22,7 @@
             </tr>
             </tbody>
           </table>
+          <p *ngIf="machineList.length == 0">Makine kaydı bulunamadı.</p>
         </div>
       </div>
     </div>

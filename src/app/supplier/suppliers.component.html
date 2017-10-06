@@ -8,7 +8,7 @@
           <i class="fa fa-align-justify"></i> Tedarikçiler ({{supplierList.length}})
         </div>
         <div class="card-body">
-          <table class="table table-bordered table-striped table-md">
+          <table *ngIf="supplierList.length > 0" class="table table-bordered table-striped table-md">
             <thead>
             <tr>
               <th>Firma</th>
@@ -30,6 +30,7 @@
             </tr>
             </tbody>
           </table>
+          <p *ngIf="supplierList.length == 0">Tedarikçi kaydı bulunamadı.</p>
         </div>
       </div>
     </div>

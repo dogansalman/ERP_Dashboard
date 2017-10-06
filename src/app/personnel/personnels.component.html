@@ -8,7 +8,7 @@
           <i class="fa fa-align-justify"></i> Personeller ({{personnelList.length}})
         </div>
         <div class="card-body">
-          <table class="table table-bordered table-striped table-md">
+          <table *ngIf="personnelList.length > 0" class="table table-bordered table-striped table-md">
             <thead>
             <tr>
               <th>Ad Soyad</th>
@@ -30,6 +30,7 @@
             </tr>
             </tbody>
           </table>
+          <p *ngIf="personnelList.length == 0">Personel kaydı bulunamadı.</p>
         </div>
       </div>
     </div>

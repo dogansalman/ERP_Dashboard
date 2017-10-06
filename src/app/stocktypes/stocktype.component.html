@@ -6,17 +6,15 @@
           <div class="card-header">
             <strong>Stok Model</strong> {{this.id ? 'Düzenle' : 'Ekle'}}
           </div>
-          <div class="col-sm-12 col-md-5 card-body">
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="name">Stok Modeli Adı</label>
-              <div class="col-md-9">
-                <input  formControlName="name"  id="name" name="name" class="form-control" placeholder="Stok Modeli Adı">
-              </div>
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-5 card-body">
+            <div class="form-group">
+              <label for="name">Stok Modeli Adı*</label>
+              <input formControlName="name"  id="name" name="name" class="form-control" placeholder="Stok Modeli Adı">
             </div>
-
+            <div class="card-text">* doldurulması zorunlu alanlar.</div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+            <button [disabled]="!stockTypeForm.valid" type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
             <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Stok Model Sil' : 'Temizle'}}</button>
             <p class="card-text" style="float: right;">
               <span *ngIf="stockTypeForm.get('created_date').value">Eklenen Tarih: {{stockTypeForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>

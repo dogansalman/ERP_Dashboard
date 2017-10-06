@@ -7,7 +7,7 @@
           <i class="fa fa-align-justify"></i> Stok Kartları ({{stockCardList.length}})
         </div>
         <div class="card-body">
-          <div class="card-group">
+          <div *ngIf="stockCardList.length > 0" class="card-group">
             <div class="card">
               <div class="card-header">Filtre</div>
               <div class="card-body">
@@ -33,7 +33,7 @@
               </div>
             </div>
           </div>
-          <table class="table table-bordered table-striped table-md">
+          <table *ngIf="stockCardList.length > 0" class="table table-bordered table-striped table-md">
             <thead>
             <tr>
               <th>Kodu</th>
@@ -70,10 +70,11 @@
             </tr>
             </tbody>
           </table>
-          <p class="text-right"><span class="help-block">  {{(stockCardList | filter : 'code' : searchTxt.value).length}} sonuç bulundu. </span></p>
-          <div class="card card-accent-warning">
+          <p *ngIf="stockCardList.length == 0">Stok kartı bulunamadı.</p>
+          <p *ngIf="stockCardList.length > 0" class="text-right"><span class="help-block">  {{(stockCardList | filter : 'code' : searchTxt.value).length}} sonuç bulundu. </span></p>
+          <div *ngIf="stockCardList.length > 0" class="card card-accent-warning">
             <div class="card-header">
-              Bilgi !
+              Bilgi!
             </div>
             <div class="card-body">
             Üretim aşamasındaki stok kartları silinemez. Stok kartlarının stok düzenlenmesi <b>İşlem</b> alından gerçekleşmektedir. <br/> <b>Stok Girişi</b>  için  <button class="btn btn-success btn-sm" type="button"><i class="fa fa-plus"></i></button>
