@@ -53,7 +53,7 @@
 
               </div>
             </div>
-            <div class="card">
+            <div  class="card">
               <div class="card-body">
                 <div class="h1 text-muted text-right mb-4">
                   <i class="icon-check icons"></i>
@@ -90,7 +90,7 @@
               </div>
             </div>
           </div>
-          <div class="card-group">
+          <div *ngIf="supplyRequistions.length < 0" class="card-group">
             <div class="card">
               <div class="card-header">Filtrele</div>
               <div class="card-body">
@@ -123,7 +123,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px;">
+          <div *ngIf="supplyRequistions.length < 0" class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px;">
             <table class="table table-bordered table-striped table-md">
               <thead>
               <tr>
@@ -157,6 +157,7 @@
               </tbody>
             </table>
           </div>
+          <p *ngIf="supplyRequistions.length === 0">Tedarik isteği bulunamadı.</p>
         </div>
       </div>
     </div>

@@ -18,25 +18,21 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="linked-table-row" *ngFor='let item of orderList'  [routerLink]="['/orders/edit', item.order.id]">
+            <tr (click)="navigateDetail($event, item.order.id)" class="linked-table-row" *ngFor='let item of orderList'>
               <td>
                 {{item.customer.company | capitalizeFirst}}
-
                 <span *ngIf="!item.order.is_production && !item.order.is_complated" style="float: right; margin-left: 5px;" class="badge badge-warning">
                   <i class="icon-clock icons"></i>
                   İşlem Bekleniyor
                 </span>
-
                 <span *ngIf="item.order.is_production" style="float: right; margin-left: 5px;" class="badge badge-primary">
                   <i class="icon-speedometer icons"></i>
                   Henüz Üretimde
                 </span>
-
                 <span *ngIf="item.order.is_complated" style="float: right; margin-left: 5px;" class="badge badge-success">
                   <i class="icon-check icons"></i>
                   Üretim Tamamlandı
                 </span>
-
               </td>
               <td>{{item.order.over_date | date: 'dd/MM/yyyy'}}</td>
               <td>{{item.order.created_date | date: 'dd/MM/yyyy'}}</td>
@@ -44,12 +40,10 @@
                 <button class="btn btn-primary btn-sm"  [routerLink]="['/stockcards/stockmovement', item.id]" type="button" tooltip="Üretim hareketlerini incele." container="body" placement="top">
                   <i class="icon-graph icons"></i>
                 </button>
-                <button class="btn btn-success btn-sm" type="button" tooltip="Üretim kaydı oluştur." container="body" placement="top">
+                <button (click)="openModal(production, item)" class="btn btn-success btn-sm" type="button" tooltip="Üretim kaydı oluştur." container="body" placement="top">
                   <i class="fa fa-plus"></i>
                 </button>
-
               </td>
-
             </tr>
             </tbody>
           </table>
@@ -72,3 +66,133 @@
   </div>
   <!--/.row-->
 </div>
+
+
+<!-- change stock of stock card-->
+<ng-template #production>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">  <h2> {{selectedOrder.customer.company | capitalizeFirst}}</h2></h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="productionForm" class="form-horizontal">
+
+      <!-- Nav tabs -->
+      <tabset>
+        <tab>
+          <ng-template tabHeading><i class="icon-calculator"></i> Genel</ng-template>
+          <div class="form-group">
+            <label for="name">Tanım*</label>
+            <input formControlName="name" id="name" name="name" class="form-control" placeholder="Tanım">
+          </div>
+          <div class="form-group">
+            <label for="description">Açıklama*</label>
+            <textarea rows="3" formControlName="description" id="description" name="description" class="form-control" placeholder="Açıklama"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="unit">Adet*</label>
+            <input formControlName="unit" type="number" id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
+          </div>
+          <div class="form-group">
+            <label for="start_time">Üretim Başlangıç*</label>
+            <select formControlName="start_time" id="start_time" name="start_time" class="form-control">
+              <option value="Seçiniz">Seçiniz</option>
+              <option>01:00</option>
+              <option>02:00</option>
+              <option>03:00</option>
+              <option>04:00</option>
+              <option>05:00</option>
+              <option>06:00</option>
+              <option>07:00</option>
+              <option>08:00</option>
+              <option>09:00</option>
+              <option>10:00</option>
+              <option>11:00</option>
+              <option>12:00</option>
+              <option>13:00</option>
+              <option>14:00</option>
+              <option>15:00</option>
+              <option>16:00</option>
+              <option>17:00</option>
+              <option>18:00</option>
+              <option>19:00</option>
+              <option>20:00</option>
+              <option>21:00</option>
+              <option>22:00</option>
+              <option>23:00</option>
+              <option>00:00</option>
+            </select>
+
+          </div>
+          <div class="form-group">
+            <label for="start_time">Üretim Bitiş*</label>
+            <select formControlName="end_time" id="end_time" name="end_time" class="form-control">
+              <option value="Seçiniz">Seçiniz</option>
+              <option>01:00</option>
+              <option>02:00</option>
+              <option>03:00</option>
+              <option>04:00</option>
+              <option>05:00</option>
+              <option>06:00</option>
+              <option>07:00</option>
+              <option>08:00</option>
+              <option>09:00</option>
+              <option>10:00</option>
+              <option>11:00</option>
+              <option>12:00</option>
+              <option>13:00</option>
+              <option>14:00</option>
+              <option>15:00</option>
+              <option>16:00</option>
+              <option>17:00</option>
+              <option>18:00</option>
+              <option>19:00</option>
+              <option>20:00</option>
+              <option>21:00</option>
+              <option>22:00</option>
+              <option>23:00</option>
+              <option>00:00</option>
+            </select>
+          </div>
+        </tab>
+        <tab>
+          <ng-template tabHeading><i class="icon-user-following icons"></i> Personel</ng-template>
+          <button class="btn btn-primary"(click)="addPersonnelControl()" style="margin-top:10px; margin-bottom:10px; width: 100%;">Yeni Personel Ekle</button>
+          <div formArrayName="production_personnels">
+            <div *ngFor="let address of productionForm.controls.production_personnels.controls; let i=index">
+              <div class="card">
+                <div class="card-body">
+                  <div class="panel-heading">
+                    <button style="float: right;" class="btn btn-danger" (click)="removePersonnelControl(i)"  *ngIf="productionForm.controls.production_personnels.controls.length > 0" type="button"><i class="icon-trash icons"></i></button>
+                  </div>
+                  <div class="panel-body" [formGroupName]="i">
+                    <div class="form-group col-xs-6">
+                      <label>{{i + 1}}. Personel Seçin</label>
+                      <input class="form-control stock-selection" #searchStockCard formControlName="personel_id"
+                             placeholder="Personel seçiniz" ngui-auto-complete [max-num-list]="10" (valueChanged)="onPersonnelChange($event, searchStockCard);"
+                             [list-formatter]="autocompleListFormatter" [value-formatter]="ValueFormatter"  value-property-name="id" [source]="personnelList"  />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab>
+          <ng-template tabHeading><i class="icon-pie-chart"></i> Üretim Önizleme</ng-template>
+          4. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </tab>
+      </tabset>
+
+
+      <br/>
+      <button (click)="onSubmit()"  class="btn btn-sm btn-primary" type="button">Ekle</button>
+      <button  (click)="modalRef.hide()" class="btn btn-sm btn-danger" type="button">İptal</button>
+    </form>
+
+  </div>
+</ng-template>
+<!--/  change stock of stock card -->
+
