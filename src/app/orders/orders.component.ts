@@ -16,6 +16,8 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
   public orderList = [];
   public personnelList = [];
   public selectedOrder = {};
+  public machines = [];
+  public operations = [];
   public modalRef: BsModalRef;
   /*
   Production form/
@@ -29,15 +31,21 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
     /*
     Get orders
      */
-    this.api.get('orders').subscribe(s => this.orderList = s);
-
+    this.api.get('orders').subscribe(o => this.orderList = o);
     /*
     Get personnels
    */
-    this.api.get('personnel').subscribe(s => {
-      this.personnelList = s.map(a =>  a.Personnel);
-  });
-
+    this.api.get('personnel').subscribe(p => {
+      this.personnelList = p.map(pp =>  pp.Personnel);
+    });
+    /*
+    Get machines
+   */
+    this.api.get('machines').subscribe(m => this.machines = m);
+    /*
+    Get operation
+    */
+    this.api.get('operations').subscribe(o => this.operations = o);
 
 
     /*
@@ -57,8 +65,15 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
         this.initProductionPersonnel()
       ])
     });
-  }
 
+    //const control = <FormArray>this.productionForm.controls['production_personnels'];
+    //control.removeAt(0);
+
+
+  }
+  /*
+  Autocomplate Setting
+   */
   autocompleListFormatter = (data: any): SafeHtml => {
     const html = `<span>${data.name} ${data.lastname} </span>`;
     return this._sanitizer.bypassSecurityTrustHtml(html);
@@ -67,48 +82,82 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
     return `${data.name} ${data.lastname}`;
   }
 
-/*
-Inıt Production Personel
+  autocompleMachineOperationListFormatter = (data: any): SafeHtml => {
+    const html = `<span>${data.name}</span>`;
+    return this._sanitizer.bypassSecurityTrustHtml(html);
+  }
+
+  /*
+  Init Production Personel
  */
   initProductionPersonnel() {
     return this.formBuilder.group({
-      personel_id: [null, Validators.required]
+      personnel: [null, Validators.required],
+      operations: this.formBuilder.array([
+        this.initPersonnelOperation()
+      ])
+    });
+  }
+
+  /*
+  Init Production Operation
+ */
+  initPersonnelOperation() {
+    return this.formBuilder.group({
+      machine: ['', Validators.required],
+      operation: ['', Validators.required],
+      operation_time: ['', Validators.required]
     });
   }
 
   onPersonnelChange(sc, el): void {
     el.disabled = true;
-    //console.log(sc);
   }
 
+  /*
+ Remove personnel control
+  */
+  removePersonnelControl(i: number) {
+    const control = <FormArray>this.productionForm.controls['production_personnels'];
+    control.removeAt(i);
+  }
+
+  /*
+  Add personnel control
+   */
   addPersonnelControl() {
     const control = <FormArray>this.productionForm.controls['production_personnels'];
     control.push(this.initProductionPersonnel());
   }
-  removePersonnelControl(i: number) {
-    const control = <FormArray>this.productionForm.controls['production_personnels'];
-    control.removeAt(i);
-
-  }
   /*
-    create or update order
+  Add operation control
    */
-  onSubmit(): void {
-   console.log(this.productionForm.value);
+  addOperationControl(index) {
+    console.log(index);
+    const arr: FormArray = this.productionForm.get(`production_personnels.${index}.operations`) as FormArray;
+    arr.push(this.initPersonnelOperation());
   }
+
 
   /*
   Open modal
  */
   public openModal(template: TemplateRef<any>, order) {
     this.selectedOrder = order;
-    this.modalRef = this.modalService.show(template, {keyboard: false, ignoreBackdropClick: true, size: 'lg', cssClass: 'deneme'});
+    this.modalRef = this.modalService.show(template, {keyboard: false, ignoreBackdropClick: true, class: 'gray modal-lg'});
     /*
     Modal closing
      */
     this.modalService.onHide.subscribe((reason: string) => {
-      //this.productionForm.reset();
+      // this.productionForm.reset();
     });
+  }
+
+  /*
+  create or update order
+ */
+  onSubmit(): void {
+    console.log(this.productionForm.value);
   }
   /*
   Navigate detail
