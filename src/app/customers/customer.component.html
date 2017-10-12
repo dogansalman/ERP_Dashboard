@@ -45,7 +45,7 @@
               </div>
               <div class="form-group">
                 <label for="phone">Telefon*</label>
-                <input formControlName="phone" type="number" id="phone" name="phone" class="form-control" placeholder="Telefon No">
+                <input formControlName="phone" appRegex [regex]="'^[0-9]+$'"  id="phone" name="phone" class="form-control" placeholder="Telefon No">
               </div>
               <div class="form-group">
                 <label for="name">İlgili Adı*</label>

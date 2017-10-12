@@ -9,6 +9,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CitiesModule } from '../shared/directive/cities/cities.module';
 import { TownsModule } from '../shared/directive/towns/towns.module';
 import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
+import { RegexModule } from '../shared/directive/regex/regex.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
     ReactiveFormsModule,
     CapitalizeModule,
     CitiesModule,
-    TownsModule
+    TownsModule,
+    RegexModule
   ],
   declarations: [ CustomersComponent, CustomerComponent],
   providers: [

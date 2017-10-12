@@ -36,7 +36,7 @@
 
             <div class="form-group">
               <label for="phone">Telefon*</label>
-              <input type="number" formControlName="phone" id="phone" name="phone" class="form-control" placeholder="Telefon">
+              <input appRegex [regex]="'^[0-9]+$'"  formControlName="phone" id="phone" name="phone" class="form-control" placeholder="Telefon">
             </div>
 
             <div class="form-group">

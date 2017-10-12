@@ -65,7 +65,7 @@
                           </div>
                           <div class="form-group col-xs-6">
                             <label>Sipariş Adedi</label>
-                            <input [attr.disabled]="isDisableForm()" type="number" class="form-control" formControlName="order_unit">
+                            <input [attr.disabled]="isDisableForm()" appRegex [regex]="'^[0-9]+$'" class="form-control" formControlName="order_unit">
                             <small [hidden]="orderForm.controls.order_stocks.controls[i].controls.order_unit.valid" class="text-danger">
                               Sipariş adedi belitin.
                             </small>

@@ -21,7 +21,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule } from 'ngx-bootstrap'
 import { BsDatepickerActions } from 'ngx-bootstrap/datepicker/reducer/bs-datepicker.actions';
 import { ExcelServices } from '../services/excel.services';
-
+import { RegexModule } from '../shared/directive/regex/regex.module';
 
 @NgModule({
   imports: [
@@ -39,7 +39,8 @@ import { ExcelServices } from '../services/excel.services';
     ModalModule.forRoot(),
     ChartsModule,
     BsDropdownModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    RegexModule
   ],
   declarations: [ StockcardsComponent, StockcardComponent, StockmovementsComponent, FilterPipe],
   providers: [

@@ -90,7 +90,7 @@
               </div>
             </div>
           </div>
-          <div *ngIf="supplyRequistions.length < 0" class="card-group">
+          <div *ngIf="supplyRequistions.length > 0" class="card-group">
             <div class="card">
               <div class="card-header">Filtrele</div>
               <div class="card-body">
@@ -113,17 +113,13 @@
                         <button style="margin-right: 5px;" class="btn btn-primary" (click)="excel()" type="button"><i class="fa fa-file-excel-o"></i> Excel İndir</button>
                       </div>
                     </div>
-
-
-
-
                   </div>
                 </div>
 
               </div>
             </div>
           </div>
-          <div *ngIf="supplyRequistions.length < 0" class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px;">
+          <div *ngIf="supplyRequistions.length > 0" class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px;">
             <table class="table table-bordered table-striped table-md">
               <thead>
               <tr>

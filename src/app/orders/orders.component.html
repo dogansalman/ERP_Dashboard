@@ -91,7 +91,7 @@
           </div>
           <div class="form-group">
             <label for="unit">Adet*</label>
-            <input formControlName="unit" type="number" id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
+            <input formControlName="unit" appRegex [regex]="'^[0-9]+$'" id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
           </div>
           <div class="form-group">
             <label for="start_time">Üretim Başlangıç*</label>
@@ -155,7 +155,6 @@
             </select>
           </div>
         </tab>
-
         <tab>
           <ng-template tabHeading><i class="icon-user-following icons"></i> Personel & Operasyon</ng-template>
           <button class="btn btn-primary"(click)="addPersonnelControl()" style="margin-top:10px; margin-bottom:10px; width: 100%;">Yeni Personel Ekle</button>
@@ -189,7 +188,7 @@
                           </div>
                           <div class="form-group">
                             <div class="input-group">
-                              <input  formControlName="operation_time" class="form-control" size="16" type="number" placeholder="Operasyon Süresi (dk)">
+                              <input  formControlName="operation_time" class="form-control" appRegex [regex]="'^[0-9]+$'"  placeholder="Operasyon Süresi (dk)">
                               <span class="input-group-addon"> <i class="icon-clock icons"></i></span>
                             </div>
                           </div>
@@ -214,24 +213,24 @@
               <p>{{this.productionForm.value.description}}</p>
               <label><b>Üretim Tanımı:</b></label>
               <p>{{this.productionForm.value.name}}</p>
-              <label><b>Üretim Zaman Aralığı:</b></label> {{this.productionForm.value.start_time}} / {{this.productionForm.value.end_time}}
+              <label><b>Üretim Adedi:</b></label> {{this.productionForm.value.unit}} Adet.
             </div>
           </div>
           <div class="card">
             <div class="card-body">
               <h5>Parça Başı Üretim: 16 DK</h5>
-              <h5>Toplam Tahmini Üretim: 950 DK</h5>
+              <h5>Tahmini Üretim Zamanı: 2 Saat 40 DK</h5>
+              <h5>Vardiya: {{productionForm.value.start_time}} - {{productionForm.value.end_time}}</h5>
             </div>
           </div>
           <div class="card">
             <div class="card-body">
-
               <div style="border-bottom: 1px solid #ececec; margin-bottom: 5px;" *ngFor="let item of productionForm.value.production_personnels;">
                 <label><b>Personel: </b></label> {{item.personnel?.name}} {{item.personnel?.lastname}}
                 <br/>
                 <label><b>Operasyonları: </b></label>
-                <span *ngFor="let op of item.operations;">
-                  {{op.machine?.name}} ({{op.operation?.name}}) {{op?.operation_time}} dk. <b>|</b>
+                <span *ngFor="let op of item.operations; let opi=index; let last=last">
+                  {{op.machine?.name}} ({{op.operation?.name}}) {{op?.operation_time}} dk. <b *ngIf="!last">|</b>
                 </span>
               </div>
             </div>

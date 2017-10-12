@@ -14,7 +14,7 @@
             <div class="form-group">
               <label for="operation_time">Operasyon Süresi*</label>
               <div class="input-group">
-                <input  formControlName="operation_time" id="operation_time" name="operation_time" class="form-control" id="appendedInput" size="16" type="number" placeholder="Operasyon Süresi (dk)">
+                <input  formControlName="operation_time" id="operation_time" name="operation_time" class="form-control" id="appendedInput" appRegex [regex]="'^[0-9]+$'" placeholder="Operasyon Süresi (dk)">
                 <span class="input-group-addon"> <i class="icon-clock icons"></i></span>
               </div>
             </div>

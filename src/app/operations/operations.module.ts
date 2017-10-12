@@ -7,6 +7,7 @@ import { ApiServices } from '../services/api.services';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
+import { RegexModule } from '../shared/directive/regex/regex.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
     FormsModule,
     ReactiveFormsModule,
     CapitalizeModule,
+    RegexModule
   ],
   declarations: [ OperationsComponent, OperationComponent],
   providers: [

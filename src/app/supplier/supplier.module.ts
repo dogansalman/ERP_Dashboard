@@ -16,7 +16,7 @@ import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { SuppliersModule } from '../shared/directive/suppliers/suppliers.module';
 import { MultiFilterPipe } from '../shared/pipes/multi-filter/multi-filter.pipe';
 import { ExcelServices } from '../services/excel.services';
-
+import { RegexModule } from '../shared/directive/regex/regex.module';
 
 @NgModule({
   imports: [
@@ -30,7 +30,8 @@ import { ExcelServices } from '../services/excel.services';
     TownsModule,
     TooltipModule,
     ModalModule.forRoot(),
-    SuppliersModule
+    SuppliersModule,
+    RegexModule
 
   ],
   declarations: [ SuppliersComponent, SupplierComponent, RequistionsComponent, MultiFilterPipe],
