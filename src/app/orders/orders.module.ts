@@ -15,6 +15,7 @@ import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { TooltipModule } from 'ngx-bootstrap';
 import { TooltipConfig } from 'ngx-bootstrap';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { PrintModule } from '../shared/directive/print/print.module';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     BsDatepickerModule.forRoot(),
     NguiAutoCompleteModule,
     TabsModule,
-    RegexModule
+    RegexModule,
+    PrintModule
   ],
   declarations: [ OrderComponent, OrdersComponent],
   providers: [

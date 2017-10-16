@@ -32,3 +32,10 @@
 .input-group .form-control{
   z-index: 0;
 }
+
+@media print {
+  body {-webkit-print-color-adjust: exact;}
+}
+body{
+  -webkit-print-color-adjust:exact;
+}

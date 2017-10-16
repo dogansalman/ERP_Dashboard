@@ -203,38 +203,60 @@
             </div>
           </div>
         </tab>
-        <tab>
+        <tab #productionFormPanel>
           <ng-template tabHeading><i class="icon-pie-chart"></i> Üretim Kaydı Önizleme</ng-template>
-          <div class="card">
-            <div class="card-body">
-              <label><b>Müşteri:</b></label>
-              <p>{{this.selectedOrder.customer.company}}</p>
-              <label><b>Üretim Açıklaması:</b></label>
-              <p>{{this.productionForm.value.description}}</p>
-              <label><b>Üretim Tanımı:</b></label>
-              <p>{{this.productionForm.value.name}}</p>
-              <label><b>Üretim Adedi:</b></label> {{this.productionForm.value.unit}} Adet.
+          <div>
+            <div class="card">
+              <div class="card-body">
+                <button appPrint [printTo]="productionFormPanel" class="btn btn-link" type="button" style=" position: absolute; right: 0px; top: 0; "><i class="icon-printer icons"></i> Yazdır</button>
+
+                <label><b>Müşteri:</b></label>
+                <p>{{this.selectedOrder.customer.company}}</p>
+                <label><b>Üretim Açıklaması:</b></label>
+                <p>{{this.productionForm.value.description}}</p>
+                <label><b>Üretim Tanımı:</b></label>
+                <p>{{this.productionForm.value.name}}</p>
+                <label><b>Üretim Adedi:</b></label> {{this.productionForm.value.unit}} Adet.
+              </div>
             </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5>Parça Başı Üretim: 16 DK</h5>
-              <h5>Tahmini Üretim Zamanı: 2 Saat 40 DK</h5>
-              <h5>Vardiya: {{productionForm.value.start_time}} - {{productionForm.value.end_time}}</h5>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <b>Parça Başı Üretim:  </b>
+                    <p><i class="icon-clock icons"></i> {{ operationTime() }}</p>
+                    <b>Tahmini Üretim Süreci:</b>
+                    <p><i class="icon-clock icons"></i> {{operationTotalTime()}}</p>
+                    <b>Vardiya:</b>
+                    <p><i class="icon-clock icons"></i> {{productionForm.value.start_time}} - <i class="icon-clock icons"></i> {{productionForm.value.end_time}}</p>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <b>Çalışma Saati:</b>
+                    <p><i class="icon-clock icons"></i> {{ operationWorkTime() }}</p>
+                    <div class="{{operationTimeValidate() ? 'btn-success' : 'btn-danger' }} btn-sm">{{operationTimeValidate() ? 'Üretim Uygun' : 'Çalışma Saati Yetersiz.' }}</div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <div style="border-bottom: 1px solid #ececec; margin-bottom: 5px;" *ngFor="let item of productionForm.value.production_personnels;">
-                <label><b>Personel: </b></label> {{item.personnel?.name}} {{item.personnel?.lastname}}
-                <br/>
-                <label><b>Operasyonları: </b></label>
-                <span *ngFor="let op of item.operations; let opi=index; let last=last">
+            <div class="card">
+              <div class="card-body">
+                <div style="border-bottom: 1px solid #ececec; margin-bottom: 5px;" *ngFor="let item of productionForm.value.production_personnels;">
+                  <label><b>Personel: </b></label> {{item.personnel?.name}} {{item.personnel?.lastname}}
+                  <br/>
+                  <label><b>Operasyonları: </b></label>
+                  <span *ngFor="let op of item.operations; let opi=index; let last=last">
                   {{op.machine?.name}} ({{op.operation?.name}}) {{op?.operation_time}} dk. <b *ngIf="!last">|</b>
                 </span>
+                </div>
               </div>
             </div>
           </div>
+
 
         </tab>
       </tabset>
