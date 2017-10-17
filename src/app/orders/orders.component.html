@@ -12,6 +12,8 @@
             <thead>
             <tr>
               <th>Müşteri</th>
+              <th>Sipariş</th>
+              <th>Sipariş Durumu</th>
               <th>Sipariş Sonu</th>
               <th>Kayıt</th>
               <th>İşlem</th>
@@ -33,6 +35,13 @@
                   <i class="icon-check icons"></i>
                   Üretim Tamamlandı
                 </span>
+              </td>
+              <td>{{item.stockcard.name | capitalizeFirst }} ({{item.stockcard.code | capitalizeFirst }})</td>
+              <td>
+                {{item.order_stock.produced_orderstock}} / {{item.order_stock.order_unit}}
+                <div class="progress progress-xs my-3" style="background: #fff; padding: 0px !important; margin: 5px 0px 0px 0px !important;">
+                  <div aria-valuemax="item.order_stock.order_unit" aria-valuemin="0" aria-valuenow="item.order_stock.produced_orderstock" class="progress-bar bg-success" role="progressbar" [style.width.%]="((item.order_stock.produced_orderstock / item.order_stock.order_unit) * 100)" ></div>
+                </div>
               </td>
               <td>{{item.order.over_date | date: 'dd/MM/yyyy'}}</td>
               <td>{{item.order.created_date | date: 'dd/MM/yyyy'}}</td>
@@ -91,7 +100,8 @@
           </div>
           <div class="form-group">
             <label for="unit">Adet*</label>
-            <input formControlName="unit" appRegex [regex]="'^[0-9]+$'" id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
+            <input formControlName="unit" appRange [range]="'0-' + selectedOrder.stockcard.unit" appRegex [regex]="'^[0-9]+$'"   id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
+            <span class="help-block">En fazla {{selectedOrder.stockcard.unit}} adet üretilebilir.</span>
           </div>
           <div class="form-group">
             <label for="start_time">Üretim Başlangıç*</label>

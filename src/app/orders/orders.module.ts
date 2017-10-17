@@ -16,6 +16,7 @@ import { TooltipModule } from 'ngx-bootstrap';
 import { TooltipConfig } from 'ngx-bootstrap';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { PrintModule } from '../shared/directive/print/print.module';
+import { RangeModule } from '../shared/directive/range/range.module';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { PrintModule } from '../shared/directive/print/print.module';
     NguiAutoCompleteModule,
     TabsModule,
     RegexModule,
-    PrintModule
+    PrintModule,
+    RangeModule
   ],
   declarations: [ OrderComponent, OrdersComponent],
   providers: [

@@ -21,6 +21,7 @@ import * as moment from 'moment';
   public operations = [];
   public modalRef: BsModalRef;
   public operationValidate = true;
+  public orderStock = {};
   /*
   Production form/
    */
@@ -69,6 +70,13 @@ import * as moment from 'moment';
       ])
     });
 
+  }
+
+  /*
+  Order stock state
+   */
+  orderStockState(order: any): any {
+  return 'width:' + ((order.order_stock.produced_orderstock / order.order_stock.order_unit) * 100).toString() + '%';
   }
   /*
   Autocomplate Setting
