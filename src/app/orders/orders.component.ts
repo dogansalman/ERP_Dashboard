@@ -22,6 +22,7 @@ import * as moment from 'moment';
   public modalRef: BsModalRef;
   public operationValidate = true;
   public orderStock = {};
+  public orderId = 0;
   /*
   Production form/
    */
@@ -63,6 +64,7 @@ import * as moment from 'moment';
       'unit': [0, Validators.required],
       'start_time': ['Seçiniz', Validators.required],
       'end_time': ['Seçiniz', Validators.required],
+      'order_id': [this.orderId, Validators.required],
       'updated_date': [],
       'created_date': [],
       'production_personnels': this.formBuilder.array([
@@ -184,6 +186,9 @@ import * as moment from 'moment';
  */
   public openModal(template: TemplateRef<any>, order) {
     this.selectedOrder = order;
+    this.orderId = order.order.id;
+    console.log(order.order.id);
+
     this.modalRef = this.modalService.show(template, {keyboard: false, ignoreBackdropClick: true, class: 'gray modal-lg'});
     /*
     Modal closing
@@ -197,7 +202,11 @@ import * as moment from 'moment';
   create or update order
  */
   onSubmit(): void {
-    console.log(this.productionForm.value);
+    const productionData = this.productionForm.value;
+    delete productionData['created_date'];
+    delete productionData['updated_date'];
+    Object.assign(productionData, {order_id: this.orderId});
+    console.log(productionData);
   }
   /*
   Navigate detail
