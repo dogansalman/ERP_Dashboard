@@ -48,7 +48,7 @@ export class ApiServices {
       .map((res: Response) =>  <any[]> res.json())
       .catch((error: any) => {
         setTimeout(() => this.toastr.error('İşlem başarısız. Lütfen tekrar deneyin.', 'İstek başarısız!'));
-        return Observable.throw(error.json().error || 'Server error');
+        return Observable.throw(error || 'Server error')
 
       })
       ._finally(() => this.slimLoadingBarService.complete())

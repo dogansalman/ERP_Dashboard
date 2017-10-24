@@ -13,7 +13,8 @@
             <tr>
               <th>Müşteri</th>
               <th>Sipariş</th>
-              <th>Sipariş Durumu</th>
+              <th>Üretimdeki Stok</th>
+              <th>Sipariş Durumu </th>
               <th>Sipariş Sonu</th>
               <th>Kayıt</th>
               <th>İşlem</th>
@@ -38,7 +39,12 @@
               </td>
               <td>{{item.stockcard.name | capitalizeFirst }} ({{item.stockcard.code | capitalizeFirst }})</td>
               <td>
-                {{item.order_stock.produced_orderstock}} / {{item.order_stock.order_unit}}
+                {{item.produced_unit}} Adet
+              </td>
+              <td>
+                <div style="display: inline-block; text-align: left; width: 45%;">{{item.order_stock.produced_orderstock}} / {{item.order_stock.order_unit}}</div>
+                <div style="display: inline-block; text-align: right; width: 50%;">%{{((item.order_stock.produced_orderstock / item.order_stock.order_unit) * 100)}}</div>
+
                 <div class="progress progress-xs my-3" style="background: #fff; padding: 0px !important; margin: 5px 0px 0px 0px !important;">
                   <div aria-valuemax="item.order_stock.order_unit" aria-valuemin="0" aria-valuenow="item.order_stock.produced_orderstock" class="progress-bar bg-success" role="progressbar" [style.width.%]="((item.order_stock.produced_orderstock / item.order_stock.order_unit) * 100)" ></div>
                 </div>
@@ -68,6 +74,7 @@
          Sipariş ile ilgili işlemler <b>İşlem</b> alından gerçekleşmektedir. <br> <b>Üretim Kaydı</b> oluşturmak için  <button class="btn btn-success btn-sm" type="button"><i class="fa fa-plus"></i></button>
           seçeneği <b>Üretim hareketlerini incelemek için </b>
           <button class="btn btn-primary btn-sm" type="button"><i class="icon-graph icons"></i></button> seçeneğini kullanınız.
+          <p><b>Üretime gönderilen</b> stok kartının stok bilgisi anlık olarak düşmektedir.</p>
         </div>
       </div>
     </div>

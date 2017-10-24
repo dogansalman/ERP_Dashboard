@@ -206,7 +206,10 @@ import * as moment from 'moment';
     delete productionData['created_date'];
     delete productionData['updated_date'];
     Object.assign(productionData, {order_id: this.orderId});
-    console.log(productionData);
+    this.api.post('productions', productionData).subscribe(() => {
+      this.modalRef.hide();
+      setTimeout(() => this.toastr.success('Üretim kaydı oluşturuldu.'));
+    })
   }
   /*
   Navigate detail
