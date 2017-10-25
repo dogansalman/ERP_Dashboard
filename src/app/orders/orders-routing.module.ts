@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OrderComponent } from './order.component';
 import { OrdersComponent } from './orders.component';
-
+import { ProductionmovementsComponent } from './productionmovements.component';
 
 const routes: Routes = [
   {
@@ -34,6 +34,13 @@ const routes: Routes = [
         component: OrderComponent,
         data: {
           title: 'Düzenle'
+        }
+      },
+      {
+        path: 'productions/:id',
+        component: ProductionmovementsComponent,
+        data: {
+          title: 'Üretim Hareketleri'
         }
       }
     ]

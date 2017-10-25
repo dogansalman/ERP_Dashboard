@@ -1,0 +1,54 @@
+<div class="animated fadeIn">
+
+  <!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Üretim Hareketleri ({{productionList.length}})
+        </div>
+        <div class="card-body">
+          <table *ngIf="productionList.length > 0"  class="table table-bordered table-striped table-md">
+            <thead>
+            <tr>
+              <th>Tanım</th>
+              <th>Üretim Adedi</th>
+              <th>Vardiya</th>
+              <th>Üretim Süresi </th>
+              <th>Üretim Tarihi</th>
+              <th>Durum</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  class="linked-table-row" *ngFor='let item of productionList'>
+              <td>{{item.production.name | capitalizeFirst }} </td>
+              <td>{{item.production.unit}} Adet</td>
+              <td>{{item.production.start_time}} / {{item.production.end_time}}</td>
+              <td>2 Saat</td>
+              <td>{{item.production.created_date | date: 'dd/MM/yyyy'}}</td>
+              <td>
+                <span *ngIf="!item.production.is_complate && !item.production.is_cancel" style="float: right; margin-left: 5px;" class="badge badge-primary">
+                  <i class="icon-clock icons"></i>
+                Üretimde.
+                </span>
+                <span *ngIf="item.production.is_complate" style="float: right; margin-left: 5px;" class="badge badge-success">
+                  <i class="icon-check icons"></i>
+                  Tamamlandı.
+                </span>
+                <span *ngIf="item.production.is_cancel" style="float: right; margin-left: 5px;" class="badge badge-danger">
+                  <i class="icon-check icons"></i>
+                  İptal Edildi.
+                </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <p *ngIf="productionList.length == 0">Üretim kaydı bulunamadı.</p>
+        </div>
+      </div>
+
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>

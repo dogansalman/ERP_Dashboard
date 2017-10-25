@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { OrderComponent } from './order.component';
 import { OrdersComponent } from './orders.component';
+import { ProductionmovementsComponent } from './productionmovements.component';
 import { HttpModule } from '@angular/http';
 import { ApiServices } from '../services/api.services';
 import { CommonModule } from '@angular/common';
@@ -36,7 +37,7 @@ import { RangeModule } from '../shared/directive/range/range.module';
     PrintModule,
     RangeModule
   ],
-  declarations: [ OrderComponent, OrdersComponent],
+  declarations: [ OrderComponent, OrdersComponent, ProductionmovementsComponent],
   providers: [
     ApiServices,
     BsDatepickerActions,
