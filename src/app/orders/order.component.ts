@@ -124,9 +124,10 @@ export class OrderComponent implements  OnInit {
               order_unit: os.order_unit
             }));
           });
-
           this.orderDetail = o;
         });
+
+
       }
     });
 
