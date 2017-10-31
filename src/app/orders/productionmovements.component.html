@@ -82,7 +82,7 @@
             <span class="help-block">En fazla selectedOrder.stockcard.unit adet üretilebilir.</span>
           </div>
           <div class="form-group">
-            <label for="start_time">Üretim Başlangıç*</label>
+            <label for="start_time">Üretim Başlangıç*</label>ng serve --port
             <select formControlName="start_time" id="start_time" name="start_time" class="form-control">
               <option value="Seçiniz">Seçiniz</option>
               <option>01:00</option>
@@ -145,7 +145,7 @@
         </tab>
         <tab>
           <ng-template tabHeading><i class="icon-user-following icons"></i> Personel & Operasyon</ng-template>
-          <button class="btn btn-primary"(click)="addPersonnelControl()" style="margin-top:10px; margin-bottom:10px; width: 100%;">Yeni Personel Ekle</button>
+          <button class="btn btn-primary" (click)="addPersonnelControl()" style="margin-top:10px; margin-bottom:10px; width: 100%;">Yeni Personel Ekle</button>
           <div class="card-columns cols-2" formArrayName="production_personnels">
             <div *ngFor="let personnel of productionForm.controls.production_personnels.controls; let i=index">
               <div class="card">
@@ -157,11 +157,12 @@
                   <div class="panel-body" [formGroupName]="i">
                     <div class="form-group col-xs-6">
                       <label>Personel seçin</label>
-                      <input class="form-control stock-selection" #searchStockCard formControlName="personnel"
-                             placeholder="Ad soyad" ngui-auto-complete [max-num-list]="10" (valueChanged)="onPersonnelChange($event, searchStockCard);"
-                             [list-formatter]="autocompleListFormatter" [value-formatter]="ValueFormatter"  value-property-name="id" [source]="personnelList"  />
-                      <!--
-                       <div *ngFor="let lvl3 of personnel.controls.operations.controls; let ii=index; let last=last" formArrayName="operations">
+                      <input class="form-control stock-selection" #searchStockCard formControlName="personnel" [ngModel]="personnel._value.personnel"
+                             placeholder="Ad soyad" ngui-auto-complete [max-num-list]="10" [value-formatter]="ValueFormatter" (valueChanged)="onPersonnelChange($event, searchStockCard)"
+                             [list-formatter]="autocompleListFormatter"  value-property-name="id" [source]="personnelList"  />
+
+
+                      <div *ngFor="let lvl3 of personnel.controls.operations.controls let ii=index; let last=last" formArrayName="operations">
                         <div class="panel-heading">
                           <span><strong>Operasyon:</strong></span>
                         </div>
@@ -169,11 +170,11 @@
                           <label>Operasyon seçin</label>
                           <div class="form-group">
                             <input type="text" class="form-control" formControlName="machine" placeholder="Makine" ngui-auto-complete [max-num-list]="10"
-                                   [list-formatter]="autocompleMachineOperationListFormatter"  value-property-name="id" display-property-name="name" [source]="machines">
+                                   [list-formatter]="autocompleMachineOperationListFormatter"  value-property-name="name" display-property-name="name" [source]="machines">
                           </div>
                           <div class="form-group">
                             <input type="text" class="form-control" formControlName="operation" placeholder="Operasyon" ngui-auto-complete [max-num-list]="10"
-                                   [list-formatter]="autocompleMachineOperationListFormatter"  value-property-name="id" display-property-name="name" [source]="operations">
+                                   [list-formatter]="autocompleMachineOperationListFormatter"  value-property-name="name" display-property-name="name" [source]="operations">
                           </div>
                           <div class="form-group">
                             <div class="input-group">
@@ -183,9 +184,10 @@
                           </div>
                         </div>
                         <button *ngIf="last" class="btn btn-primary" (click)="addOperationControl(i)">Ekle</button>
-
                       </div>
-                      -->
+
+
+
 
 
                     </div>
@@ -196,7 +198,7 @@
           </div>
         </tab>
         <tab #productionFormPanel>
-          <ng-template tabHeading><i class="icon-pie-chart"></i> Üretim Kaydı Önizleme</ng-template>
+          <ng-template tabHeading><i class="icon-pie-chart"></i> Önizleme</ng-template>
           <div>
             <div class="card">
               <div class="card-body">
@@ -208,7 +210,7 @@
                 <p>{{this.productionForm.value.description}}</p>
                 <label><b>Üretim Tanımı:</b></label>
                 <p>{{this.productionForm.value.name}}</p>
-                <label><b>Üretim Adedi:</b></label> this.productionForm.value.unit Adet.
+                <label><b>Üretim Adedi:</b></label> {{this.productionForm.value.unit}} Adet.
               </div>
             </div>
             <div class="row">
@@ -250,6 +252,28 @@
           </div>
 
 
+        </tab>
+        <tab>
+          <ng-template tabHeading><i class="icon-check icons"></i> İşlem</ng-template>
+          <div>
+            <div class="card">
+              <div class="card-body">
+                SEVK
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <b>Parça Başı Üretim:  </b>
+                   <p>Sev işlemi üretimi tamamla</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
         </tab>
       </tabset>
       <br/>

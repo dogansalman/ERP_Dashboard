@@ -1,13 +1,14 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ApiServices} from '../services/api.services';
 import {DatePipe} from '@angular/common';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import {ToastrService} from 'ngx-toastr';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import * as moment from 'moment';
+import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
 
 
 @Component({
@@ -15,6 +16,8 @@ import * as moment from 'moment';
 })
 
 export class ProductionmovementsComponent implements OnInit {
+
+  @ViewChild(NguiAutoCompleteDirective) vc: NguiAutoCompleteDirective;
 
   public productionList = [];
   public productionForm: FormGroup;
@@ -36,6 +39,7 @@ export class ProductionmovementsComponent implements OnInit {
         this.api.get('productions/' + params['id']).subscribe(p => this.productionList = p);
       }
     });
+
 
     /*
     Get personnels
@@ -66,11 +70,9 @@ export class ProductionmovementsComponent implements OnInit {
           'order_id': [null, Validators.required],
           'updated_date': [],
           'created_date': [],
-          'production_personnels': this.formBuilder.array([
-            this.initProductionPersonnel()
+          'production_personnels': this.formBuilder.array([this.initProductionPersonnel()
           ])
         });
-
   }
   /*
   Autocomplate Setting
@@ -80,7 +82,6 @@ export class ProductionmovementsComponent implements OnInit {
     return this._sanitizer.bypassSecurityTrustHtml(html);
   }
   ValueFormatter(data: any): string {
-    console.log(data);
     return `${data.name} ${data.lastname}`;
   }
 
@@ -95,11 +96,8 @@ export class ProductionmovementsComponent implements OnInit {
   initProductionPersonnel() {
     return this.formBuilder.group({
       personnel: [null, Validators.required],
-      /*
-       operations: this.formBuilder.array([
-        this.initPersonnelOperation()
-      ])
-       */
+      operations: this.formBuilder.array([ this.initPersonnelOperation() ])
+
 
     });
   }
@@ -107,7 +105,7 @@ export class ProductionmovementsComponent implements OnInit {
   /*
   Init Production Operation
  */
-  initPersonnelOperation() {
+  initPersonnelOperation(): FormGroup {
     return this.formBuilder.group({
       machine: ['', Validators.required],
       operation: ['', Validators.required],
@@ -156,7 +154,7 @@ export class ProductionmovementsComponent implements OnInit {
  Remove personnel control
   */
   removePersonnelControl(i: number) {
-    const control = <FormArray>this.productionForm.controls['production_personnels'];
+    const control = this.productionForm.get('production_personnels') as FormArray;
     control.removeAt(i);
   }
 
@@ -164,7 +162,7 @@ export class ProductionmovementsComponent implements OnInit {
   Add personnel control
    */
   addPersonnelControl() {
-    const control = <FormArray>this.productionForm.controls['production_personnels'];
+    const control = this.productionForm.get('production_personnels') as FormArray;
     control.push(this.initProductionPersonnel());
   }
   /*
@@ -183,21 +181,42 @@ export class ProductionmovementsComponent implements OnInit {
   public openModal(template: TemplateRef<any>, production) {
 
     this.api.get('productions/detail/' + production.production.id).subscribe(p => {
+      this.productionForm.patchValue(p);
+      const production_personnels = <FormArray>this.productionForm.controls['production_personnels'];
 
-      this.productionForm.patchValue(p)
-      const peroduction_personnels = <FormArray>this.productionForm.controls['production_personnels'];
+      /*
+      Clear production personnels
+       */
+      production_personnels.controls.splice(0, production_personnels.controls.length);
 
-      peroduction_personnels.removeAt(0);
-
+      /*
+      Append personnel with operation
+       */
       p.production_personnels.forEach(pp => {
-        peroduction_personnels.push(this.formBuilder.group({
-          // personnel: pp.personnel.name + " " + pp.personnel.lastname
-           personnel: pp.personnel
-        }))
-      })
+        const personnels = this.formBuilder.group({
+          personnel: pp.personnel,
+          operations: this.formBuilder.array([
+          ])
+        });
+        const operations = personnels.get('operations') as FormArray;
+        pp.operations.forEach(op => {
+          operations.push(this.formBuilder.group({
+            machine: op.machine,
+            operation: op.operation,
+            operation_time: op.operation_time
+          }));
+        })
+        production_personnels.push(personnels);
+      });
+
+      console.log(production_personnels);
+      console.log(this.productionForm.controls.production_personnels);
+      /*
+      Open modal
+       */
+      this.modalRef = this.modalService.show(template, {keyboard: false, ignoreBackdropClick: true, class: 'gray modal-lg'});
     });
 
-    this.modalRef = this.modalService.show(template, {keyboard: false, ignoreBackdropClick: true, class: 'gray modal-lg'});
     /*
     Modal closing
      */
