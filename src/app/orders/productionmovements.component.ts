@@ -11,6 +11,7 @@ import * as moment from 'moment';
 import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
 
 
+
 @Component({
   templateUrl: 'productionmovements.component.html'
 })
@@ -24,7 +25,9 @@ export class ProductionmovementsComponent implements OnInit {
   public personnelList = [];
   public machines = [];
   public operations = [];
-  public orderId = 3;
+  public selectedOrder = {};
+  public selectedCustomer = {};
+  public stockMovementForm: FormGroup;
   public modalRef: BsModalRef;
 
   constructor(private api: ApiServices, private modalService: BsModalService, private toastr: ToastrService, private formBuilder: FormBuilder, private router: Router, private _sanitizer: DomSanitizer, private route: ActivatedRoute) {
@@ -73,6 +76,11 @@ export class ProductionmovementsComponent implements OnInit {
           'production_personnels': this.formBuilder.array([this.initProductionPersonnel()
           ])
         });
+
+        this.stockMovementForm = this.formBuilder.group({
+          'unit': [0, Validators.required],
+          'junk': [0, Validators.required]
+        })
   }
   /*
   Autocomplate Setting
@@ -83,6 +91,9 @@ export class ProductionmovementsComponent implements OnInit {
   }
   ValueFormatter(data: any): string {
     return `${data.name} ${data.lastname}`;
+  }
+  OperationMachineValueFormatter(data: any): string {
+    return `${data.name}`;
   }
 
   autocompleMachineOperationListFormatter = (data: any): SafeHtml => {
@@ -107,8 +118,8 @@ export class ProductionmovementsComponent implements OnInit {
  */
   initPersonnelOperation(): FormGroup {
     return this.formBuilder.group({
-      machine: ['', Validators.required],
-      operation: ['', Validators.required],
+      machine:  ['', Validators.required],
+      operation:  ['', Validators.required],
       operation_time: ['', Validators.required]
     });
   }
@@ -180,8 +191,19 @@ export class ProductionmovementsComponent implements OnInit {
  */
   public openModal(template: TemplateRef<any>, production) {
 
+    // get order
+    this.api.get('orders/' + production.order.id).subscribe(o => this.selectedOrder = o);
+
+    // get customer
+    this.api.get('customers/' + production.order.customer_id).subscribe(c => this.selectedCustomer = c);
+
+    // get production detail
     this.api.get('productions/detail/' + production.production.id).subscribe(p => {
       this.productionForm.patchValue(p);
+
+
+
+
       const production_personnels = <FormArray>this.productionForm.controls['production_personnels'];
 
       /*
@@ -200,17 +222,18 @@ export class ProductionmovementsComponent implements OnInit {
         });
         const operations = personnels.get('operations') as FormArray;
         pp.operations.forEach(op => {
+
           operations.push(this.formBuilder.group({
             machine: op.machine,
             operation: op.operation,
             operation_time: op.operation_time
           }));
-        })
+
+        });
         production_personnels.push(personnels);
+
       });
 
-      console.log(production_personnels);
-      console.log(this.productionForm.controls.production_personnels);
       /*
       Open modal
        */
