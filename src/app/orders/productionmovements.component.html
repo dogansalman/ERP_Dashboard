@@ -264,20 +264,26 @@
 
         </tab>
         <tab>
-          <ng-template tabHeading><i class="icon-check icons"></i> İşlem</ng-template>
+          <ng-template tabHeading><i class="icon-check icons"></i> Sevk</ng-template>
           <form [formGroup]="stockMovementForm" class="form-horizontal">
             <div class="form-group">
-              <b>Sevk Edilen Adet</b>
-              <p>Üretimi kusursuz tamamlanmış ürün adedi</p>
+              <label>Sevk Edilen Adet</label>
               <input  appRange [range]="'0-' + 10" appRegex [regex]="'^[0-9]+$'" class="form-control" formControlName="unit" placeholder="Sevk adedi">
             </div>
             <div class="form-group">
-              <b>Hurda Adedi</b>
-              <p>Kusurlu üretim adedi</p>
+              <label>İrsaliye No</label>
+              <input  class="form-control" formControlName="waybill" placeholder="İrsaliye No">
+            </div>
+            <div class="form-group">
+              <label>Nakliyeci Firma</label>
+              <input  class="form-control" formControlName="supplier" placeholder="Nakliyeci Firma">
+            </div>
+            <div class="form-group">
+              <label>Hurda Adedi</label>
               <input  appRange [range]="'0-' + 10" appRegex [regex]="'^[0-9]+$'" class="form-control" formControlName="junk" placeholder="Sevk adedi">
             </div>
             <div class="form-group">
-              <button class="btn btn-sm btn-primary" type="button">Kaydet</button>
+              <button class="btn btn-sm btn-primary" (click)="addstockMovementForm()" type="button">Kaydet</button>
             </div>
           </form>
         </tab>

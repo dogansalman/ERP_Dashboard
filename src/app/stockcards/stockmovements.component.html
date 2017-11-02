@@ -71,7 +71,7 @@
             <thead>
             <tr>
               <th>İrsaliye No</th>
-              <th>Tedarikçi</th>
+              <th>Tedarikçi / Nakliye</th>
               <th>Adet</th>
               <th>Tarih / Durum</th>
             </tr>
@@ -83,10 +83,10 @@
               <td>{{item.unit}}</td>
               <td>
                 {{item.created_date | date: 'dd/MM/yyyy' }}
-                <span style="float: right; margin-left: 5px;" class="{{item.movement_type ? 'badge badge-success' : 'badge badge-danger'}}">
-                  <i *ngIf="item.movement_type" class="fa fa-level-down"></i>
-                  <i *ngIf="!item.movement_type" class="fa fa-level-up"></i>
-                  {{item.movement_type ? 'Giriş' : 'Çıkış' }}
+                <span style="float: right; margin-left: 5px;" class="{{item.incoming_stock ? 'badge badge-success' : 'badge badge-danger'}}">
+                  <i *ngIf="item.incoming_stock" class="fa fa-level-down"></i>
+                  <i *ngIf="!item.incoming_stock" class="fa fa-level-up"></i>
+                  {{item.incoming_stock ? 'Giriş' : 'Çıkış' }}
                 </span>
 
                 <span *ngIf="item.on_requisition" style="float: right; margin-left: 5px;" class="badge badge-success">

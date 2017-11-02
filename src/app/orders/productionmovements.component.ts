@@ -78,8 +78,10 @@ export class ProductionmovementsComponent implements OnInit {
         });
 
         this.stockMovementForm = this.formBuilder.group({
-          'unit': [0, Validators.required],
-          'junk': [0, Validators.required]
+          'unit': [null, Validators.required],
+          'junk': [null, Validators.required],
+          'supplier': [null, Validators.required],
+          'waybill': [null, Validators.required]
         })
   }
   /*
@@ -262,7 +264,9 @@ export class ProductionmovementsComponent implements OnInit {
       setTimeout(() => this.toastr.success('Üretim kaydı oluşturuldu.'));
     })
      */
-
+  }
+  addstockMovementForm(): void {
+    console.log(this.stockMovementForm.value);
   }
 
 }
