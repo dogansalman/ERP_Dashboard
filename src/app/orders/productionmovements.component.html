@@ -6,6 +6,7 @@
       <div class="card">
         <div class="card-header">
           <i class="fa fa-align-justify"></i> Üretim Hareketleri ({{productionList.length}})
+          <button href="#" style="margin-right: 5px; float: right;" class="btn btn-warning btn-sm" (click)="saveAsExcel()"><i class="fa fa-file-excel-o"></i> İndir</button>
         </div>
         <div class="card-body">
           <table *ngIf="productionList.length > 0"  class="table table-bordered table-striped table-md">
@@ -77,11 +78,11 @@
           </div>
           <div class="form-group">
             <label for="unit">Adet*</label>
-            <input formControlName="unit" appRange [range]="'0-' + selectedOrder?.order_stocks[0].order_stock.unit"  appRegex [regex]="'^[0-9]+$'"   id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
+            <input #production_unit formControlName="unit" appRange [range]="'0-' + selectedOrder?.order_stocks[0].order_stock.unit"  appRegex [regex]="'^[0-9]+$'"   id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
             <span class="help-block">En fazla {{selectedOrder?.order_stocks[0].order_stock.unit}} adet üretilebilir.</span>
           </div>
           <div class="form-group">
-            <label for="start_time">Üretim Başlangıç*</label>ng serve --port
+            <label for="start_time">Üretim Başlangıç*</label>
             <select formControlName="start_time" id="start_time" name="start_time" class="form-control">
               <option value="Seçiniz">Seçiniz</option>
               <option>01:00</option>
@@ -268,11 +269,12 @@
           <form [formGroup]="stockMovementForm" class="form-horizontal">
             <div class="form-group">
               <label>Sevk Edilen Adet</label>
-              <input  appRange [range]="'0-' + 10" appRegex [regex]="'^[0-9]+$'" class="form-control" formControlName="unit" placeholder="Sevk adedi">
+              <input  appRange [range]="'0-' + (production_unit.value - selectedOrder.order_stocks[0].produced_orderstock)" appRegex [regex]="'^[0-9]+$'" class="form-control" formControlName="unit" placeholder="Sevk adedi">
+              <p>Maksimum sevk edilebilecek adet {{(production_unit.value - selectedOrder.order_stocks[0].produced_orderstock)}}</p>
             </div>
             <div class="form-group">
               <label>İrsaliye No</label>
-              <input  class="form-control" formControlName="waybill" placeholder="İrsaliye No">
+              <input class="form-control" formControlName="waybill" placeholder="İrsaliye No">
             </div>
             <div class="form-group">
               <label>Nakliyeci Firma</label>
@@ -280,10 +282,10 @@
             </div>
             <div class="form-group">
               <label>Hurda Adedi</label>
-              <input  appRange [range]="'0-' + 10" appRegex [regex]="'^[0-9]+$'" class="form-control" formControlName="junk" placeholder="Sevk adedi">
+              <input  appRange [range]="'0-' + 10" appRegex [regex]="'^[0-9]+$'" class="form-control" formControlName="junk" placeholder="Hurda adedi">
             </div>
             <div class="form-group">
-              <button class="btn btn-sm btn-primary" (click)="addstockMovementForm()" type="button">Kaydet</button>
+              <button [disabled]="!stockMovementForm.valid" class="btn btn-sm btn-primary" (click)="addstockMovementForm()" type="button">Kaydet</button>
             </div>
           </form>
         </tab>

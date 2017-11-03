@@ -43,7 +43,7 @@
               </td>
               <td>
                 <div style="display: inline-block; text-align: left; width: 45%;">{{item.order_stock.produced_orderstock}} / {{item.order_stock.order_unit}}</div>
-                <div style="display: inline-block; text-align: right; width: 50%;">%{{((item.order_stock.produced_orderstock / item.order_stock.order_unit) * 100)}}</div>
+                <div style="display: inline-block; text-align: right; width: 50%;">%{{((item.order_stock.produced_orderstock / item.order_stock.order_unit) * 100) | number:0}}</div>
 
                 <div class="progress progress-xs my-3" style="background: #fff; padding: 0px !important; margin: 5px 0px 0px 0px !important;">
                   <div aria-valuemax="item.order_stock.order_unit" aria-valuemin="0" aria-valuenow="item.order_stock.produced_orderstock" class="progress-bar bg-success" role="progressbar" [style.width.%]="((item.order_stock.produced_orderstock / item.order_stock.order_unit) * 100)" ></div>

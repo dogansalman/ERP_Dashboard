@@ -3,6 +3,7 @@ import {ApiServices} from '../services/api.services';
 import {ActivatedRoute} from '@angular/router';
 import {DatePipe, AsyncPipe} from '@angular/common';
 import { CapitalizeModule } from '../shared/pipes/capitalize/capitalize.module';
+import {ExcelServices} from "../services/excel.services";
 
 @Component({
   templateUrl: 'stockmovements.component.html'
@@ -33,7 +34,7 @@ export class StockmovementsComponent implements  OnInit {
   public totalOutStock: number;
 
 
-  constructor(private api: ApiServices, private activeRouter: ActivatedRoute) {  }
+  constructor(private api: ApiServices, private activeRouter: ActivatedRoute, private excelSer: ExcelServices) {  }
 
   ngOnInit(): void {
     /*
@@ -48,10 +49,10 @@ export class StockmovementsComponent implements  OnInit {
         this.api.get('stockmovements/' + this.stockcard_id).subscribe(sm => {
           this.stockMovementList = sm;
           let n = 0;
-          sm.filter(stm => stm.movement_type === true).forEach(stmm => n += stmm.unit)
+          sm.filter(stm => stm.incoming_stock === true).forEach(stmm => n += stmm.unit)
           this.totalEnteredStock = n;
           let m = 0;
-          sm.filter(stm => !stm.movement_type).forEach(stmm => m += stmm.unit)
+          sm.filter(stm => !stm.incoming_stock).forEach(stmm => m += stmm.unit)
           this.totalOutStock = m;
         });
 
@@ -60,9 +61,15 @@ export class StockmovementsComponent implements  OnInit {
          */
         this.api.get('stockcards/' + this.stockcard_id).subscribe(sc => this.stockcardDetail = sc)
 
-        this.stockMovementList.filter(sm => sm.movement_type === true).forEach(sm => console.log(sm.unit))
+        this.stockMovementList.filter(sm => sm.incoming_stock === true).forEach(sm => console.log(sm.unit))
 
       }
     })
+  }
+  /*
+Save as excel
+ */
+  saveAsExcel(): void {
+    this.excelSer.exportAsExcelFile(this.stockMovementList , 'Stok_Hareketleri_Listesi');
   }
 }

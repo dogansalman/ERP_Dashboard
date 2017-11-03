@@ -5,6 +5,7 @@
       <div class="card">
         <div class="card-header">
           <i class="fa fa-align-justify"></i> Stok Hareketleri ({{stockMovementList.length}})
+          <button href="#" style="margin-right: 5px; float: right;" class="btn btn-warning btn-sm" (click)="saveAsExcel()"><i class="fa fa-file-excel-o"></i> İndir</button>
         </div>
         <div class="card-body">
           <div class="card-group">
@@ -92,6 +93,14 @@
                 <span *ngIf="item.on_requisition" style="float: right; margin-left: 5px;" class="badge badge-success">
                   <i class="fa fa-truck"></i> Tedarik
                 </span>
+
+                <span *ngIf="item.production_id && item.is_junk " style="float: right; margin-left: 5px;" class="badge badge-danger">
+                   <i class="icon-trash icons"></i> Üretim Hurdası
+                </span>
+                <span *ngIf="item.production_id && !item.is_junk " style="float: right; margin-left: 5px;" class="badge badge-success">
+                   <i class="fa fa-truck"></i> Üretim Sevki
+                </span>
+
 
                 <span tooltip="{{item.not}}" style="float: right;" *ngIf="item.not" class="badge badge-warning">
                   <i class="icon-note icons"></i> Not

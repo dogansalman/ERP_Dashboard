@@ -18,7 +18,7 @@ import { TooltipConfig } from 'ngx-bootstrap';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { PrintModule } from '../shared/directive/print/print.module';
 import { RangeModule } from '../shared/directive/range/range.module';
-
+import { ExcelServices } from '../services/excel.services';
 @NgModule({
   imports: [
     OrdersRoutingModule,
@@ -42,7 +42,8 @@ import { RangeModule } from '../shared/directive/range/range.module';
     ApiServices,
     BsDatepickerActions,
     TooltipConfig,
-    BsModalRef
+    BsModalRef,
+    ExcelServices
   ]
 })
 export class OrdersModule { }

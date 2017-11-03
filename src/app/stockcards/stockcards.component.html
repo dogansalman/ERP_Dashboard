@@ -5,6 +5,7 @@
       <div class="card ">
         <div class="card-header">
           <i class="fa fa-align-justify"></i> Stok Kartları ({{stockCardList.length}})
+          <a href="" style="margin-right: 5px; float: right;" (click)="saveAsExcel()"><i class="fa fa-file-excel-o"></i> Excel İndir</a>
         </div>
         <div class="card-body">
           <div *ngIf="stockCardList.length > 0" class="card-group">
@@ -25,7 +26,6 @@
                           </div>
                         </div>
                         <input class="form-control"  (keydown)="searchTerm = searchTxt.value" placeholder="Aramak istediğiniz ürün kodu veya tanımı" id="appendedInputButtons" size="16" #searchTxt>
-                        <button style="margin-left: 5px;" class="btn btn-primary" (click)="saveAsExcel()" type="button"><i class="fa fa-file-excel-o"></i> Excel İndir</button>
                       </div>
                     </div>
                   </div>
@@ -71,6 +71,7 @@
             </tbody>
           </table>
           <p *ngIf="stockCardList.length == 0">Stok kartı bulunamadı.</p>
+
           <p *ngIf="stockCardList.length > 0" class="text-right"><span class="help-block">  {{(stockCardList | filter : 'code' : searchTxt?.value).length}} sonuç bulundu. </span></p>
           <div *ngIf="stockCardList.length > 0" class="card card-accent-warning">
             <div class="card-header">
