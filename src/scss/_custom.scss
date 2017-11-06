@@ -39,3 +39,16 @@
 body{
   -webkit-print-color-adjust:exact;
 }
+.nav-tabs .nav-link.disabled, .nav-tabs .navbar .disabled.dropdown-toggle, .navbar .nav-tabs .disabled.dropdown-toggle{
+  color: #dadada;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.table.noborder thead th {
+  border:none;
+}
+.table.noborder th, .table.noborder td {
+  border:none;
+}
+

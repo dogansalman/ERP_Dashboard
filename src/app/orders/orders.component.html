@@ -278,7 +278,7 @@
         </tab>
       </tabset>
       <br/>
-      <button (click)="onSubmit()"  class="btn btn-sm btn-primary" type="button">Ekle</button>
+      <button  [disabled]="!productionForm.valid" (click)="onSubmit()"  class="btn btn-sm btn-primary" type="button">Ekle</button>
       <button  (click)="modalRef.hide()" class="btn btn-sm btn-danger" type="button">İptal</button>
     </form>
 

@@ -23,7 +23,15 @@
             <tbody>
             <tr (click)="openModal(production, item)" class="linked-table-row" *ngFor='let item of productionList'>
               <td>{{item.production.name | capitalizeFirst }} </td>
-              <td>{{item.production.unit}} Adet</td>
+              <td>
+                <div style="display: inline-block; text-align: left; width: 45%;">{{item.production.produced_unit}} / {{item.production.unit}}</div>
+                <div style="display: inline-block; text-align: right; width: 50%;">%{{((item.production.produced_unit / item.production.unit) * 100) | number:0}}</div>
+
+                <div class="progress progress-xs my-3" style="background: #fff; padding: 0px !important; margin: 5px 0px 0px 0px !important;">
+                  <div aria-valuemax="item.order_stock.order_unit" aria-valuemin="0" aria-valuenow="item.order_stock.produced_orderstock" class="progress-bar bg-success" role="progressbar" [style.width.%]="((item.production.produced_unit / item.production.unit) * 100)" ></div>
+                </div>
+
+              </td>
               <td>{{item.production.start_time}} / {{item.production.end_time}}</td>
               <td>2 Saat</td>
               <td>{{item.production.created_date | date: 'dd/MM/yyyy'}}</td>
@@ -66,8 +74,8 @@
     <form [formGroup]="productionForm" class="form-horizontal">
       <!-- Nav tabs -->
       <tabset>
-        <tab>
-          <ng-template tabHeading><i class="icon-calculator"></i> Genel</ng-template>
+        <tab [disabled]="selectedProduction.production.is_complate">
+          <ng-template tabHeading><i class="icon-calculator"></i> {{selectedProduction.is_complate}} Genel</ng-template>
           <div class="form-group">
             <label for="name">Tanım*</label>
             <input formControlName="name" id="name" name="name" class="form-control" placeholder="Tanım">
@@ -143,8 +151,8 @@
             </select>
           </div>
         </tab>
-        <tab>
-          <ng-template tabHeading><i class="icon-user-following icons"></i> Personel & Operasyon</ng-template>
+        <tab [disabled]="selectedProduction.production.is_complate">
+          <ng-template  tabHeading><i class="icon-user-following icons"></i> Personel & Operasyon</ng-template>
           <button class="btn btn-primary" (click)="addPersonnelControl()" style="margin-top:10px; margin-bottom:10px; width: 100%;">Yeni Personel Ekle</button>
           <div class="card-columns cols-2" formArrayName="production_personnels">
             <div *ngFor="let personnel of productionForm.controls.production_personnels.controls; let i=index">
@@ -208,7 +216,77 @@
             </div>
           </div>
         </tab>
-        <tab #productionFormPanel>
+        <tab [disabled]="selectedProduction.production.is_complate">
+          <ng-template tabHeading><i class="icon-check icons"></i> Sevk</ng-template>
+          <form [formGroup]="stockMovementForm" class="form-horizontal">
+            <div class="form-group">
+              <label>Sevk Edilen Adet</label>
+              <input  appRange [range]="'0-' + (production_unit.value)" appRegex [regex]="'^[0-9]+$'" class="form-control" formControlName="unit" placeholder="Sevk adedi">
+              <p>Maksimum sevk edilebilecek adet {{(production_unit.value)}}</p>
+            </div>
+            <div class="form-group">
+              <label>İrsaliye No</label>
+              <input class="form-control" formControlName="waybill" placeholder="İrsaliye No">
+            </div>
+            <div class="form-group">
+              <label>Nakliyeci Firma</label>
+              <input  class="form-control" formControlName="supplier" placeholder="Nakliyeci Firma">
+            </div>
+            <div class="form-group">
+              <label>Hurda Adedi</label>
+              <input  appRange [range]="'0-' + 10" appRegex [regex]="'^[0-9]+$'" class="form-control" formControlName="junk" placeholder="Hurda adedi">
+            </div>
+            <div class="form-group">
+              <button [disabled]="!stockMovementForm.valid" class="btn btn-sm btn-primary" (click)="addstockMovementForm()" type="button">Kaydet</button>
+            </div>
+          </form>
+        </tab>
+        <tab>
+          <ng-template tabHeading><i class="icon-share-alt icons"></i> Sevk Tablosu</ng-template>
+          <table class="table noborder table-sm">
+            <thead>
+            <tr>
+              <th>İrsaliye No</th>
+              <th>Tedarikçi / Nakliye</th>
+              <th>Adet</th>
+              <th>Tarih / Durum</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="linked-table-row" *ngFor='let item of selectedProdStockMovements'>
+              <td>{{item.stockmovement.waybill}}</td>
+              <td>{{item.stockmovement.supplier | capitalizeFirst}}</td>
+              <td>{{item.stockmovement.unit}}</td>
+              <td>
+                {{item.stockmovement.created_date | date: 'dd/MM/yyyy' }}
+                <span style="float: right; margin-left: 5px;" class="{{item.stockmovement.incoming_stock ? 'badge badge-success' : 'badge badge-danger'}}">
+                  <i *ngIf="item.stockmovement.incoming_stock" class="fa fa-level-down"></i>
+                  <i *ngIf="!item.stockmovement.incoming_stock" class="fa fa-level-up"></i>
+                  {{item.stockmovement.incoming_stock ? 'Giriş' : 'Çıkış' }}
+                </span>
+
+                <span *ngIf="item.stockmovement.on_requisition" style="float: right; margin-left: 5px;" class="badge badge-success">
+                  <i class="fa fa-truck"></i> Tedarik
+                </span>
+
+                <span *ngIf="item.stockmovement.production_id && item.stockmovement.is_junk " style="float: right; margin-left: 5px;" class="badge badge-danger">
+                   <i class="icon-trash icons"></i> Üretim Hurdası
+                </span>
+                <span *ngIf="item.stockmovement.production_id && !item.stockmovement.is_junk " style="float: right; margin-left: 5px;" class="badge badge-success">
+                   <i class="fa fa-truck"></i> Üretim Sevki
+                </span>
+
+
+                <span tooltip="{{item.stockmovement.not}}" style="float: right;" *ngIf="item.stockmovement.not" class="badge badge-warning">
+                  <i class="icon-note icons"></i> Not
+                </span>
+
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </tab>
+        <tab active="true" #productionFormPanel>
           <ng-template tabHeading><i class="icon-note icons"></i> Önizleme</ng-template>
           <div>
             <div class="card">
@@ -264,38 +342,9 @@
 
 
         </tab>
-        <tab>
-          <ng-template tabHeading><i class="icon-check icons"></i> Sevk</ng-template>
-          <form [formGroup]="stockMovementForm" class="form-horizontal">
-            <div class="form-group">
-              <label>Sevk Edilen Adet</label>
-              <input  appRange [range]="'0-' + (production_unit.value - selectedOrder.order_stocks[0].produced_orderstock)" appRegex [regex]="'^[0-9]+$'" class="form-control" formControlName="unit" placeholder="Sevk adedi">
-              <p>Maksimum sevk edilebilecek adet {{(production_unit.value - selectedOrder.order_stocks[0].produced_orderstock)}}</p>
-            </div>
-            <div class="form-group">
-              <label>İrsaliye No</label>
-              <input class="form-control" formControlName="waybill" placeholder="İrsaliye No">
-            </div>
-            <div class="form-group">
-              <label>Nakliyeci Firma</label>
-              <input  class="form-control" formControlName="supplier" placeholder="Nakliyeci Firma">
-            </div>
-            <div class="form-group">
-              <label>Hurda Adedi</label>
-              <input  appRange [range]="'0-' + 10" appRegex [regex]="'^[0-9]+$'" class="form-control" formControlName="junk" placeholder="Hurda adedi">
-            </div>
-            <div class="form-group">
-              <button [disabled]="!stockMovementForm.valid" class="btn btn-sm btn-primary" (click)="addstockMovementForm()" type="button">Kaydet</button>
-            </div>
-          </form>
-        </tab>
-        <tab>
-          <ng-template tabHeading><i class="icon-share-alt icons"></i> Sevk Tablosu</ng-template>
-            Sevk hareketleri burda listelenecek
-        </tab>
       </tabset>
       <br/>
-      <button (click)="onSubmit()"  class="btn btn-sm btn-primary" type="button">Ekle</button>
+      <button (click)="onSubmit()" [disabled]="selectedProduction.production.is_complate"  class="btn btn-sm btn-primary" type="button">Güncelle</button>
       <button  (click)="modalRef.hide()" class="btn btn-sm btn-danger" type="button">İptal</button>
     </form>
   </div>

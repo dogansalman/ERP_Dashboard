@@ -23,6 +23,7 @@ export class ProductionmovementsComponent implements OnInit {
   public productionList = [];
   public productionForm: FormGroup;
   public personnelList = [];
+  public selectedProdStockMovements = [];
   public machines = [];
   public operations = [];
   public selectedOrder = {};
@@ -204,8 +205,11 @@ export class ProductionmovementsComponent implements OnInit {
   public openModal(template: TemplateRef<any>, production) {
 
     this.selectedProduction = production;
+
+    // get production stock movement
+    this.api.get('productions/dispatch/' + production.production.id).subscribe(sm => this.selectedProdStockMovements = sm);
     // get order
-    this.api.get('orders/' + production.order.id).subscribe(o => { this.selectedOrder = o; console.log(this.selectedOrder);});
+    this.api.get('orders/' + production.order.id).subscribe(o => this.selectedOrder = o);
 
     // get customer
     this.api.get('customers/' + production.order.customer_id).subscribe(c => this.selectedCustomer = c);
