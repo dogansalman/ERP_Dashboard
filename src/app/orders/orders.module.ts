@@ -19,6 +19,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { PrintModule } from '../shared/directive/print/print.module';
 import { RangeModule } from '../shared/directive/range/range.module';
 import { ExcelServices } from '../services/excel.services';
+import { WaybillComponent } from '../shared/components/waybill/waybill.component';
+
 @NgModule({
   imports: [
     OrdersRoutingModule,
@@ -43,7 +45,8 @@ import { ExcelServices } from '../services/excel.services';
     BsDatepickerActions,
     TooltipConfig,
     BsModalRef,
-    ExcelServices
+    ExcelServices,
+    WaybillComponent
   ]
 })
 export class OrdersModule { }

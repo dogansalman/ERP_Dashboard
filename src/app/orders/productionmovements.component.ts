@@ -10,16 +10,23 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import * as moment from 'moment';
 import { NguiAutoCompleteDirective } from '@ngui/auto-complete';
 import { ExcelServices } from '../services/excel.services';
+import { WaybillComponent } from '../shared/components/waybill/waybill.component';
+import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
+import { defineLocale } from 'ngx-bootstrap/bs-moment';
+import { tr } from '../shared/configs/tr';
+
 
 
 @Component({
   templateUrl: 'productionmovements.component.html'
 })
 
+
 export class ProductionmovementsComponent implements OnInit {
 
+  bsConfig: Partial<BsDatepickerConfig>;
   @ViewChild(NguiAutoCompleteDirective) vc: NguiAutoCompleteDirective;
-
+  public lockWaybill = true;
   public productionList = [];
   public productionForm: FormGroup;
   public personnelList = [];
@@ -28,15 +35,25 @@ export class ProductionmovementsComponent implements OnInit {
   public operations = [];
   public selectedOrder = {};
   public selectedCustomer = {};
+  public selectedtabIndex = -1;
+  public selectedStockMovement = {};
   public selectedProductionId;
   public selectedProduction;
+  public totalSelectedStockMovementUnit = 0;
   public stockMovementForm: FormGroup;
   public modalRef: BsModalRef;
-  public selectedOrderStock;
-  constructor(private api: ApiServices, private modalService: BsModalService, private toastr: ToastrService, private formBuilder: FormBuilder, private router: Router, private _sanitizer: DomSanitizer, private route: ActivatedRoute, private excelSer: ExcelServices) {
+  public waybillModalRef: BsModalRef;
+  public openedWaybillModal = false;
+
+  constructor(private api: ApiServices, private modalService: BsModalService, private toastr: ToastrService, private formBuilder: FormBuilder, private router: Router,
+              private _sanitizer: DomSanitizer, private route: ActivatedRoute, private excelSer: ExcelServices, private waybill: WaybillComponent ) {
   }
 
   ngOnInit(): void {
+
+    defineLocale('tr', tr);
+    this.bsConfig = Object.assign({}, { locale: 'tr', containerClass: 'theme-blue zindex-inmodal'});
+
     /*
     Get productions
      */
@@ -200,14 +217,18 @@ export class ProductionmovementsComponent implements OnInit {
 
 
   /*
-  Open modal
+  Open production modal
  */
-  public openModal(template: TemplateRef<any>, production) {
+  public productionModal(template: TemplateRef<any>, production) {
 
     this.selectedProduction = production;
 
     // get production stock movement
-    this.api.get('productions/dispatch/' + production.production.id).subscribe(sm => this.selectedProdStockMovements = sm);
+    this.api.get('productions/dispatch/' + production.production.id).subscribe(sm => {
+      this.selectedProdStockMovements = sm;
+      sm.forEach(smm => this.totalSelectedStockMovementUnit += (smm.is_junk ? 0 : smm.unit));
+    });
+
     // get order
     this.api.get('orders/' + production.order.id).subscribe(o => this.selectedOrder = o);
 
@@ -256,6 +277,14 @@ export class ProductionmovementsComponent implements OnInit {
         ignoreBackdropClick: true,
         class: 'gray modal-lg'
       });
+
+      /*
+      console.log(this.selectedCustomer);
+      console.log(this.selectedProduction);
+      console.log(this.selectedOrder);
+      console.log(this.selectedProdStockMovements);
+       */
+
     });
 
     /*
@@ -264,8 +293,17 @@ export class ProductionmovementsComponent implements OnInit {
     this.modalService.onHide.subscribe((reason: string) => {
       this.productionForm.reset();
     });
-
-
+  }
+  /*
+  Open waybill modal
+   */
+  printWaybillModal(template: TemplateRef<any>, selectedStockMovement): void {
+    this.selectedStockMovement = selectedStockMovement;
+    this.waybillModalRef = this.modalService.show(template, {
+      keyboard: false,
+      ignoreBackdropClick: true,
+      class: 'gray modal-md'
+    });
   }
 
   /*
@@ -275,7 +313,6 @@ export class ProductionmovementsComponent implements OnInit {
     const productionData = this.productionForm.value;
     delete productionData['created_date'];
     delete productionData['updated_date'];
-    console.log(productionData);
     /*
      this.api.put('productions', productionData).subscribe(() => {
       this.modalRef.hide();
@@ -284,15 +321,43 @@ export class ProductionmovementsComponent implements OnInit {
      */
   }
 
+  /*
+  Unclock Waybill Input
+   */
+  toggleLockWaybill(a): void {
+    this.lockWaybill = (this.lockWaybill === true ? null : true);
+    console.log(this.lockWaybill);
+  }
+  /*
+  Add Stock Movement
+   */
   addstockMovementForm(production_id): void {
     const movementDispatchData = this.stockMovementForm.value;
+
+    this.selectedProduction.production.produced_unit = (parseInt(this.selectedProduction.production.produced_unit) + parseInt(movementDispatchData.unit));
+
+    if (this.selectedProduction.production.produced_unit >= this.selectedProduction.production.unit) {
+      this.selectedProduction.production.is_complate = true;
+      this.selectedProduction.production.is_production = false;
+    }
 
     Object.assign(this.stockMovementForm.value, {junk: this.stockMovementForm.value.junk ? this.stockMovementForm.value.junk : 0 });
      this.api.post('productions/dispatch/' + this.selectedProductionId, this.stockMovementForm.value).subscribe(() => {
       this.modalRef.hide();
-      setTimeout(() => this.toastr.success('Sevk kaydı oluşturuldu.'));
+     setTimeout(() => this.toastr.success('Sevk kaydı oluşturuldu.'));
     })
   }
+
+  /*
+  On selected tab
+   */
+  onTabSelect(index): void {
+    this.selectedtabIndex  = index;
+  }
+  minProductionDateValidate(event): void {
+    if (event.target.value < this.totalSelectedStockMovementUnit) event.target.value = 10;
+  }
+
   /*
   Save as excel
    */

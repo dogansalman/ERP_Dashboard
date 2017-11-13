@@ -207,6 +207,9 @@ import * as moment from 'moment';
     Object.assign(productionData, {order_id: this.orderId});
     this.api.post('productions', productionData).subscribe(() => {
       this.modalRef.hide();
+      const selectedOrder = this.orderList.find(o => o.order.id === this.orderId);
+      selectedOrder.order.is_production = true;
+      selectedOrder.produced_unit = (parseInt(selectedOrder.produced_unit) + parseInt(productionData.unit));
       setTimeout(() => this.toastr.success('Üretim kaydı oluşturuldu.'));
     })
   }
