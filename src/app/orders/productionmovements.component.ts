@@ -25,6 +25,8 @@ import { tr } from '../shared/configs/tr';
 export class ProductionmovementsComponent implements OnInit {
 
   bsConfig: Partial<BsDatepickerConfig>;
+  bsConfig2: Partial<BsDatepickerConfig>;
+
   @ViewChild(NguiAutoCompleteDirective) vc: NguiAutoCompleteDirective;
   public lockWaybill = true;
   public productionList = [];
@@ -41,6 +43,7 @@ export class ProductionmovementsComponent implements OnInit {
   public selectedProduction;
   public totalSelectedStockMovementUnit = 0;
   public stockMovementForm: FormGroup;
+  public waybillForm: FormGroup;
   public modalRef: BsModalRef;
   public waybillModalRef: BsModalRef;
   public openedWaybillModal = false;
@@ -53,6 +56,7 @@ export class ProductionmovementsComponent implements OnInit {
 
     defineLocale('tr', tr);
     this.bsConfig = Object.assign({}, { locale: 'tr', containerClass: 'theme-blue zindex-inmodal'});
+    this.bsConfig2 = Object.assign({}, { locale: 'tr', containerClass: 'theme-blue zindex-inmodal'});
 
     /*
     Get productions
@@ -96,12 +100,23 @@ export class ProductionmovementsComponent implements OnInit {
       'production_personnels': this.formBuilder.array([this.initProductionPersonnel()
       ])
     });
-
+    /*
+    Stock movement form
+     */
     this.stockMovementForm = this.formBuilder.group({
       'unit': [null, Validators.required],
       'junk': [null],
       'supplier': [null, Validators.required],
       'waybill': [null, Validators.required]
+    })
+    /*
+    Waybill form
+     */
+    this.waybillForm = this.formBuilder.group({
+    'waybill_no': [null, Validators.required],
+    'edit_date': [null, Validators.required],
+    'send_date': [null, Validators.required],
+    'invoice_date': [null, Validators.required],
     })
   }
 
@@ -278,13 +293,10 @@ export class ProductionmovementsComponent implements OnInit {
         class: 'gray modal-lg'
       });
 
-      /*
-      console.log(this.selectedCustomer);
-      console.log(this.selectedProduction);
-      console.log(this.selectedOrder);
-      console.log(this.selectedProdStockMovements);
-       */
-
+      // console.log(this.selectedCustomer);
+      // console.log(this.selectedProduction);
+      // console.log(this.selectedOrder);
+      // console.log(this.selectedProdStockMovements);
     });
 
     /*
@@ -292,6 +304,8 @@ export class ProductionmovementsComponent implements OnInit {
      */
     this.modalService.onHide.subscribe((reason: string) => {
       this.productionForm.reset();
+      this.waybillForm.reset();
+      this.lockWaybill = true;
     });
   }
   /*
@@ -299,6 +313,8 @@ export class ProductionmovementsComponent implements OnInit {
    */
   printWaybillModal(template: TemplateRef<any>, selectedStockMovement): void {
     this.selectedStockMovement = selectedStockMovement;
+
+    this.waybillForm.patchValue({waybill_no: selectedStockMovement.waybill });
     this.waybillModalRef = this.modalService.show(template, {
       keyboard: false,
       ignoreBackdropClick: true,
@@ -306,6 +322,17 @@ export class ProductionmovementsComponent implements OnInit {
     });
   }
 
+  /*
+  Print Waybill
+   */
+  OnPrint(): void {
+    if (!this.lockWaybill) {
+      this.api.put('stockmovements/', Object.assign(this.selectedStockMovement, {waybill: this.waybillForm.value.waybill_no })).subscribe(() => {
+        Object.assign(this.selectedProdStockMovements.find(sm => sm === this.selectedStockMovement),this.selectedStockMovement );
+      });
+    }
+    this.waybill.print(Object.assign(this.waybillForm.value, this.selectedCustomer));
+  }
   /*
   create or update order
  */
@@ -326,7 +353,6 @@ export class ProductionmovementsComponent implements OnInit {
    */
   toggleLockWaybill(a): void {
     this.lockWaybill = (this.lockWaybill === true ? null : true);
-    console.log(this.lockWaybill);
   }
   /*
   Add Stock Movement

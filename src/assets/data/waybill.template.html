@@ -12,8 +12,11 @@
     padding-top: 0mm;
     padding-bottom: 0mm;
     margin: 0px;
+   /*
     border: 1px solid #000;
+   /*
     background: url(irsaliye.jpg) no-repeat;
+     */
     background-size: 20cm 29cm;
     position: relative;
   }
@@ -28,7 +31,7 @@
   }
   .customer_title > .customer_tax_info {
     position: absolute;
-    bottom: 0px;
+    bottom: -10px;
     left: 22mm;
   }
 
@@ -76,19 +79,19 @@
     top: 11mm;
     font-size: 13px;
   }
-  .dates > .invoce > .month{
+  .dates > .invoice > .month{
     position: absolute;
     right: 21mm;
     top: 21mm;
     font-size: 13px;
   }
-  .dates > .invoce > .day{
+  .dates > .invoice > .day{
     position: absolute;
     right: 13mm;
     top: 21mm;
     font-size: 13px;
   }
-  .dates > .invoce > .year{
+  .dates > .invoice > .year{
     position: absolute;
     right: 3mm;
     top: 21mm;
@@ -99,18 +102,18 @@
     width: 170mm;
     height: 113mm;
     background: #d6d6d62e;
-    top: 135mm;
+    top: 152mm;
     left: 13mm;
   }
   .products > .product > .amount{
-    height: 6mm;
+    height: 7mm;
     background: #ff00005c;
     width: 45%;
     float: left;
     font-weight: 600;
   }
   .products > .product > .name{
-    height: 6mm;
+    height: 7mm;
     background: #00ffe25c;
     width: 55%;
     float: right;
@@ -126,22 +129,22 @@
   <div class="customer_tax_info">%tax_name% %tax_number%</div>
 </div>
 <div class="dates">
-<div class="created">
-  <div class="month">%created_month%</div>
-  <div class="day">%created_day%</div>
-  <div class="year">%created_year%</div>
-</div>
-<div class="send">
-  <div class="month">%send_month%</div>
-  <div class="day">%send_day%</div>
-  <div class="year">%send_year%</div>
-</div>
+  <div class="created">
+    <div class="month">%created_month%</div>
+    <div class="day">%created_day%</div>
+    <div class="year">%created_year%</div>
+  </div>
+  <div class="send">
+    <div class="month">%send_month%</div>
+    <div class="day">%send_day%</div>
+    <div class="year">%send_year%</div>
+  </div>
 
-  <div class="invoce">
-  <div class="month">%invoce_month%</div>
-  <div class="day">%invoce_day</div>
-  <div class="year">%invoce_year%</div>
-</div>
+  <div class="invoice">
+    <div class="month">%invoice_month%</div>
+    <div class="day">%invoice_day%</div>
+    <div class="year">%invoice_year%</div>
+  </div>
 </div>
 
 <div class="products">

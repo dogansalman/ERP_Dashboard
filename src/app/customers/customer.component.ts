@@ -43,6 +43,8 @@ export class CustomerComponent  implements OnInit {
       'lastname': [null, Validators.required],
       'password': [null, Validators.required],
       'state': [false, Validators.required],
+      'tax_name': [],
+      'tax_number': [],
       'created_date': [],
       'updated_date': [],
     })

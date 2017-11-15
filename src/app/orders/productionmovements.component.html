@@ -342,10 +342,11 @@
     </button>
   </div>
   <div class="modal-body">
+    <form [formGroup]="waybillForm" class="form-horizontal">
     <div class="form-group">
       <label>İrsaliye No*</label>
       <div class="input-group">
-        <input [attr.disabled]="lockWaybill" type="text"  value="123123213" class="form-control" placeholder="İrsaliye No">
+        <input formControlName="waybill_no" [attr.disabled]="lockWaybill" type="text"  value="123123213" class="form-control" placeholder="İrsaliye No">
         <span class="input-group-btn">
           <button (click)="toggleLockWaybill()" type="button" class="btn btn-success"><i class="icon-lock-open icons"></i></button>
         </span>
@@ -353,18 +354,19 @@
     </div>
     <div class="form-group">
       <label>Düzenlenme Tarihi*</label>
-      <input  class="form-control" placeholder="Düzenlenme Tarihi" bsDatepicker [bsConfig]="bsConfig">
+      <input formControlName="edit_date" class="form-control" placeholder="Düzenlenme Tarihi" bsDatepicker [bsConfig]="bsConfig">
     </div>
     <div class="form-group">
       <label>Sevk Tarihi*</label>
-      <input class="form-control" placeholder="Sevk Tarihi" bsDatepicker [bsConfig]="bsConfig">
+      <input formControlName="send_date" class="form-control" placeholder="Sevk Tarihi" bsDatepicker [bsConfig]="bsConfig2">
     </div>
     <div class="form-group">
-      <label>Sevk Tarihi*</label>
-      <input class="form-control" placeholder="Fatura Tarihi" bsDatepicker [bsConfig]="bsConfig">
+      <label>Fatura Tarihi*</label>
+      <input formControlName="invoice_date" class="form-control" placeholder="Fatura Tarihi" bsDatepicker [bsConfig]="bsConfig">
     </div>
     <div class="form-group">
-      <button  class="btn btn-sm btn-primary" type="button"> <i class="icon-printer icons"></i> Yazdır</button>
+      <button [disabled]="!waybillForm.valid" (click)="OnPrint()" class="btn btn-sm btn-primary" type="button"> <i class="icon-printer icons"></i> Yazdır</button>
     </div>
+    </form>
   </div>
 </ng-template>
