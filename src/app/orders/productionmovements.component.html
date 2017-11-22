@@ -86,8 +86,8 @@
           </div>
           <div class="form-group">
             <label for="unit">Adet*</label>
-            <input (focusout)="minProductionDateValidate($event)"  [attr.disabled]="selectedOrder?.order_stocks[0].order_stock.unit === 0 ? true : null" #production_unit formControlName="unit" appRange [range]="'0-' + selectedOrder?.order_stocks[0].order_unit"  appRegex [regex]="'^[0-9]+$'"   id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
-            <span class="help-block">En fazla {{selectedOrder?.order_stocks[0].order_unit - totalSelectedStockMovementUnit }} adet üretilebilir.</span>
+            <input (focusout)="minProductionDateValidate($event)"  [attr.disabled]="selectedOrder?.order_stocks.order_stock.unit === 0 ? true : null" #production_unit formControlName="unit" appRange [range]="'0-' + selectedOrder?.order_stocks.order_stock.unit"  appRegex [regex]="'^[0-9]+$'"   id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
+            <span class="help-block">En fazla {{selectedOrder?.order_stocks.order_stock.unit - totalSelectedStockMovementUnit }} adet üretilebilir.</span>
           </div>
           <div class="form-group">
             <label for="start_time">Üretim Başlangıç*</label>
@@ -277,7 +277,7 @@
                 <label><b>Müşteri:</b></label>
                 <p> {{selectedCustomer?.company}} </p>
                 <label><b>Ürün:</b></label>
-                <p> {{selectedOrder.order_stocks[0].order_stock?.name}} ({{selectedOrder.order_stocks[0].order_stock?.code}}) </p>
+                <p> {{selectedOrder.order_stocks.order_stock?.name}} ({{selectedOrder.order_stocks.order_stock?.code}}) </p>
                 <label><b>Üretim Açıklaması:</b></label>
                 <p>{{this.productionForm.value.description}}</p>
                 <label><b>Üretim Tanımı:</b></label>

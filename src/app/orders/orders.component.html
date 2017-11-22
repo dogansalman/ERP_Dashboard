@@ -107,8 +107,8 @@
           </div>
           <div class="form-group">
             <label for="unit">Adet*</label>
-            <input formControlName="unit" appRange [range]="'0-' + (selectedOrder.order_stock.order_unit - selectedOrder.produced_unit)" appRegex [regex]="'^[0-9]+$'"   id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
-            <span class="help-block">En fazla {{selectedOrder.order_stock.order_unit - selectedOrder.produced_unit}} adet üretilebilir.</span>
+            <input formControlName="unit" appRange [range]="'0-' + ((selectedOrder.order_stock.order_unit - selectedOrder.produced_unit) >= selectedOrder.stockcard.unit ? (selectedOrder.order_stock.order_unit - selectedOrder.produced_unit) : selectedOrder.stockcard.unit)" appRegex [regex]="'^[0-9]+$'"   id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
+            <span class="help-block">En fazla {{((selectedOrder.order_stock.order_unit - selectedOrder.produced_unit) >= selectedOrder.stockcard.unit ? (selectedOrder.order_stock.order_unit - selectedOrder.produced_unit) : selectedOrder.stockcard.unit)}} adet üretilebilir.</span>
           </div>
           <div class="form-group">
             <label for="start_time">Üretim Başlangıç*</label>

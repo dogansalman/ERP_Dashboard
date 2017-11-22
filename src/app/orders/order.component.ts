@@ -11,7 +11,6 @@ import { tr } from '../shared/configs/tr';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import {SafeHtml, DomSanitizer} from '@angular/platform-browser';
 
-
 @Component({
   templateUrl: 'order.component.html'
 })
@@ -27,10 +26,6 @@ export class OrderComponent implements  OnInit {
   Stock card list
    */
   public stockCardList = [];
-  /*
-  Selected stock card list
-   */
-  public selectedStockCardList = [];
   /*
   Order Validation
    */
@@ -52,8 +47,8 @@ export class OrderComponent implements  OnInit {
     create or update order
    */
   onSubmit(): void {
-    delete this.orderForm.value['created_date']
-    this.api.post('orders', this.orderForm.value).subscribe(() => {
+    delete this.orderForm.value['created_date'];
+      this.api.post('orders', this.orderForm.value).subscribe(() => {
       setTimeout(() => this.toastr.success('Sipariş kaydı oluşturuldu.'));
       setTimeout(() => this.routes.navigateByUrl('orders/list'), 1000)
     })
@@ -64,31 +59,20 @@ export class OrderComponent implements  OnInit {
     return this._sanitizer.bypassSecurityTrustHtml(html);
   }
 
-  initStockCard() {
-
-    return this.formBuilder.group({
-      order_stock: [null, Validators.required],
-      order_unit: [null, Validators.required]
-    });
-  }
-
   onStockCardChange(sc, el): void {
-    el.disabled = true;
-    this.stockCardList.splice(this.stockCardList.findIndex(scard => scard === sc), 1);
-    this.selectedStockCardList.push(sc);
+    // el.disabled = true;
   }
-  addStockCard() {
-    const control = <FormArray>this.orderForm.controls['order_stocks'];
-    control.push(this.initStockCard());
+  stockCardSelectionClick(sc, el): void {
+    console.log(el.getAttribute('disabled'));
   }
-  removeStockCard(i: number) {
-    const control = <FormArray>this.orderForm.controls['order_stocks'];
-    this.stockCardList.push(control.value[i].order_stock);
-    this.selectedStockCardList.splice(this.selectedStockCardList.findIndex(scard => scard === control.value[i].order_stock), 1);
-    control.removeAt(i);
-  }
+
+
   isDisableForm(): any {
     return this.orderDetail.is_complated || this.orderDetail.is_production ? true : null;
+  }
+
+  ValueFormatter(data: any): string {
+    return `${data.name} ${data.code}`;
   }
 
   ngOnInit(): void {
@@ -102,9 +86,10 @@ export class OrderComponent implements  OnInit {
       'order_note': [''],
       'created_date': [''],
       'updated_date': [''],
-      'order_stocks': this.formBuilder.array([
-        this.initStockCard()
-      ])
+      'order_stocks': this.formBuilder.group({
+        order_stock: [null, Validators.required],
+        order_unit: [null, Validators.required]
+      }),
     });
 
     /*
@@ -114,22 +99,12 @@ export class OrderComponent implements  OnInit {
       if (params['id']) {
         this.id = params['id'];
         this.api.get('orders/' + this.id).subscribe(o =>  {
-
           this.orderForm.patchValue(o);
-          const orderstocks = <FormArray>this.orderForm.controls['order_stocks'];
-          orderstocks.removeAt(0);
-          o.order_stocks.forEach(os => {
-            orderstocks.push(   this.formBuilder.group({
-              order_stock: os.order_stock,
-              order_unit: os.order_unit
-            }));
-          });
           this.orderDetail = o;
         });
-
-
       }
     });
+
 
     defineLocale('tr', tr)
     /*

@@ -340,12 +340,13 @@ export class ProductionmovementsComponent implements OnInit {
     const productionData = this.productionForm.value;
     delete productionData['created_date'];
     delete productionData['updated_date'];
-    /*
-     this.api.put('productions', productionData).subscribe(() => {
+    console.log(productionData);
+
+     this.api.put('productions/' + this.selectedProductionId, productionData).subscribe(() => {
       this.modalRef.hide();
-      setTimeout(() => this.toastr.success('Üretim kaydı oluşturuldu.'));
+      setTimeout(() => this.toastr.success('Üretim kaydı güncellendi.'));
     })
-     */
+
   }
 
   /*

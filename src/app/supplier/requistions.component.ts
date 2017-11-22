@@ -98,11 +98,11 @@ Open modal
 Send
  */
   public send(id: any) {
-    this.api.put('supply/request/' + id, this.requistionsForm.value).subscribe( () => {
+      this.api.put('supply/request/' + id, this.requistionsForm.value).subscribe( () => {
       this.modalRef.hide();
-      setTimeout(() => this.toastr.success('Sipariş talebinin durumu güncellendi'));
+       setTimeout(() => this.toastr.success('Sipariş talebinin durumu güncellendi'));
+        Object.assign(this.supplyRequistions.find(sr => sr.id === id), {state: this.requistionsForm.value.state, real_unit: this.requistionsForm.value.real_unit });
     });
-
   }
 
   onChangeSupplier(supplier): void {

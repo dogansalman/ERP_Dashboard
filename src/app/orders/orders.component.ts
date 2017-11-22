@@ -187,6 +187,7 @@ import * as moment from 'moment';
   public openModal(template: TemplateRef<any>, order) {
     this.selectedOrder = order;
     this.orderId = order.order.id;
+    console.log(order);
 
     this.modalRef = this.modalService.show(template, {keyboard: false, ignoreBackdropClick: true, class: 'gray modal-lg'});
     /*
