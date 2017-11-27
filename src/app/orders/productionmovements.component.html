@@ -1,5 +1,4 @@
 <div class="animated fadeIn">
-
   <!--/.row-->
   <div class="row">
     <div class="col-lg-12">
@@ -86,8 +85,8 @@
           </div>
           <div class="form-group">
             <label for="unit">Adet*</label>
-            <input (focusout)="minProductionDateValidate($event)"  [attr.disabled]="selectedOrder?.order_stocks.order_stock.unit === 0 ? true : null" #production_unit formControlName="unit" appRange [range]="'0-' + selectedOrder?.order_stocks.order_stock.unit"  appRegex [regex]="'^[0-9]+$'"   id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
-            <span class="help-block">En fazla {{selectedOrder?.order_stocks.order_stock.unit - totalSelectedStockMovementUnit }} adet üretilebilir.</span>
+            <input (focusout)="minProductionDateValidate($event)"  [attr.disabled]="selectedOrder?.order_stocks.order_stock.unit === 0 ? true : null" #production_unit formControlName="unit" appRange [range]="'0-' + maxProductionLimit"  appRegex [regex]="'^[0-9]+$'"   id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
+            <span class="help-block">En fazla {{ maxProductionLimit }} adet üretilebilir.</span>
           </div>
           <div class="form-group">
             <label for="start_time">Üretim Başlangıç*</label>

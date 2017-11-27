@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
+import { ApiServices } from '../services/api.services';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { HttpModule } from '@angular/http';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   imports: [
     DashboardRoutingModule,
     ChartsModule,
-    BsDropdownModule
+    BsDropdownModule,
+    HttpModule,
+    CommonModule
+    
   ],
-  declarations: [ DashboardComponent ]
+  declarations: [ DashboardComponent ],
+  providers:[ ApiServices ]
 })
 export class DashboardModule { }

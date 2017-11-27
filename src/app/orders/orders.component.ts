@@ -23,6 +23,8 @@ import * as moment from 'moment';
   public operationValidate = true;
   public orderStock = {};
   public orderId = 0;
+  public maxProductionLimit = 0;
+
   /*
   Production form/
    */
@@ -175,7 +177,6 @@ import * as moment from 'moment';
   Add operation control
    */
   addOperationControl(index) {
-    console.log(index);
     const arr: FormArray = this.productionForm.get(`production_personnels.${index}.operations`) as FormArray;
     arr.push(this.initPersonnelOperation());
   }
@@ -187,8 +188,8 @@ import * as moment from 'moment';
   public openModal(template: TemplateRef<any>, order) {
     this.selectedOrder = order;
     this.orderId = order.order.id;
-    console.log(order);
-
+    this.maxProductionLimit = (order.order_stock.order_unit - (order.order_stock.produced_orderstock + order.produced_unit)) >= order.stockcard.unit ? order.stockcard.unit : (order.order_stock.order_unit - (order.order_stock.produced_orderstock + order.produced_unit))
+   
     this.modalRef = this.modalService.show(template, {keyboard: false, ignoreBackdropClick: true, class: 'gray modal-lg'});
     /*
     Modal closing
@@ -196,6 +197,9 @@ import * as moment from 'moment';
     this.modalService.onHide.subscribe((reason: string) => {
       // this.productionForm.reset();
     });
+
+    console.log(this.selectedOrder);
+    console.log(this.orderStock);
   }
 
   /*

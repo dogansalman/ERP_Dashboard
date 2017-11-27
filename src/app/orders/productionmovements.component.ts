@@ -35,7 +35,7 @@ export class ProductionmovementsComponent implements OnInit {
   public selectedProdStockMovements = [];
   public machines = [];
   public operations = [];
-  public selectedOrder = {};
+  public selectedOrder;
   public selectedCustomer = {};
   public selectedtabIndex = -1;
   public selectedStockMovement = {};
@@ -47,6 +47,7 @@ export class ProductionmovementsComponent implements OnInit {
   public modalRef: BsModalRef;
   public waybillModalRef: BsModalRef;
   public openedWaybillModal = false;
+  public maxProductionLimit = 0;
 
   constructor(private api: ApiServices, private modalService: BsModalService, private toastr: ToastrService, private formBuilder: FormBuilder, private router: Router,
               private _sanitizer: DomSanitizer, private route: ActivatedRoute, private excelSer: ExcelServices, private waybill: WaybillComponent ) {
@@ -237,18 +238,27 @@ export class ProductionmovementsComponent implements OnInit {
   public productionModal(template: TemplateRef<any>, production) {
 
     this.selectedProduction = production;
+    let total = 0;
+
+
+    // get order
+    this.api.get('orders/' + production.order.id).subscribe(o => {
+      this.selectedOrder = o;
+      // get total production unit
+      this.productionList.forEach(p => {
+        if(!p.production.is_cancel && !p.production.is_complate && p.production.id != production.production.id) total = total + p.production.unit
+        });
+        this.maxProductionLimit = (o.order_stocks.order_unit - (o.order_stocks.produced_orderstock + total)) >= o.order_stocks.order_stock.unit ? o.order_stocks.order_stock.unit : (o.order_stocks.order_unit - (o.order_stocks.produced_orderstock + total));
+      });
+
+    // get customer
+    this.api.get('customers/' + production.order.customer_id).subscribe(c => this.selectedCustomer = c);
 
     // get production stock movement
     this.api.get('productions/dispatch/' + production.production.id).subscribe(sm => {
       this.selectedProdStockMovements = sm;
       sm.forEach(smm => this.totalSelectedStockMovementUnit += (smm.is_junk ? 0 : smm.unit));
     });
-
-    // get order
-    this.api.get('orders/' + production.order.id).subscribe(o => this.selectedOrder = o);
-
-    // get customer
-    this.api.get('customers/' + production.order.customer_id).subscribe(c => this.selectedCustomer = c);
 
     // get production detail
     this.api.get('productions/detail/' + production.production.id).subscribe(p => {
@@ -294,9 +304,10 @@ export class ProductionmovementsComponent implements OnInit {
       });
 
       // console.log(this.selectedCustomer);
-      // console.log(this.selectedProduction);
-      // console.log(this.selectedOrder);
-      // console.log(this.selectedProdStockMovements);
+       //console.log(this.selectedProduction);
+       //console.log(this.selectedOrder);
+       //console.log(this.productionList);
+       //console.log(this.selectedProdStockMovements);
     });
 
     /*
@@ -340,13 +351,11 @@ export class ProductionmovementsComponent implements OnInit {
     const productionData = this.productionForm.value;
     delete productionData['created_date'];
     delete productionData['updated_date'];
-    console.log(productionData);
-
-     this.api.put('productions/' + this.selectedProductionId, productionData).subscribe(() => {
+    Object.assign(this.productionList.find(p => p.production.id == 3042).production, {unit: productionData.unit });
+    this.api.put('productions/' + this.selectedProductionId, productionData).subscribe(() => {
       this.modalRef.hide();
       setTimeout(() => this.toastr.success('Üretim kaydı güncellendi.'));
-    })
-
+    });
   }
 
   /*
