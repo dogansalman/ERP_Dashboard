@@ -149,6 +149,16 @@
               <option>00:00</option>
             </select>
           </div>
+
+          <div class="card card-accent-warning">
+            <div class="card-header">
+              Not!
+            </div>
+            <div class="card-body">
+              Mevcut üretim kaydındaki üretim adedi eğer düşser stok kartına geri eklenir.
+            </div>
+          </div>
+
         </tab>
         <tab (select)="onTabSelect(1)" [disabled]="selectedProduction.production.is_complate">
           <ng-template  tabHeading><i class="icon-user-following icons"></i> Personel & Operasyon</ng-template>
@@ -197,6 +207,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </tab>
         <tab (select)="onTabSelect(2)" [disabled]="selectedProduction.production.is_complate">

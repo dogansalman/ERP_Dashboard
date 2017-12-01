@@ -47,8 +47,8 @@ export class DashboardComponent implements OnInit {
 
 
   // Doughnut
-  public doughnutChartLabels: string[] = ['LS 589 KAPAK', 'Q5 İÇ KAPAK', 'AR589 KAPAK'];
-  public doughnutChartData: number[] = [350, 450, 100];
+  public doughnutChartLabels: string[] = [];
+  public doughnutChartData: number[] = [];
   public doughnutChartType = 'doughnut';
 
 
@@ -72,6 +72,9 @@ export class DashboardComponent implements OnInit {
     
     // production
     this.onProductionReports((new Date()).getFullYear());
+
+    // best production
+    this.onBestProduction();
   }
 
   //get production repors
@@ -85,9 +88,23 @@ export class DashboardComponent implements OnInit {
       this.barChartData = da;
       });
   };
+  
   // get critical stock cards
   onCriticalStockCards(unit): void {
     this.api.get('reports/stockcards/' + unit).subscribe(s => this.criticalStocks = s);
+  }
+
+  // get best production
+  onBestProduction(): void {
+    this.api.get('reports/production/best').subscribe(bp => {
+      let lbl: string[] = []
+      this.doughnutChartData.splice(0,10);
+      bp.forEach(item => {
+        lbl.push(item.name);
+        this.doughnutChartData.push(item.unit);
+      });
+       this.doughnutChartLabels = lbl;
+    });
   }
 
 }

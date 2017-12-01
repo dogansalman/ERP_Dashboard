@@ -74,15 +74,15 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'pages',
+    path: 'auth',
     component: SimpleLayoutComponent,
     data: {
-      title: 'Pages'
+      title: 'Giriş'
     },
     children: [
       {
         path: '',
-        loadChildren: './pages/pages.module#PagesModule',
+        loadChildren: './auth/auth.module#AuthModule',
       }
     ]
   }
