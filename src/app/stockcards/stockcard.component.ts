@@ -21,6 +21,7 @@ export class StockcardComponent implements OnInit, OnDestroy {
       'name': [null, Validators.required],
       'stock_type': ['Seçiniz', [Validators.required, ConditionalValidate('Seçiniz')]],
       'unit': [0, Validators.required],
+      'per_production_unit': [0, Validators.required],
       'created_date': [],
       'updated_date': []
     });

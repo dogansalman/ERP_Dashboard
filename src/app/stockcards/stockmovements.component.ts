@@ -49,10 +49,10 @@ export class StockmovementsComponent implements  OnInit {
         this.api.get('stockmovements/' + this.stockcard_id).subscribe(sm => {
           this.stockMovementList = sm;
           let n = 0;
-          sm.filter(stm => stm.incoming_stock === true).forEach(stmm => n += stmm.unit)
+          sm.filter(stm => stm.incoming_stock === true).forEach(stmm => n += parseInt(stmm.unit))
           this.totalEnteredStock = n;
           let m = 0;
-          sm.filter(stm => !stm.incoming_stock).forEach(stmm => m += stmm.unit)
+          sm.filter(stm => !stm.incoming_stock).forEach( stmm => m += parseInt(stmm.unit))
           this.totalOutStock = m;
         });
 

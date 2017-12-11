@@ -283,11 +283,9 @@
             <div class="card">
               <div class="card-body">
                 <button appPrint [printTo]="productionFormPanel" class="btn btn-link" type="button" style=" position: absolute; right: 0px; top: 0; "><i class="icon-printer icons"></i> Yazdır</button>
-
+                <h5> {{selectedOrder.order_stocks.order_stock?.name}} ({{selectedOrder.order_stocks.order_stock?.code}}) </h5>
                 <label><b>Müşteri:</b></label>
                 <p> {{selectedCustomer?.company}} </p>
-                <label><b>Ürün:</b></label>
-                <p> {{selectedOrder.order_stocks.order_stock?.name}} ({{selectedOrder.order_stocks.order_stock?.code}}) </p>
                 <label><b>Üretim Açıklaması:</b></label>
                 <p>{{this.productionForm.value.description}}</p>
                 <label><b>Üretim Tanımı:</b></label>

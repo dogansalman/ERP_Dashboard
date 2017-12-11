@@ -38,7 +38,7 @@
             <tr>
               <th>Kodu</th>
               <th>Tanım</th>
-              <th>Adet</th>
+              <th>Adet </th>
               <th>Tip</th>
               <th>İşlem</th>
             </tr>
@@ -48,7 +48,7 @@
             <tr class="linked-table-row" *ngFor="let item of stockCardList | filter : searchCriteri.key : searchTerm" (click)="navigateDetail($event, item.id)">
               <td>{{item.code | capitalizeFirst}}</td>
               <td>{{item.name}}</td>
-              <td>{{item.unit}}</td>
+              <td>{{item.unit}} <b *ngIf="item.per_unit"> / {{item.unit / item.per_production_unit}} </b> </td>
               <td>{{item.stock_type | capitalizeFirst }}</td>
               <td>
                 <button class="btn btn-primary btn-sm"  [routerLink]="['/stockcards/stockmovement', item.id]" type="button" tooltip="Stok hareketlerini incele." container="body" placement="top">

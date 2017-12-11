@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 
 export class Login implements OnInit {
-    
+
     public loginForm: FormGroup;
 
     constructor(private formBuilder: FormBuilder, private auth: AuthServices, private route: Router) {
@@ -25,12 +25,14 @@ export class Login implements OnInit {
     }
 
     saveToken(token): void {
-        //save token
-        console.log(token);
-        this.route.navigate(['/dashboard']);
+      window.localStorage.setItem('role', token.roles);
+      window.localStorage.setItem('fullname', token.fullname);
+      window.localStorage.setItem('access_token', token.access_token);
+      window.localStorage.setItem('date', token.date);
+      this.route.navigate(['/dashboard']);
     }
 
     ngOnInit(): void {
-          
+
     }
-} 
+}

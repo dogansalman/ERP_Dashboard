@@ -108,7 +108,7 @@
           <div class="form-group">
             <label for="unit">Adet*</label>
             <input formControlName="unit" appRange [range]="'0-' + maxProductionLimit" appRegex [regex]="'^[0-9]+$'"   id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
-            <span class="help-block">En fazla {{maxProductionLimit}} adet üretilebilir.</span>
+            <span class="help-block">En fazla {{maxProductionLimit}} adet üretilebilir.</span>ng serve
           </div>
           <div class="form-group">
             <label for="start_time">Üretim Başlangıç*</label>
@@ -225,8 +225,9 @@
           <div>
             <div class="card">
               <div class="card-body">
-                <button appPrint [printTo]="productionFormPanel" class="btn btn-link" type="button" style=" position: absolute; right: 0px; top: 0; "><i class="icon-printer icons"></i> Yazdır</button>
 
+                <button appPrint [printTo]="productionFormPanel" class="btn btn-link" type="button" style=" position: absolute; right: 0px; top: 0; "><i class="icon-printer icons"></i> Yazdır</button>
+                <h5> {{this.selectedOrder.stockcard?.name}} ({{this.selectedOrder.stockcard?.code}}) </h5>
                 <label><b>Müşteri:</b></label>
                 <p>{{this.selectedOrder.customer.company}}</p>
                 <label><b>Üretim Açıklaması:</b></label>

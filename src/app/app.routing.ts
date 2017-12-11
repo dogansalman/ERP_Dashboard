@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { Router } from '@angular/router';
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
+
 
 export const routes: Routes = [
   {
@@ -92,4 +93,10 @@ export const routes: Routes = [
   imports: [ RouterModule.forRoot(routes) ],
   exports: [ RouterModule ]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+
+  constructor(private route: Router) {
+    if (!window.localStorage.getItem('access_token')) this.route.navigate(['/auth/login']);
+  }
+
+}

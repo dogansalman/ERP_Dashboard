@@ -160,16 +160,20 @@ export class StockcardsComponent implements  OnInit {
    */
   changeStock(id): void {
    if (!id) { return; }
+
     const stockMovemenet = Object.assign(this.stockChangeForm.value, {stockcard_id : id});
    if (this.isAdd) {
      this.api.post('stockmovements/add/' + id, stockMovemenet).subscribe( () => {
-       this.stockCardList.find((sc) => sc.id === id).unit += stockMovemenet.unit;
+       const selectedStockCard =  this.stockCardList.find((sc) => sc.id === id);
+
+      this.stockCardList.find((sc) => sc.id === id).unit += selectedStockCard.per_production_unit > 0 ? (parseInt(stockMovemenet.unit) * parseInt(selectedStockCard.per_production_unit)) : stockMovemenet.unit;
        this.modalRef.hide();
        setTimeout(() => this.toastr.success(stockMovemenet.unit + ' adet stok eklendi.'));
      });
    } else {
      this.api.put('stockmovements/remove/' + id, stockMovemenet).subscribe( () => {
-      this.stockCardList.find((sc) => sc.id === id).unit -= stockMovemenet.unit;
+       const selectedStockCard =  this.stockCardList.find((sc) => sc.id === id);
+       this.stockCardList.find((sc) => sc.id === id).unit -= selectedStockCard.per_production_unit > 0 ? (parseInt(stockMovemenet.unit) * parseInt(selectedStockCard.per_production_unit)) : stockMovemenet.unit;
        this.modalRef.hide();
        setTimeout(() => this.toastr.success(stockMovemenet.unit + ' adet stok çıkartıldı.'));
      });

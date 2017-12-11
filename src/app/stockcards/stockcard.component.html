@@ -20,6 +20,11 @@
               <input disabled  formControlName="unit" id="unit" name="unit" class="form-control" placeholder="Stok Adedi">
             </div>
             <div class="form-group">
+              <label for="per_production_unit">Stok Üretim Adedi</label>
+              <i style="color:#21a8d8;" tooltip="Birim başına düşen üretim adedini temsil eder." class="fa fa-question-circle"></i>
+              <input formControlName="per_production_unit" id="per_production_unit" name="per_production_unit" class="form-control" placeholder="Stok Üretim Adedi">
+            </div>
+            <div class="form-group">
               <label for="stock_type">Stok Modeli*</label>
               <select formControlName="stock_type" name="stock_type" appStockType (stocktypes)="stocktypes = $event" class="form-control" id="stock_type">
                 <option value="Seçiniz">Seçiniz</option>
@@ -28,7 +33,6 @@
             </div>
             <div class="card-text">* doldurulması zorunlu alanlar.</div>
           </div>
-
           <div class="card-footer">
             <button [disabled]="!stockCardForm.valid" type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
             <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Stok Kart Sil' : 'Temizle'}}</button>
@@ -40,7 +44,6 @@
           </div>
         </div>
       </form>
-
       <div class="card card-accent-warning">
         <div class="card-header">
           Bilgi !

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { Login } from './login.component';
+import { Logout } from './logout.component';
 import { rootRoute } from '@angular/router/src/router_module';
 
 const routes: Routes = [
@@ -15,8 +16,15 @@ const routes: Routes = [
           component: Login,
           data: {
             title: 'Login Page'
+            }
+          },
+          {
+            path: 'logout',
+            component: Logout,
+            data: {
+              title: 'Closing login'
+            }
           }
-        }
       ]
     }
   ];
@@ -25,4 +33,4 @@ const routes: Routes = [
       imports: [RouterModule.forChild(routes)],
       exports: [RouterModule]
   })
-  export class AuthRoutingModule {} 
+  export class AuthRoutingModule { }
