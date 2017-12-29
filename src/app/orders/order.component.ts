@@ -47,11 +47,11 @@ export class OrderComponent implements  OnInit {
     create or update order
    */
   onSubmit(): void {
-    delete this.orderForm.value['created_date'];
+    console.log(this.orderForm.value);
       this.api.post('orders', this.orderForm.value).subscribe(() => {
       setTimeout(() => this.toastr.success('Sipariş kaydı oluşturuldu.'));
       setTimeout(() => this.routes.navigateByUrl('orders/list'), 1000)
-    })
+     })
   }
 
   autocompleListFormatter = (data: any): SafeHtml => {

@@ -16,7 +16,6 @@
               <th>Üretimdeki Stok</th>
               <th>Sipariş Durumu </th>
               <th>Sipariş Sonu</th>
-              <th>Kayıt</th>
               <th>İşlem</th>
             </tr>
             </thead>
@@ -39,23 +38,26 @@
               </td>
               <td>{{item.stockcard.name | capitalizeFirst }} ({{item.stockcard.code | capitalizeFirst }})</td>
               <td>
-                {{item.produced_unit}} Adet
+                <div style="display: inline-block; text-align: left; width: 45%;">{{item.produced_unit}} / {{item.order_stock.order_unit}}</div>
+                <div style="display: inline-block; text-align: right; width: 50%;">%{{((item.produced_unit / item.order_stock.order_unit) * 100) | number: '.1-2'}}</div>
+                <div class="progress progress-xs my-3" style="background: #fff; padding: 0px !important; margin: 5px 0px 0px 0px !important;">
+                  <div aria-valuemax="item.order_stock.order_unit" aria-valuemin="0" aria-valuenow="item.produced_unit" class="progress-bar bg-primary" role="progressbar" [style.width.%]="((item.produced_unit / item.order_stock.order_unit) * 100)" ></div>
+                </div>
+
               </td>
               <td>
                 <div style="display: inline-block; text-align: left; width: 45%;">{{item.order_stock.produced_orderstock}} / {{item.order_stock.order_unit}}</div>
                 <div style="display: inline-block; text-align: right; width: 50%;">%{{((item.order_stock.produced_orderstock / item.order_stock.order_unit) * 100) | number: '.1-2'}}</div>
-
                 <div class="progress progress-xs my-3" style="background: #fff; padding: 0px !important; margin: 5px 0px 0px 0px !important;">
                   <div aria-valuemax="item.order_stock.order_unit" aria-valuemin="0" aria-valuenow="item.order_stock.produced_orderstock" class="progress-bar bg-success" role="progressbar" [style.width.%]="((item.order_stock.produced_orderstock / item.order_stock.order_unit) * 100)" ></div>
                 </div>
               </td>
-              <td>{{item.order.over_date | date: 'dd/MM/yyyy'}}</td>
-              <td>{{item.order.created_date | date: 'dd/MM/yyyy'}}</td>
+              <td> <b>{{item.order.over_date | date: 'dd/MM/yyyy'}}</b></td>
               <td>
                 <button class="btn btn-primary btn-sm"  [routerLink]="['/orders/productions', item.order.id]" type="button" tooltip="Üretim hareketlerini incele." container="body" placement="top">
                   <i class="icon-graph icons"></i>
                 </button>
-                <button (click)="openModal(production, item)" class="btn btn-success btn-sm" type="button" tooltip="Üretim kaydı oluştur." container="body" placement="top">
+                <button  [disabled]="item.produced_unit === item.order_stock.order_unit" (click)="openModal(production, item)" class="btn btn-success btn-sm" type="button" tooltip="Üretim kaydı oluştur." container="body" placement="top">
                   <i class="fa fa-plus"></i>
                 </button>
               </td>
@@ -107,8 +109,8 @@
           </div>
           <div class="form-group">
             <label for="unit">Adet*</label>
-            <input formControlName="unit" appRange [range]="'0-' + maxProductionLimit" appRegex [regex]="'^[0-9]+$'"   id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
-            <span class="help-block">En fazla {{maxProductionLimit}} adet üretilebilir.</span>ng serve
+            <input formControlName="unit" appRange [range]="'0-' + maxProductionLimit" appRegex [regex]="'^[0-9]+$'" id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
+            <span class="help-block"> En fazla {{maxProductionLimit}} adet üretilebilir.</span>
           </div>
           <div class="form-group">
             <label for="start_time">Üretim Başlangıç*</label>

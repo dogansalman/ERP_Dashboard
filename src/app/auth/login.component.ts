@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthServices } from '../services/auth.services';
 import { Router } from '@angular/router';
+import * as Enviroments from '../../environments/environment';
 
 @Component({
     templateUrl: 'login.component.html'
@@ -10,8 +11,10 @@ import { Router } from '@angular/router';
 export class Login implements OnInit {
 
     public loginForm: FormGroup;
+    public version = Enviroments.environment.version;
 
     constructor(private formBuilder: FormBuilder, private auth: AuthServices, private route: Router) {
+
         this.loginForm = formBuilder.group({
             'username': [null, Validators.required],
             'password': [null, Validators.required],

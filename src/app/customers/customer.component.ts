@@ -59,6 +59,7 @@ export class CustomerComponent  implements OnInit {
       if (params['id']) {
         this.id = +params['id'];
         this.customer = this.api.get('customers/' + this.id).subscribe(c => this.customerForm.patchValue(c));
+        console.log(this.customer);
       }
     });
   }
