@@ -189,7 +189,7 @@ import * as moment from 'moment';
     this.selectedOrder = order;
     this.orderId = order.order.id;
     this.maxProductionLimit = (order.order_stock.order_unit - (order.order_stock.produced_orderstock + order.produced_unit)) >= order.stockcard.unit ? order.stockcard.unit : (order.order_stock.order_unit - (order.order_stock.produced_orderstock + order.produced_unit))
-   
+
     this.modalRef = this.modalService.show(template, {keyboard: false, ignoreBackdropClick: true, class: 'gray modal-lg'});
     /*
     Modal closing
@@ -198,8 +198,6 @@ import * as moment from 'moment';
       // this.productionForm.reset();
     });
 
-    console.log(this.selectedOrder);
-    console.log(this.orderStock);
   }
 
   /*

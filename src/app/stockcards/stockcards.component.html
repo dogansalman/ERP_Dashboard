@@ -8,27 +8,21 @@
           <a href="" style="margin-right: 5px; float: right;" (click)="saveAsExcel()"><i class="fa fa-file-excel-o"></i> Excel İndir</a>
         </div>
         <div class="card-body">
-          <div *ngIf="stockCardList.length > 0" class="card-group">
-            <div class="card">
-              <div class="card-header">Filtre</div>
-              <div class="card-body">
-                <div class="col-xs-12 col-sm-6 col-md-6">
-                  <div class="form-group">
-                    <div class="controls">
-                      <div class="input-group">
-                        <div class="input-group-btn" dropdown>
-                          <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>{{searchCriteri.name}}
-                            <span class="caret"></span>
-                          </button>
-                          <div class="dropdown-menu" *dropdownMenu>
-                            <a (click)="setSearchCriteria({name:'Kod', key: 'code'})" class="dropdown-item">Kod</a>
-                            <a (click)="setSearchCriteria({name:'Tanım', key: 'name'})" class="dropdown-item">Tanım</a>
-                          </div>
-                        </div>
-                        <input class="form-control"  (keydown)="searchTerm = searchTxt.value" placeholder="Aramak istediğiniz ürün kodu veya tanımı" id="appendedInputButtons" size="16" #searchTxt>
-                      </div>
+
+          <div *ngIf="stockCardList.length > 0" style="padding:0px;" class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <div class="controls">
+                <div class="input-group">
+                  <div class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>{{searchCriteri.name}}
+                      <span class="caret"></span>
+                    </button>
+                    <div class="dropdown-menu" *dropdownMenu>
+                      <a (click)="setSearchCriteria({name:'Kod', key: 'code'})" class="dropdown-item">Kod</a>
+                      <a (click)="setSearchCriteria({name:'Tanım', key: 'name'})" class="dropdown-item">Tanım</a>
                     </div>
                   </div>
+                  <input class="form-control"  (keydown)="searchTerm = searchTxt.value" placeholder="Aramak istediğiniz ürün kodu veya tanımı" id="appendedInputButtons" size="16" #searchTxt>
                 </div>
               </div>
             </div>

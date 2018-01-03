@@ -2,7 +2,7 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ApiServices} from '../services/api.services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+import {FormGroup, FormControl, FormBuilder, Validators, FormArray} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import { ConditionalValidate } from '../shared/validations/conditional-validate';
 
@@ -17,13 +17,18 @@ export class StockcardComponent implements OnInit, OnDestroy {
 
   constructor(private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router, private formBuilder: FormBuilder) {
     this.stockCardForm = this.formBuilder.group({
-      'code': [null, Validators.required],
-      'name': [null, Validators.required],
-      'stock_type': ['Seçiniz', [Validators.required, ConditionalValidate('Seçiniz')]],
-      'unit': [0, Validators.required],
-      'per_production_unit': [0, Validators.required],
-      'created_date': [],
-      'updated_date': []
+        'code': [null, Validators.required],
+        'name': [null, Validators.required],
+        'stock_type': ['Seçiniz', [Validators.required, ConditionalValidate('Seçiniz')]],
+        'unit': [0, Validators.required],
+        'per_production_unit': [0, Validators.required],
+        'created_date': [],
+        'updated_date': [],
+        'stockcard_process_no': this.formBuilder.array([
+            this.formBuilder.group({
+              process_no: ['', Validators.required]
+            })
+          ])
     });
   }
 
@@ -31,7 +36,18 @@ export class StockcardComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.id = params['id'];
-        this.stockCard = this.api.get('stockcards/' + this.id).subscribe(p => this.stockCardForm.patchValue(p));
+        this.stockCard = this.api.get('stockcards/' + this.id).subscribe(p => {
+          this.stockCardForm.patchValue(p);
+          const stockcard_process_no_array = <FormArray>this.stockCardForm.controls['stockcard_process_no'];
+          stockcard_process_no_array.controls.splice(0, stockcard_process_no_array.controls.length);
+
+          p.stockcard_process_no.forEach(spn => {
+            stockcard_process_no_array.push(this.formBuilder.group({
+              process_no: spn.process_no
+            }))
+          });
+
+        });
       }
     })
   }

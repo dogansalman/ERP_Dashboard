@@ -1,6 +1,7 @@
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-md-12">
+
       <form [formGroup]="stockCardForm" (ngSubmit)="onSubmit()" class="form-horizontal">
         <div class="card">
           <div class="card-header">
@@ -26,11 +27,33 @@
             </div>
             <div class="form-group">
               <label for="stock_type">Stok Modeli*</label>
-              <select formControlName="stock_type" name="stock_type" appStockType (stocktypes)="stocktypes = $event" class="form-control" id="stock_type">
+              <select formControlName="stock_type"  name="stock_type" appStockType (stocktypes)="stocktypes = $event" class="form-control" id="stock_type">
                 <option value="Seçiniz">Seçiniz</option>
                 <option *ngFor="let d of stocktypes" value="{{d.name}}"> {{d.name}}</option>
               </select>
             </div>
+            <div class="form-group">
+              <label>İşleme No*</label>
+              <div class="input-group">
+                <input class="form-control"  placeholder="İşleme No" type="text">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button">Ekle</button>
+                  </span>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><strong>İşleme Kodları</strong>
+              <p style="font-size:11px"> İşleme kodunu silmek için işleme kodunun üzerine tıklayın.</p>
+              </div>
+              <div class="card-body">
+                <div style="display:inline-block !important; margin-right: 5px;" *ngFor="let proc_no of stockCardForm.controls.stockcard_process_no.controls; let ii=index; let last=last" formArrayName="stockcard_process_no">
+                  <div  [formGroupName]="ii">
+                    <button class="btn btn-success"  type="button"><i class="fa fa-gears"></i> {{proc_no.controls.process_no._value }}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="card-text">* doldurulması zorunlu alanlar.</div>
           </div>
           <div class="card-footer">
