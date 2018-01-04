@@ -12,7 +12,9 @@
             <thead>
             <tr>
               <th>Müşteri</th>
-              <th>Sipariş</th>
+              <th>Döküm No</th>
+              <th>İşleme No</th>
+              <th>Tanım</th>
               <th>Üretimdeki Stok</th>
               <th>Sipariş Durumu </th>
               <th>Sipariş Sonu</th>
@@ -22,21 +24,20 @@
             <tbody>
             <tr (click)="navigateDetail($event, item.order.id)" class="linked-table-row" *ngFor='let item of orderList'>
               <td>
+                <span *ngIf="!item.order.is_production && !item.order.is_complated" class="badge badge-warning">
+                  <i tooltip="İşlem Bekleniyor" class="icon-clock icons"></i>
+                </span>
+                <span *ngIf="item.order.is_production" class="badge badge-primary">
+                  <i tooltip="Üretimde." class="icon-speedometer icons"></i>
+                </span>
+                <span *ngIf="item.order.is_complated" class="badge badge-success">
+                  <i tooltip="Üretim Tamamlandı." class="icon-check icons"></i>
+                </span>
                 {{item.customer.company | capitalizeFirst}}
-                <span *ngIf="!item.order.is_production && !item.order.is_complated" style="float: right; margin-left: 5px;" class="badge badge-warning">
-                  <i class="icon-clock icons"></i>
-                  İşlem Bekleniyor
-                </span>
-                <span *ngIf="item.order.is_production" style="float: right; margin-left: 5px;" class="badge badge-primary">
-                  <i class="icon-speedometer icons"></i>
-                  Henüz Üretimde
-                </span>
-                <span *ngIf="item.order.is_complated" style="float: right; margin-left: 5px;" class="badge badge-success">
-                  <i class="icon-check icons"></i>
-                  Üretim Tamamlandı
-                </span>
               </td>
-              <td>{{item.stockcard.name | capitalizeFirst }} ({{item.stockcard.code | capitalizeFirst }})</td>
+              <td>{{item.stockcard.code | capitalizeFirst }}</td>
+              <td>{{item.order_stock.process_no | capitalizeFirst }}</td>
+              <td>{{item.stockcard.name | capitalizeFirst }}</td>
               <td>
                 <div style="display: inline-block; text-align: left; width: 45%;">{{item.produced_unit}} / {{item.order_stock.order_unit}}</div>
                 <div style="display: inline-block; text-align: right; width: 50%;">%{{((item.produced_unit / item.order_stock.order_unit) * 100) | number: '.1-2'}}</div>

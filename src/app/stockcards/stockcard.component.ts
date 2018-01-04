@@ -34,36 +34,48 @@ export class StockcardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
+      // remove default stockcard process number
+      const stockcard_process_no_array = <FormArray>this.stockCardForm.controls['stockcard_process_no'];
+      stockcard_process_no_array.controls.splice(0, stockcard_process_no_array.controls.length);
+
       if (params['id']) {
         this.id = params['id'];
         this.stockCard = this.api.get('stockcards/' + this.id).subscribe(p => {
           this.stockCardForm.patchValue(p);
-          const stockcard_process_no_array = <FormArray>this.stockCardForm.controls['stockcard_process_no'];
-          stockcard_process_no_array.controls.splice(0, stockcard_process_no_array.controls.length);
-
           p.stockcard_process_no.forEach(spn => {
-            stockcard_process_no_array.push(this.formBuilder.group({
-              process_no: spn.process_no
-            }))
+            this.onAddStockCardProcNo(spn.process_no);
           });
-
         });
       }
     })
   }
+
+  onAddStockCardProcNo(processNo): void {
+    if (this.stockCardForm.value.stockcard_process_no.findIndex(spn => spn.process_no === processNo) > -1 || !processNo) return;
+
+    const stockcard_process_no_array = <FormArray>this.stockCardForm.controls['stockcard_process_no'];
+    stockcard_process_no_array.push(this.formBuilder.group({
+      process_no: processNo
+    }))
+  }
+
+  onDelStockCardProcNo(index: number): void {
+    const stockcard_process_no_array = <FormArray>this.stockCardForm.controls['stockcard_process_no'];
+    stockcard_process_no_array.removeAt(index);
+  }
   onSubmit(): void {
-    if (this.id) {
-      this.api.put('stockcards/' + this.id, this.stockCardForm.value).subscribe(() => {
-        setTimeout(() => this.toastr.success('Stok Kartı kaydı güncellendi.'));
-        setTimeout(() => this.routes.navigateByUrl('stockcards/list'), 1000);
-      });
-    } else {
-      delete this.stockCardForm.value['created_date']
-      this.api.post('stockcards', this.stockCardForm.value).subscribe(() => {
-        setTimeout(() => this.toastr.success('Stok Kartı kaydı oluşturuldu.'));
-        setTimeout(() => this.routes.navigateByUrl('stockcards/list'), 1000);
-      });
-    }
+     if (this.id) {
+        this.api.put('stockcards/' + this.id, this.stockCardForm.value).subscribe(() => {
+          setTimeout(() => this.toastr.success('Stok Kartı kaydı güncellendi.'));
+          setTimeout(() => this.routes.navigateByUrl('stockcards/list'), 1000);
+        });
+      } else {
+        delete this.stockCardForm.value['created_date']
+        this.api.post('stockcards', this.stockCardForm.value).subscribe(() => {
+          setTimeout(() => this.toastr.success('Stok Kartı kaydı oluşturuldu.'));
+          setTimeout(() => this.routes.navigateByUrl('stockcards/list'), 1000);
+        });
+      }
   }
   onDelete(): void {
     this.api.delete('stockcards/' + this.id)

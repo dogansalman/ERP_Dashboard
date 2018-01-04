@@ -47,18 +47,18 @@ export class OrderComponent implements  OnInit {
     create or update order
    */
   onSubmit(): void {
-    console.log(this.orderForm.value);
+      delete this.orderForm.value['created_date'];
       this.api.post('orders', this.orderForm.value).subscribe(() => {
-      setTimeout(() => this.toastr.success('Sipariş kaydı oluşturuldu.'));
-      setTimeout(() => this.routes.navigateByUrl('orders/list'), 1000)
-     })
+        setTimeout(() => this.toastr.success('Sipariş kaydı oluşturuldu.'));
+        setTimeout(() => this.routes.navigateByUrl('orders/list'), 1000)
+      })
   }
 
   autocompleListFormatter = (data: any): SafeHtml => {
-    const html = `<span>${data.name} (${data.code}) - <b>Stok:  ${data.unit} </b></span>`;
+    const procNo =  data.process_no ? data.process_no.process_no : '';
+    const html = `<span>${data.name} (${data.code}) ${procNo} - <b>Stok:  ${data.unit} </b></span>`;
     return this._sanitizer.bypassSecurityTrustHtml(html);
   }
-
   onStockCardChange(sc, el): void {
     // el.disabled = true;
   }
@@ -72,7 +72,9 @@ export class OrderComponent implements  OnInit {
   }
 
   ValueFormatter(data: any): string {
-    return `${data.name} ${data.code}`;
+    console.log(data);
+    const procNo =  data.process_no ? data.process_no.process_no : '';
+    return `${data.name} ${data.code} ${procNo}`;
   }
 
   ngOnInit(): void {
@@ -111,10 +113,11 @@ export class OrderComponent implements  OnInit {
     datetime picker config
      */
     this.bsConfig = Object.assign({}, { locale: 'tr', containerClass: 'theme-blue zindex-inmodal'});
+
     /*
     Get stock cards
      */
-    this.api.get('stockcards').subscribe(s => this.stockCardList = s);
+    this.api.get('stockcards/process').subscribe(s => this.stockCardList = s);
   }
 
 }
