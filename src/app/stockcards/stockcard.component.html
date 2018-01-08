@@ -7,7 +7,7 @@
           <div class="card-header">
             <strong>Stok Kartı</strong> {{this.id ? 'Düzenle' : 'Ekle'}}
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-5 card-body">
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-12 card-body">
             <div class="form-group">
               <label for="code">Döküm No*</label>
               <input  formControlName="code"  id="code" name="code" class="form-control" placeholder="Stok Kodu">
@@ -32,29 +32,36 @@
                 <option *ngFor="let d of stocktypes" value="{{d.name}}"> {{d.name}}</option>
               </select>
             </div>
-            <div class="form-group">
-              <label>İşleme No*</label>
-              <div class="input-group">
-                <input #processNo class="form-control"  placeholder="İşleme No" type="text">
-                <span class="input-group-btn">
-                    <button (click)="onAddStockCardProcNo(processNo.value); processNo.value = ''" class="btn btn-primary" type="button">Ekle</button>
-                  </span>
-              </div>
-            </div>
             <div class="card">
               <div class="card-header"><strong>İşleme Kodları</strong>
-              <p style="font-size:11px"> İşleme kodunu silmek için işleme kodunun üzerine tıklayın.</p>
+                <p style="font-size:11px"> İşleme kodunu silmek için işleme kodunun üzerine tıklayın.</p>
               </div>
               <div class="card-body">
-                <p *ngIf="stockCardForm.controls.stockcard_process_no.controls.length === 0"> İşleme kodu bulunmamaktadır.</p>
-                <div style="display:inline-block !important; margin-right: 5px;" *ngFor="let proc_no of stockCardForm.controls.stockcard_process_no.controls; let ii=index; let last=last" formArrayName="stockcard_process_no">
-                  <div  [formGroupName]="ii">
-                    <button class="btn btn-success" (click)="onDelStockCardProcNo(ii)"  type="button"><i class="fa fa-gears"></i> {{proc_no.controls.process_no._value }}</button>
+                <form [formGroup]="stockcardProcessNo">
+                  <div class="form-group">
+                    <label>İşleme No*</label>
+                    <input formControlName="process_no" class="form-control"  placeholder="İşleme No" type="text">
+                  </div>
+                  <div class="form-group">
+                    <label>Tanım*</label>
+                    <input formControlName="name" class="form-control"  placeholder="Tanım" type="text">
+                  </div>
+                  <button [disabled]="!stockcardProcessNo.valid" (click)="addProcessNoControl()" class="btn btn-primary" type="button">Ekle</button>
+                </form>
+
+                <div role="separator" class="dropdown-divider"></div>
+                <div class="card border-0">
+                  <div class="card-body" style="padding: 0px;">
+                    <p *ngIf="stockCardForm.controls.stockcard_process_no.controls.length === 0"> İşleme kodu bulunmamaktadır.</p>
+                    <div style="display:inline-block !important; margin-right: 5px; margin-top:5px;" *ngFor="let process of stockCardForm.controls.stockcard_process_no.controls; let i=index" formArrayName="stockcard_process_no">
+                      <div>
+                        <button class="btn btn-success" tooltip="{{process.value.name}}"  (click)="onDelStockCardProcNo(i)"  type="button"><i class="fa fa-gears"></i> {{process.value.process_no }}</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
             <div class="card-text">* doldurulması zorunlu alanlar.</div>
           </div>
           <div class="card-footer">

@@ -185,6 +185,9 @@ export class StockcardsComponent implements  OnInit {
      if (!id) { return; }
     const stockRequest = Object.assign(this.stockRequestForm.value, { stockcard_id : id, message: this.stockRequestForm.value.notify ? this.requestMessage : null });
 
+    const dates = this.stockRequestForm.value.delivery_date;
+    this.stockRequestForm.value.delivery_date = (dates.getMonth() + 1) + '/' + dates.getDate() + '/' + dates.getFullYear();
+
      this.api.post('supply/request', stockRequest).subscribe(() => {
       this.modalRef.hide();
       setTimeout(() => this.toastr.success('Stok istek kaydı oluşturuldu.'));

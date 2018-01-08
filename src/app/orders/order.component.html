@@ -20,7 +20,7 @@
               <div class="card-header">
                 <strong>Sipariş</strong> Ekle
               </div>
-              <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-5 card-body">
+              <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-12 card-body">
                 <div class="form-group">
                   <label for="customer_id">Müşteri*</label>
                   <select [attr.disabled]="isDisableForm()" formControlName="customer_id" name="customer_id" appCustomers (customers)="customers = $event" class="form-control" id="customer_id">

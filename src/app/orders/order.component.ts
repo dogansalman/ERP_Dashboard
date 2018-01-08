@@ -48,6 +48,8 @@ export class OrderComponent implements  OnInit {
    */
   onSubmit(): void {
       delete this.orderForm.value['created_date'];
+      const dates = this.orderForm.value.over_date;
+      this.orderForm.value.over_date = (dates.getMonth() + 1) + '/' + dates.getDate() + '/' + dates.getFullYear();
       this.api.post('orders', this.orderForm.value).subscribe(() => {
         setTimeout(() => this.toastr.success('Sipariş kaydı oluşturuldu.'));
         setTimeout(() => this.routes.navigateByUrl('orders/list'), 1000)
@@ -72,7 +74,6 @@ export class OrderComponent implements  OnInit {
   }
 
   ValueFormatter(data: any): string {
-    console.log(data);
     const procNo =  data.process_no ? data.process_no.process_no : '';
     return `${data.name} ${data.code} ${procNo}`;
   }

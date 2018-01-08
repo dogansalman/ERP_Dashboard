@@ -37,7 +37,7 @@
               </td>
               <td>{{item.stockcard.code | capitalizeFirst }}</td>
               <td>{{item.order_stock.process_no | capitalizeFirst }}</td>
-              <td>{{item.stockcard.name | capitalizeFirst }}</td>
+              <td>{{ item.order_stock.process_name ? item.order_stock.process_name : item.stockcard.name | capitalizeFirst }}  </td>
               <td>
                 <div style="display: inline-block; text-align: left; width: 45%;">{{item.produced_unit}} / {{item.order_stock.order_unit}}</div>
                 <div style="display: inline-block; text-align: right; width: 50%;">%{{((item.produced_unit / item.order_stock.order_unit) * 100) | number: '.1-2'}}</div>
