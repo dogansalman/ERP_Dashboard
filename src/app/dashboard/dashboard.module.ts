@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-
+import { ExcelServices } from '../services/excel.services';
 
 @NgModule({
   imports: [
@@ -15,9 +15,8 @@ import { CommonModule } from '@angular/common';
     BsDropdownModule,
     HttpModule,
     CommonModule
-    
   ],
   declarations: [ DashboardComponent ],
-  providers:[ ApiServices ]
+  providers: [ ApiServices, ExcelServices ]
 })
 export class DashboardModule { }

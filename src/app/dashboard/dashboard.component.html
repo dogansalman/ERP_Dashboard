@@ -106,23 +106,23 @@
             <div>
                 <div style="background: none; border: none; margin: 0px;" class="card">
                     <div style="margin: 0px; padding: 0px 0px 0px 10px;" class="card-body">
-                        Yıllık Üretim 
+                        Yıllık Üretim
                         <span style="font-size: 12px;display:block">(mevcut yıl içinde tamamlanan üretim)</span>
                     </div>
-                </div>  
+                </div>
             </div>
           <div>
               <div style="background: none; border: none; margin: 0px;" class="card">
                   <div style="margin: 0px; padding: 0px 0px 0px 10px;" class="card-body">
                       <div class="input-group">
-                          <input #productionYear class="form-control"  placeholder="2017" type="number"> 
-                          <span class="input-group-btn"> 
+                          <input #productionYear class="form-control"  placeholder="2017" type="number">
+                          <span class="input-group-btn">
                             <button (click)="onProductionReports(productionYear.value)" class="btn btn-primary" type="button" style="margin-top: 0px;"><i class="icon-chart icons"></i></button>
                            </span>
                        </div>
                   </div>
               </div>
-          </div>  
+          </div>
         </div>
       </div>
       <div class="card-body">
@@ -146,7 +146,7 @@
 
     <div class="card">
       <div class="card-header">
-     
+
         <div class="card-columns cols-2">
             <div>
                 <div style="background: none; border: none; margin: 0px;" class="card">
@@ -154,20 +154,20 @@
                         Kritik Stok Limitindeki Stok Kartları
                         <span style="font-size: 12px;display:block">(Min 50 adet altındaki stok kartları)</span>
                     </div>
-                </div>  
+                </div>
             </div>
           <div>
               <div style="background: none; border: none; margin: 0px;" class="card">
                   <div style="margin: 0px; padding: 0px 0px 0px 10px;" class="card-body">
                       <div class="input-group">
-                          <input #stockCardUnit class="form-control"  placeholder="Min 50" type="number"> 
-                          <span class="input-group-btn"> 
+                          <input #stockCardUnit class="form-control"  placeholder="Min 50" type="number">
+                          <span class="input-group-btn">
                             <button class="btn btn-primary" (click)="onCriticalStockCards(stockCardUnit.value)" type="button" style="margin-top: 0px;"><i class="icon-chart icons"></i></button>
                            </span>
                        </div>
                   </div>
               </div>
-          </div>  
+          </div>
         </div>
       </div>
       <div class="card-body">
@@ -197,7 +197,7 @@
 
     <div class="card">
       <div class="card-header">
-        Üretim Stok Kartı Dağılımı 
+        Üretim Stok Kartı Dağılımı
         <span style="display:block;font-size: 12px;">(en çok üretilen ilk 10 stok kartı)</span>
       </div>
       <div class="card-body">

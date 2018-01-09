@@ -24,9 +24,7 @@ export class StockcardComponent implements OnInit {
         'per_production_unit': [0, Validators.required],
         'created_date': [],
         'updated_date': [],
-        'stockcard_process_no': this.formBuilder.array([
-          this.initProcessNoControl()
-        ])
+        'stockcard_process_no': this.formBuilder.array([])
     });
 
     this.stockcardProcessNo = this.formBuilder.group({
