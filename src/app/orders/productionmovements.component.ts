@@ -302,12 +302,6 @@ export class ProductionmovementsComponent implements OnInit {
         ignoreBackdropClick: true,
         class: 'gray modal-lg'
       });
-
-      // console.log(this.selectedCustomer);
-       //console.log(this.selectedProduction);
-       //console.log(this.selectedOrder);
-       //console.log(this.productionList);
-       //console.log(this.selectedProdStockMovements);
     });
 
     /*
@@ -316,6 +310,7 @@ export class ProductionmovementsComponent implements OnInit {
     this.modalService.onHide.subscribe((reason: string) => {
       this.productionForm.reset();
       this.waybillForm.reset();
+      this.stockMovementForm.reset();
       this.lockWaybill = true;
     });
   }
@@ -351,7 +346,7 @@ export class ProductionmovementsComponent implements OnInit {
     const productionData = this.productionForm.value;
     delete productionData['created_date'];
     delete productionData['updated_date'];
-    Object.assign(this.productionList.find(p => p.production.id == 3042).production, {unit: productionData.unit });
+    Object.assign(this.productionList.find(p => p.production.id === this.selectedProduction.production.id).production, {unit: productionData.unit });
     this.api.put('productions/' + this.selectedProductionId, productionData).subscribe(() => {
       this.modalRef.hide();
       setTimeout(() => this.toastr.success('Üretim kaydı güncellendi.'));
@@ -379,7 +374,7 @@ export class ProductionmovementsComponent implements OnInit {
 
     Object.assign(this.stockMovementForm.value, {junk: this.stockMovementForm.value.junk ? this.stockMovementForm.value.junk : 0 });
      this.api.post('productions/dispatch/' + this.selectedProductionId, this.stockMovementForm.value).subscribe(() => {
-      this.modalRef.hide();
+     this.stockMovementForm.reset();
      setTimeout(() => this.toastr.success('Sevk kaydı oluşturuldu.'));
     })
   }

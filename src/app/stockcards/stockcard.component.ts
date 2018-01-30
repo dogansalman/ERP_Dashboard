@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ApiServices} from '../services/api.services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
@@ -14,6 +14,11 @@ export class StockcardComponent implements OnInit {
   public stockCard: any;
   public stockCardForm: FormGroup;
   public stockcardProcessNo: FormGroup;
+  public photoUrl = '';
+  /*
+  File uploader
+ */
+  @ViewChild('uploader') uploader: ElementRef;
 
   constructor(private api: ApiServices, private route: ActivatedRoute, private toastr: ToastrService, private routes: Router, private formBuilder: FormBuilder) {
     this.stockCardForm = this.formBuilder.group({
@@ -32,12 +37,16 @@ export class StockcardComponent implements OnInit {
       name: [null, Validators.required]
     })
 
+
+
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.id = params['id'];
+        this.photoUrl =  this.api.host + '/files/' + this.id + '/photo/photo.jpg?r=' + Math.random();
+
         this.stockCard = this.api.get('stockcards/' + this.id).subscribe(p => {
           this.stockCardForm.patchValue(p);
 
@@ -95,5 +104,17 @@ export class StockcardComponent implements OnInit {
         setTimeout(() => this.toastr.success('Stok Kartı kaydı silindi.'));
         setTimeout(() => this.routes.navigateByUrl('stockcards/list'), 2000);
       })
+  }
+  fileChange(event, id) {
+    console.log(id, 'girdi');
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      const file: File = fileList[0];
+      const formData: FormData = new FormData();
+      formData.append('uploadFile', file, file.name);
+      this.api.upload('files/photo' + '/' + id, formData).subscribe(() => {
+        setTimeout(() => this.toastr.success('Dosya yüklendi.'));
+      });
+    }
   }
 }

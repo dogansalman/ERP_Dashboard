@@ -30,6 +30,7 @@
           <table *ngIf="stockCardList.length > 0" class="table table-bordered table-striped table-md">
             <thead>
             <tr>
+              <th>Foto</th>
               <th>Döküm No</th>
               <th>Tanım</th>
               <th>Adet </th>
@@ -40,6 +41,7 @@
             <tbody>
 
             <tr class="linked-table-row" *ngFor="let item of stockCardList | filter : searchCriteri.key : searchTerm" (click)="navigateDetail($event, item.id)">
+              <td><img (click)="uploader.click()" onerror="this.src='../../assets/img/no-img.png'"  src="http://192.168.1.240:8080/files/{{item.id}}/photo/photo.jpg"  style="width: 100px;height: auto; cursor: pointer; opacity: 0.8;" onmouseleave="this.style.opacity = 0.8" onmouseover="this.style.opacity = 1" alt=""></td>
               <td>{{item.code | capitalizeFirst}}</td>
               <td>{{item.name}}</td>
               <td>{{item.unit}} <b *ngIf="item.per_unit"> / {{item.unit / item.per_production_unit}} </b> </td>

@@ -208,7 +208,8 @@ import * as moment from 'moment';
     delete productionData['created_date'];
     delete productionData['updated_date'];
     Object.assign(productionData, {order_id: this.orderId});
-    this.api.post('productions', productionData).subscribe(() => {
+    console.log(productionData);
+     this.api.post('productions', productionData).subscribe(() => {
       this.modalRef.hide();
       const selectedOrder = this.orderList.find(o => o.order.id === this.orderId);
       selectedOrder.order.is_production = true;
