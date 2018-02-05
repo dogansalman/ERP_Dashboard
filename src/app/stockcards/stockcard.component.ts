@@ -106,7 +106,7 @@ export class StockcardComponent implements OnInit {
       })
   }
   fileChange(event, id) {
-    console.log(id, 'girdi');
+
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       const file: File = fileList[0];
@@ -114,6 +114,7 @@ export class StockcardComponent implements OnInit {
       formData.append('uploadFile', file, file.name);
       this.api.upload('files/photo' + '/' + id, formData).subscribe(() => {
         setTimeout(() => this.toastr.success('Dosya yüklendi.'));
+        this.photoUrl = this.api.host + '/files/' + this.id + '/photo/photo.jpg?r=' + Math.random();
       });
     }
   }
