@@ -1,0 +1,105 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+
+      <form [formGroup]="stockCardForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+        <div class="card">
+          <div class="card-header">
+            <strong>Stok Kartı</strong> {{this.id ? 'Düzenle' : 'Ekle'}}
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-12 card-body">
+            <div class="row">
+              <div class="col-sm-12 col-xs-12 col-md-9">
+                <div class="card border-0">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="code">Döküm No*</label>
+                      <input  formControlName="code"  id="code" name="code" class="form-control" placeholder="Stok Kodu">
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Stok Tanımı*</label>
+                      <input formControlName="name" id="name" name="name" class="form-control" placeholder="Stok Tanımı">
+                    </div>
+                    <div class="form-group">
+                      <label for="unit">Stok Adedi</label>
+                      <input disabled  formControlName="unit" id="unit" name="unit" class="form-control" placeholder="Stok Adedi">
+                    </div>
+                    <div class="form-group">
+                      <label for="per_production_unit">Stok Üretim Adedi</label>
+                      <i style="color:#21a8d8;" tooltip="Birim başına düşen üretim adedini temsil eder." class="fa fa-question-circle"></i>
+                      <input formControlName="per_production_unit" id="per_production_unit" name="per_production_unit" class="form-control" placeholder="Stok Üretim Adedi">
+                    </div>
+                    <div class="form-group">
+                      <label for="stock_type">Stok Modeli*</label>
+                      <select formControlName="stock_type"  name="stock_type" appStockType (stocktypes)="stocktypes = $event" class="form-control" id="stock_type">
+                        <option value="Seçiniz">Seçiniz</option>
+                        <option *ngFor="let d of stocktypes" value="{{d.name}}"> {{d.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-xs-12 col-md-3">
+                <div class="card border-0">
+                  <div class="card-body" style="text-align: center; overflow: hidden">
+                    <input #uploader type="file" style="display: none" (change)="fileChange($event, id)" placeholder="Upload file" accept=".jpg,.jpeg,.gif,.png">
+                    <img (click)="uploader.click()" onerror="this.src='../../assets/img/no-img.png'"  src="{{photoUrl}}"  style="width: 220px;height: auto; cursor: pointer; opacity: 0.8; " onmouseleave="this.style.opacity = 0.8" onmouseover="this.style.opacity = 1" tooltip="Fotoğraf Yükle"  alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><strong>İşleme Kodları</strong>
+                <p style="font-size:11px"> İşleme kodunu silmek için işleme kodunun üzerine tıklayın.</p>
+              </div>
+              <div class="card-body">
+                <form [formGroup]="stockcardProcessNo">
+                  <div class="form-group">
+                    <label>İşleme No*</label>
+                    <input formControlName="process_no" class="form-control"  placeholder="İşleme No" type="text">
+                  </div>
+                  <div class="form-group">
+                    <label>Tanım*</label>
+                    <input formControlName="name" class="form-control"  placeholder="Tanım" type="text">
+                  </div>
+                  <button [disabled]="!stockcardProcessNo.valid" (click)="addProcessNoControl()" class="btn btn-primary" type="button">Ekle</button>
+                </form>
+
+                <div role="separator" class="dropdown-divider"></div>
+                <div class="card border-0">
+                  <div class="card-body" style="padding: 0px;">
+                    <p *ngIf="stockCardForm.controls.stockcard_process_no.controls.length === 0"> İşleme kodu bulunmamaktadır.</p>
+                    <div style="display:inline-block !important; margin-right: 5px; margin-top:5px;" *ngFor="let process of stockCardForm.controls.stockcard_process_no.controls; let i=index" formArrayName="stockcard_process_no">
+                      <div>
+                        <button class="btn btn-success" tooltip="{{process.value.name}}"  (click)="onDelStockCardProcNo(i)"  type="button"><i class="fa fa-gears"></i> {{process.value.process_no }}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-text">* doldurulması zorunlu alanlar.</div>
+          </div>
+          <div class="card-footer">
+            <button [disabled]="!stockCardForm.valid" type="submit" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+            <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Stok Kart Sil' : 'Temizle'}}</button>
+            <p class="card-text" style="float: right;">
+              <span *ngIf="stockCardForm.get('created_date').value">Eklenen Tarih: {{stockCardForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>
+              <br>
+              <span *ngIf="stockCardForm.get('updated_date').value">Son Güncelleme: {{stockCardForm.get('updated_date').value | date: 'dd/MM/yyyy'}}</span>
+            </p>
+          </div>
+        </div>
+      </form>
+      <div class="card card-accent-warning">
+        <div class="card-header">
+          Bilgi !
+        </div>
+        <div class="card-body">
+          <b>Yeni eklenecek</b> Stok Kartı için stok adedini ilgili stok kartını ekledikten sonra ayrıca gerçekleştirebilirsiniz. <br/>Stok kartına stok eklemek için aşağıdaki adımları takip edebilirsiniz.
+          <b>Stok</b> > <b>Stok Kartları</b> > <b>Stok Girişi</b> <button class="btn btn-success btn-sm" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+      </div>
+    </div><!--/.row-->
+  </div>
+</div>
