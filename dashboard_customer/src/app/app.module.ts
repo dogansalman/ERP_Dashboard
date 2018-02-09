@@ -13,9 +13,7 @@ import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
-import { RoleModule } from './shared/directive/role/role.module';
 
 // Routing Module
 import { AppRoutingModule } from './app.routing';
@@ -45,7 +43,6 @@ import { TooltipModule } from 'ngx-bootstrap';
     }),
     TooltipModule.forRoot(),
     SlimLoadingBarModule.forRoot(),
-    RoleModule.forRoot()
   ],
   declarations: [
     AppComponent,

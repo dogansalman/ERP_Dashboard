@@ -16,24 +16,18 @@ export class DashboardComponent implements OnInit {
     {data: [], label: 'Üretim'},
   ];
 
-  public stockcard: any[] = [];
-  public process: any[] = [];
-  public stocks: any[];
-
-   constructor( private api: ApiServices, private excelSer: ExcelServices, private http: Http ) {
-     this.http.get('/assets/data/stocks.json')
-       .subscribe(c => this.stocks = c.json());
-   }
-
   public reportsData;
   public criticalStocks;
-
 
   public brandPrimary = '#20a8d8';
   public brandSuccess = '#4dbd74';
   public brandInfo = '#63c2de';
   public brandWarning = '#f8cb00';
   public brandDanger = '#f86c6b';
+
+  public stockcard: any[] = [];
+  public process: any[] = [];
+  public stocks: any[];
 
   // dropdown buttons
   public status: { isopen } = { isopen: false };
@@ -68,6 +62,11 @@ export class DashboardComponent implements OnInit {
 
     const rgba = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + opacity / 100 + ')';
     return rgba;
+  }
+
+  constructor( private api: ApiServices, private excelSer: ExcelServices, private http: Http ) {
+    this.http.get('/assets/data/stocks.json')
+      .subscribe(c => this.stocks = c.json());
   }
 
   ngOnInit(): void {

@@ -39,7 +39,6 @@
     "ng2csv": "^0.1.2",
     "ngx-bootstrap": "^1.9.3",
     "ngx-toastr": "^6.0.1",
-
     "rxjs": "5.4.2",
     "ts-helpers": "1.1.2",
     "xlsx": "^0.11.3",

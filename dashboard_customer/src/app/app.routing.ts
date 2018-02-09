@@ -36,38 +36,6 @@ export const routes: Routes = [
         loadChildren: './widgets/widgets.module#WidgetsModule'
       },
       {
-        path: 'customers',
-        loadChildren: './customers/customers.module#CustomersModule'
-      },
-      {
-        path: 'personnel',
-        loadChildren: './personnel/personnel.module#PersonnelModule'
-      },
-      {
-        path: 'supplier',
-        loadChildren: './supplier/supplier.module#SupplierModule'
-      },
-      {
-        path: 'stocktypes',
-        loadChildren: './stocktypes/stocktypes.module#StocktypesModule'
-      },
-      {
-        path: 'stockcards',
-        loadChildren: './stockcards/stockcards.module#StockcardsModule'
-      },
-      {
-        path: 'orders',
-        loadChildren: './orders/orders.module#OrdersModule'
-      },
-      {
-        path: 'machines',
-        loadChildren: './machines/machines.module#MachinesModule'
-      },
-      {
-        path: 'operations',
-        loadChildren: './operations/operations.module#OperationsModule'
-      },
-      {
         path: 'charts',
         loadChildren: './chartjs/chartjs.module#ChartJSModule'
       }

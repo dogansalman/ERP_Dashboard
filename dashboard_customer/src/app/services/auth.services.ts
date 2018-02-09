@@ -31,6 +31,7 @@ export class AuthServices implements OnInit {
         body.set('username', data.username);
         body.set('password', data.password);
         body.set('grant_type', 'password');
+        body.set('type', 'customer');
 
             this.slimLoadingBarService.start(() => {  });
 

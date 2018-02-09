@@ -21,106 +21,26 @@
     <nav class="sidebar-nav">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"> Abkar LTD <span class="badge badge-info">ERP</span></a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"> Abkar <span class="badge badge-info">COM</span></a>
         </li>
         <li class="divider"></li>
         <li class="nav-title">
-          Yönetim
+          Company Name
         </li>
-        <li appRole="admin,develop" class="nav-item nav-dropdown" routerLinkActive="active" appNavDropdown>
-          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i> Müşteri</a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/customers/list']"><i class="fa fa-caret-right"></i> Müşteriler</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/customers/add']"><i class="fa fa-caret-right"></i> Müşteri Ekle</a>
-            </li>
-          </ul>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/charts']"><i class="icon-basket icons"></i> Orders</a>
         </li>
-
-        <li appRole="admin,develop" class="nav-item nav-dropdown" routerLinkActive="active" appNavDropdown>
-          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-people icons"></i> Personel</a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/personnel/list']"><i class="fa fa-caret-right"></i> Personeller</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/personnel/add']"><i class="fa fa-caret-right"></i>Personel Ekle</a>
-            </li>
-          </ul>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/charts']"><i class="icon-briefcase icons"></i> Company</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/charts']"><i class="fa fa-envelope-o"></i> Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/charts']"><i class="icon-lock-open icons"></i> Logout</a>
         </li>
 
-        <li appRole="planning,admin,develop" class="nav-item nav-dropdown" routerLinkActive="active" appNavDropdown>
-          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-bag icons"></i> Tedarik</a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/supplier/list']"><i class="fa fa-caret-right"></i> Tedarikçiler</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/supplier/add']"><i class="fa fa-caret-right"></i>Tedarikçi Ekle</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/supplier/requistion']"><i class="fa fa-caret-right"></i>Tedarik İstekleri</a>
-            </li>
-          </ul>
-        </li>
-
-        <li appRole="planning,admin,develop" class="nav-item nav-dropdown" routerLinkActive="active" appNavDropdown>
-          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-drawer icons"></i> Stok</a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/stocktypes/list']"><i class="fa fa-caret-right"></i> Stok Modelleri</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/stocktypes/add']"><i class="fa fa-caret-right"></i>Stok Modeli Ekle</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/stockcards/list']"><i class="fa fa-caret-right"></i> Stok Kartları</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/stockcards/add']"><i class="fa fa-caret-right"></i>Stok Kartı Ekle</a>
-            </li>
-          </ul>
-        </li>
-
-        <li appRole="planning,admin,develop" class="nav-item nav-dropdown" routerLinkActive="active" appNavDropdown>
-          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-basket icons"></i> Sipariş</a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/orders/list']"><i class="fa fa-caret-right"></i> Siparişler</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/orders/add']"><i class="fa fa-caret-right"></i>Yeni Sipariş Oluştur</a>
-            </li>
-          </ul>
-        </li>
-
-        <li appRole="planning,admin,develop" class="nav-item nav-dropdown" routerLinkActive="active" appNavDropdown>
-          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="fa fa-plug"></i> Makine</a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/machines/list']"><i class="fa fa-caret-right"></i> Makineler</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/machines/add']"><i class="fa fa-caret-right"></i>Makine Ekle</a>
-            </li>
-          </ul>
-        </li>
-
-        <li appRole="planning,admin,develop" class="nav-item nav-dropdown" routerLinkActive="active" appNavDropdown>
-          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-wrench icons"></i> Operasyon</a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/operations/list']"><i class="fa fa-caret-right"></i> Operasyonlar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" [routerLink]="['/operations/add']"><i class="fa fa-caret-right"></i>Operasyon Ekle</a>
-            </li>
-          </ul>
-        </li>
-
-        <div appRole="develop" style="">
+        <div style="">
           <li class="divider"></li>
           <li class="nav-title">
             UI ELEMENTS & Extras

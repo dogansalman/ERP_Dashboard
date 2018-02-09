@@ -28,8 +28,7 @@ export class Login implements OnInit {
     }
 
     saveToken(token): void {
-      window.localStorage.setItem('role', token.roles);
-      window.localStorage.setItem('fullname', token.fullname);
+      window.localStorage.setItem('company', token.company);
       window.localStorage.setItem('access_token', token.access_token);
       window.localStorage.setItem('date', token.date);
       this.route.navigate(['/dashboard']);
