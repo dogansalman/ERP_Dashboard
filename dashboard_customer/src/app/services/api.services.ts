@@ -57,7 +57,7 @@ export class ApiServices {
     return this.http.post(this.apiUrl + url, data, this.header() )
       .map((res: Response) =>  <any[]> res.json())
       .catch((error: any) => {
-        setTimeout(() => this.toastr.error('İşlem başarısız. Lütfen tekrar deneyin.', 'İstek başarısız!'));
+        setTimeout(() => this.toastr.error('Process Unsuccessful Please try again.', 'Process Unsuccessful!'));
         return Observable.throw(error || 'Server error')
 
       })
@@ -68,7 +68,7 @@ export class ApiServices {
     return this.http.put(this.apiUrl + url, data, this.header() )
       .map((res: Response) => <any[]> res.json())
       .catch((error: any) => {
-        setTimeout(() => this.toastr.error('İşlem başarısız. Lütfen tekrar deneyin.', 'İstek başarısız!'));
+        setTimeout(() => this.toastr.error('Process Unsuccessful Please try again.', 'Process Unsuccessful!'));
         return Observable.throw(error || 'Server error');
       })
       ._finally(() => this.slimLoadingBarService.complete())

@@ -1,0 +1,51 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <div class="card">
+        <div class="card-header">
+          <strong>Company</strong> Details
+        </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-12 card-body">
+              <div class="form-group">
+                <label for="company">Company*</label>
+                <input  formControlName="company"  id="company" name="company" class="form-control" placeholder="Company Name">
+              </div>
+              <div class="form-group">
+                <label for="adress">Address*</label>
+                <textarea formControlName="adress" id="adress" name="adress" rows="3" class="form-control" placeholder="Adres"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="email">E-mail*</label>
+                <input formControlName="email" type="email" id="email" name="email" class="form-control" placeholder="E-posta">
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Pbx*</label>
+                <input formControlName="phone" appRegex [regex]="'^[0-9]+$'"  id="phone" name="phone" class="form-control" placeholder="Telefon No">
+              </div>
+              <div class="form-group">
+                <label for="name">Contact Person Firstname*</label>
+                <input formControlName="name"  id="name" name="name" class="form-control" placeholder="Contact Person Firstname">
+              </div>
+              <div class="form-group">
+                <label for="lastname">Contact Person Lastname*</label>
+                <input formControlName="lastname"  id="lastname" name="lastname" class="form-control" placeholder="Contact Person Lastname">
+              </div>
+              <div class="card-text">* required fields.</div>
+            </div>
+        <div class="card-footer">
+          <button type="submit" [disabled]="!customerForm.valid" class="btn btn-sm btn-primary">{{this.id ? 'Güncelle' : 'Kaydet'}}</button>
+          <button type="{{this.id ? 'button' : 'reset'}}" (click)="this.id ? this.onDelete() : return" class="btn btn-sm btn-danger">{{this.id ? 'Müşteri Sil' : 'Temizle'}}</button>
+          <p class="card-text" style="float: right;">
+          <span *ngIf="customerForm.get('created_date').value">Eklenen Tarih: {{customerForm.get('created_date').value | date: 'dd/MM/yyyy'}}</span>
+            <br>
+          <span *ngIf="customerForm.get('updated_date').value">Son Güncelleme: {{customerForm.get('updated_date').value | date: 'dd/MM/yyyy'}}</span>
+          </p>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div><!--/.row-->
+</div>
+

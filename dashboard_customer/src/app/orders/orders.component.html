@@ -1,0 +1,104 @@
+<div class="animated fadeIn">
+
+  <!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+           Orders Overview ({{orderList.length}})
+        </div>
+        <div class="card-body">
+          <table *ngIf="orderList.length > 0"  class="table table-bordered table-striped table-md">
+            <thead>
+            <tr>
+              <th>Company</th>
+              <th>Casting Number</th>
+              <th>Production Number</th>
+              <th>Description</th>
+              <th>In Production</th>
+              <th>Shipped Order </th>
+              <th>Production Expiry</th>
+              <th>Functions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr (click)="navigateDetail($event, item.order.id)" class="linked-table-row" *ngFor='let item of orderList'>
+              <td>
+                <span *ngIf="!item.order.is_production && !item.order.is_complated" class="badge badge-warning">
+                  <i tooltip="Waiting For Production" class="icon-clock icons"></i>
+                </span>
+                <span *ngIf="item.order.is_production" class="badge badge-primary">
+                  <i tooltip="In Production." class="icon-speedometer icons"></i>
+                </span>
+                <span *ngIf="item.order.is_complated" class="badge badge-success">
+                  <i tooltip="Orders Complated" class="icon-check icons"></i>
+                </span>
+                {{item.customer.company | capitalizeFirst}}
+              </td>
+              <td>{{item.stockcard.code | capitalizeFirst }}</td>
+              <td>{{item.order_stock.process_no | capitalizeFirst }}</td>
+              <td>{{ item.order_stock.process_name ? item.order_stock.process_name : item.stockcard.name | capitalizeFirst }}  </td>
+              <td>
+                <div style="display: inline-block; text-align: left; width: 45%;">{{item.produced_unit}} / {{item.order_stock.order_unit}}</div>
+                <div style="display: inline-block; text-align: right; width: 50%;">%{{((item.produced_unit / item.order_stock.order_unit) * 100) | number: '.1-2'}}</div>
+                <div class="progress progress-xs my-3" style="background: #fff; padding: 0px !important; margin: 5px 0px 0px 0px !important;">
+                  <div aria-valuemax="item.order_stock.order_unit" aria-valuemin="0" aria-valuenow="item.produced_unit" class="progress-bar bg-primary" role="progressbar" [style.width.%]="((item.produced_unit / item.order_stock.order_unit) * 100)" ></div>
+                </div>
+
+              </td>
+              <td>
+                <div style="display: inline-block; text-align: left; width: 45%;">{{item.order_stock.produced_orderstock}} / {{item.order_stock.order_unit}}</div>
+                <div style="display: inline-block; text-align: right; width: 50%;">%{{((item.order_stock.produced_orderstock / item.order_stock.order_unit) * 100) | number: '.1-2'}}</div>
+                <div class="progress progress-xs my-3" style="background: #fff; padding: 0px !important; margin: 5px 0px 0px 0px !important;">
+                  <div aria-valuemax="item.order_stock.order_unit" aria-valuemin="0" aria-valuenow="item.order_stock.produced_orderstock" class="progress-bar bg-success" role="progressbar" [style.width.%]="((item.order_stock.produced_orderstock / item.order_stock.order_unit) * 100)" ></div>
+                </div>
+              </td>
+              <td> <b>{{item.order.over_date | date: 'dd/MM/yyyy'}}</b></td>
+              <td>
+                <button class="btn btn-primary btn-sm"  [routerLink]="['/orders/productions', item.order.id]" type="button" tooltip="View Production Movements" container="body" placement="top">
+                  <i class="icon-graph icons"></i>
+                </button>
+                <button (click)="openModal(production, item)" class="btn btn-success btn-sm" type="button" tooltip="Live Support" container="body" placement="top">
+                  <i class="icon-cd   bubbles icons"></i>
+                </button>
+                <button class="btn btn-warning btn-sm"  [routerLink]="['/orders/productions', item.order.id]" type="button" tooltip="View Quality Docs" container="body" placement="top">
+                  <i class="icon-docs icons"></i>
+                </button>
+
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <p *ngIf="orderList.length == 0">Sipariş kaydı bulunamadı.</p>
+        </div>
+      </div>
+
+      <div *ngIf="orderList.length > 0"  class="card card-accent-warning">
+        <div class="card-header">
+          Notify !
+        </div>
+        <div class="card-body">
+          The order-related operations take place under "Functions". <br>
+          Use the <button class="btn btn-primary btn-sm" type="button"><i class="icon-graph icons"></i></button> option to examine the production movements.
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>
+
+<!-- Order Files-->
+<ng-template #production>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">  <h2> {{selectedOrder.customer.company | capitalizeFirst}}</h2></h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Order Files
+  </div>
+</ng-template>
+<!--/  Order Files -->
+

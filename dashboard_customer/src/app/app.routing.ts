@@ -16,7 +16,7 @@ export const routes: Routes = [
     path: '',
     component: FullLayoutComponent,
     data: {
-      title: 'Yönetim'
+      title: 'CMDS'
     },
     children: [
       {
@@ -24,20 +24,12 @@ export const routes: Routes = [
         loadChildren: './dashboard/dashboard.module#DashboardModule'
       },
       {
-        path: 'components',
-        loadChildren: './components/components.module#ComponentsModule'
+        path: 'orders',
+        loadChildren: './orders/orders.module#OrdersModule'
       },
       {
-        path: 'icons',
-        loadChildren: './icons/icons.module#IconsModule'
-      },
-      {
-        path: 'widgets',
-        loadChildren: './widgets/widgets.module#WidgetsModule'
-      },
-      {
-        path: 'charts',
-        loadChildren: './chartjs/chartjs.module#ChartJSModule'
+        path: 'company',
+        loadChildren: './company/company.module#CompanyModule'
       }
 
     ]
@@ -46,13 +38,13 @@ export const routes: Routes = [
     path: 'auth',
     component: SimpleLayoutComponent,
     data: {
-      title: 'Giriş'
+      title: 'Auth'
     },
     children: [
       {
         path: '',
         loadChildren: './auth/auth.module#AuthModule',
-      }
+      },
     ]
   }
 ];

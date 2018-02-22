@@ -1,0 +1,343 @@
+<div class="animated fadeIn">
+  <!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Üretim Hareketleri ({{productionList.length}})
+          <button href="#" style="margin-right: 5px; float: right;" class="btn btn-warning btn-sm" (click)="saveAsExcel()"><i class="fa fa-file-excel-o"></i> İndir</button>
+        </div>
+        <div class="card-body">
+          <table *ngIf="productionList.length > 0"  class="table table-bordered table-striped table-md">
+            <thead>
+            <tr>
+              <th>Tanım</th>
+              <th>Üretim Adedi</th>
+              <th>Vardiya</th>
+              <th>Üretim Süresi </th>
+              <th>Üretim Tarihi</th>
+              <th>Durum</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr (click)="productionModal(production, item)" class="linked-table-row" *ngFor='let item of productionList'>
+              <td>{{item.production.name | capitalizeFirst }} </td>
+              <td>
+                <div style="display: inline-block; text-align: left; width: 45%;">{{item.production.produced_unit}} / {{item.production.unit}}</div>
+                <div style="display: inline-block; text-align: right; width: 50%;">%{{((item.production.produced_unit / item.production.unit) * 100) | number: '.1-2'}}</div>
+
+                <div class="progress progress-xs my-3" style="background: #fff; padding: 0px !important; margin: 5px 0px 0px 0px !important;">
+                  <div aria-valuemax="item.order_stock.order_unit" aria-valuemin="0" aria-valuenow="item.order_stock.produced_orderstock" class="progress-bar bg-success" role="progressbar" [style.width.%]="((item.production.produced_unit / item.production.unit) * 100)" ></div>
+                </div>
+
+              </td>
+              <td>{{'12/12/2017 ' + item.production.start_time | date: 'HH:mm'}} / {{'12/12/2017 ' + item.production.end_time | date: 'HH:mm'}}</td>
+              <td>2 Saat</td>
+              <td>{{item.production.created_date | date: 'dd/MM/yyyy'}}</td>
+              <td>
+                <span *ngIf="!item.production.is_complate && !item.production.is_cancel" style="float: right; margin-left: 5px;" class="badge badge-primary">
+                  <i class="icon-clock icons"></i>
+                Üretimde.
+                </span>
+                <span *ngIf="item.production.is_complate" style="float: right; margin-left: 5px;" class="badge badge-success">
+                  <i class="icon-check icons"></i>
+                  Tamamlandı.
+                </span>
+                <span *ngIf="item.production.is_cancel" style="float: right; margin-left: 5px;" class="badge badge-danger">
+                  <i class="icon-check icons"></i>
+                  İptal Edildi.
+                </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <p *ngIf="productionList.length == 0">Üretim kaydı bulunamadı.</p>
+        </div>
+      </div>
+
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>
+
+<!-- change stock of stock card-->
+<ng-template #production>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">  <h2> Üretim Detayları</h2></h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" >
+    <form [formGroup]="productionForm" class="form-horizontal">
+      <!-- Nav tabs -->
+      <tabset>
+        <tab (select)="onTabSelect(0)" [disabled]="selectedProduction.production.is_complate">
+          <ng-template tabHeading><i class="icon-calculator"></i> {{selectedProduction.is_complate}} Genel</ng-template>
+          <div class="form-group">
+            <label for="name">Tanım*</label>
+            <input formControlName="name" id="name" name="name" class="form-control" placeholder="Tanım">
+          </div>
+          <div class="form-group">
+            <label for="description">Açıklama*</label>
+            <textarea rows="3" formControlName="description" id="description" name="description" class="form-control" placeholder="Açıklama"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="unit">Adet*</label>
+            <input (focusout)="minProductionDateValidate($event)"  [attr.disabled]="selectedOrder?.order_stocks.order_stock.unit === 0 ? true : null" #production_unit formControlName="unit" appRange [range]="'0-' + maxProductionLimit"  appRegex [regex]="'^[0-9]+$'"   id="unit" name="unit" class="form-control" placeholder="Üretim adedi">
+            <span class="help-block">En fazla {{ maxProductionLimit }} adet üretilebilir.</span>
+          </div>
+          <div class="form-group">
+            <label for="start_time">Üretim Başlangıç*</label>
+            <select formControlName="start_time" id="start_time" name="start_time" class="form-control">
+              <option value="Seçiniz">Seçiniz</option>
+              <option>01:00</option>
+              <option>02:00</option>
+              <option>03:00</option>
+              <option>04:00</option>
+              <option>05:00</option>
+              <option>06:00</option>
+              <option>07:00</option>
+              <option>08:00</option>
+              <option>09:00</option>
+              <option>10:00</option>
+              <option>11:00</option>
+              <option>12:00</option>
+              <option>13:00</option>
+              <option>14:00</option>
+              <option>15:00</option>
+              <option>16:00</option>
+              <option>17:00</option>
+              <option>18:00</option>
+              <option>19:00</option>
+              <option>20:00</option>
+              <option>21:00</option>
+              <option>22:00</option>
+              <option>23:00</option>
+              <option>00:00</option>
+            </select>
+
+          </div>
+          <div class="form-group">
+            <label for="start_time">Üretim Bitiş*</label>
+            <select formControlName="end_time" id="end_time" name="end_time" class="form-control">
+              <option value="Seçiniz">Seçiniz</option>
+              <option>01:00</option>
+              <option>02:00</option>
+              <option>03:00</option>
+              <option>04:00</option>
+              <option>05:00</option>
+              <option>06:00</option>
+              <option>07:00</option>
+              <option>08:00</option>
+              <option>09:00</option>
+              <option>10:00</option>
+              <option>11:00</option>
+              <option>12:00</option>
+              <option>13:00</option>
+              <option>14:00</option>
+              <option>15:00</option>
+              <option>16:00</option>
+              <option>17:00</option>
+              <option>18:00</option>
+              <option>19:00</option>
+              <option>20:00</option>
+              <option>21:00</option>
+              <option>22:00</option>
+              <option>23:00</option>
+              <option>00:00</option>
+            </select>
+          </div>
+
+          <div class="card card-accent-warning">
+            <div class="card-header">
+              Not!
+            </div>
+            <div class="card-body">
+              Mevcut üretim kaydındaki üretim adedi eğer düşser stok kartına geri eklenir.
+            </div>
+          </div>
+
+        </tab>
+        <tab (select)="onTabSelect(1)" [disabled]="selectedProduction.production.is_complate">
+          <ng-template  tabHeading><i class="icon-user-following icons"></i> Personel & Operasyon</ng-template>
+          <button class="btn btn-primary" (click)="addPersonnelControl()" style="margin-top:10px; margin-bottom:10px; width: 100%;">Yeni Personel Ekle</button>
+          <div class="card-columns cols-2" formArrayName="production_personnels">
+            <div *ngFor="let personnel of productionForm.controls.production_personnels.controls; let i=index">
+              <div class="card">
+                <div class="card-body">
+                  <div class="panel-heading">
+                    <span><strong>Personel:</strong></span>
+                    <button style="float: right;" class="btn btn-danger" (click)="removePersonnelControl(i)"  *ngIf="productionForm.controls.production_personnels.controls.length > 0" type="button"><i class="icon-trash icons"></i></button>
+                  </div>
+                  <div class="panel-body" [formGroupName]="i">
+                    <div class="form-group col-xs-6">
+                      <label>Personel seçin</label>
+                      <input class="form-control stock-selection" #searchStockCard formControlName="personnel" [ngModel]="personnel._value.personnel"
+                             placeholder="Ad soyad" ngui-auto-complete [max-num-list]="10" [value-formatter]="ValueFormatter" (valueChanged)="onPersonnelChange($event, searchStockCard)"
+                             [list-formatter]="autocompleListFormatter"  [source]="personnelList"  />
+                      <div *ngFor="let operation of personnel.controls.operations.controls let ii=index; let last=last" formArrayName="operations">
+                        <div class="panel-heading">
+                          <span><strong>Operasyon:</strong></span>
+                        </div>
+                        <div class="panel-body" [formGroupName]="ii">
+                          <label>Operasyon seçin</label>
+                          <!--operation.controls.machine._value.name bum u-->
+                              <div class="form-group">
+                                <input type="text" class="form-control" ngui-auto-complete [max-num-list]="10" formControlName="machine" [ngModel]="operation.controls.machine._value" [value-formatter]="OperationMachineValueFormatter" placeholder="Makine"
+                                       [list-formatter]="autocompleMachineOperationListFormatter" [source]="machines">
+                              </div>
+
+                            <div class="form-group">
+                              <input type="text" class="form-control" formControlName="operation" [ngModel]="operation.controls.operation._value" [value-formatter]="OperationMachineValueFormatter"  placeholder="Operasyon" ngui-auto-complete [max-num-list]="10"
+                                     [list-formatter]="autocompleMachineOperationListFormatter" [source]="operations">
+                            </div>
+                       <div class="form-group">
+                         <div class="input-group">
+                           <input  formControlName="operation_time" class="form-control" appRegex [regex]="'^[0-9]+$'"  placeholder="Operasyon Süresi (dk)">
+                           <span class="input-group-addon"> <i class="icon-clock icons"></i></span>
+                         </div>
+                       </div>
+                     </div>
+                        <button *ngIf="last" class="btn btn-primary" (click)="addOperationControl(i)">Ekle</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </tab>
+        <tab (select)="onTabSelect(2)" [disabled]="selectedProduction.production.is_complate">
+          <ng-template tabHeading><i class="icon-check icons"></i> Sevk</ng-template>
+          <form [formGroup]="stockMovementForm" class="form-horizontal">
+            <div class="form-group">
+              <label>Sevk Edilen Adet</label>
+              <input  appRange [range]="'0-' + (selectedProduction.production.unit - selectedProduction.production.produced_unit)" appRegex [regex]="'^[0-9]+$'" class="form-control" formControlName="unit" placeholder="Sevk adedi">
+              <p>Maksimum sevk edilebilecek adet {{(selectedProduction.production.unit - selectedProduction.production.produced_unit)}}</p>
+            </div>
+            <div class="form-group">
+              <label>İrsaliye No</label>
+              <input class="form-control" formControlName="waybill" placeholder="İrsaliye No">
+            </div>
+            <div class="form-group">
+              <label>Nakliyeci Firma</label>
+              <input  class="form-control" formControlName="supplier" placeholder="Nakliyeci Firma">
+            </div>
+            <div class="form-group">
+              <label>Hurda Adedi</label>
+              <input  appRange [range]="'0-' + 10" appRegex [regex]="'^[0-9]+$'" class="form-control" formControlName="junk" placeholder="Hurda adedi">
+            </div>
+            <div class="form-group">
+              <button [disabled]="!stockMovementForm.valid" class="btn btn-sm btn-primary" (click)="addstockMovementForm()" type="button">Kaydet</button>
+            </div>
+          </form>
+        </tab>
+        <tab (select)="onTabSelect(3)">
+          <ng-template tabHeading><i class="icon-share-alt icons"></i> Sevk Tablosu</ng-template>
+          <p *ngIf="selectedProdStockMovements.length === 0">Sevk kaydı bulunmamakta.</p>
+          <table *ngIf="selectedProdStockMovements.length > 0" class="table noborder table-sm">
+            <thead>
+            <tr>
+              <th>İrsaliye No</th>
+              <th>Tedarikçi / Nakliye</th>
+              <th>Adet</th>
+              <th>Tarih / Durum</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="linked-table-row" *ngFor='let item of selectedProdStockMovements' (click)="printWaybillModal(waybill, item); openedWaybillModal = true;">
+              <td><i class="icon-printer icons"></i> {{item.waybill}}</td>
+              <td>{{item.supplier | capitalizeFirst}}</td>
+              <td>{{item.unit}}</td>
+              <td>
+                {{item.created_date | date: 'dd/MM/yyyy' }}
+                <span style="float: right; margin-left: 5px;" class="{{item.incoming_stock ? 'badge badge-success' : 'badge badge-danger'}}">
+                  <i *ngIf="item.incoming_stock" class="fa fa-level-down"></i>
+                  <i *ngIf="!item.incoming_stock" class="fa fa-level-up"></i>
+                  {{item.incoming_stock ? 'Giriş' : 'Çıkış' }}
+                </span>
+                <span *ngIf="item.on_requisition" style="float: right; margin-left: 5px;" class="badge badge-success">
+                  <i class="fa fa-truck"></i> Tedarik
+                </span>
+                <span *ngIf="item.production_id && item.is_junk " style="float: right; margin-left: 5px;" class="badge badge-danger">
+                   <i class="icon-trash icons"></i> Üretim Hurdası
+                </span>
+                <span *ngIf="item.production_id && !item.is_junk " style="float: right; margin-left: 5px;" class="badge badge-success">
+                   <i class="fa fa-truck"></i> Üretim Sevki
+                </span>
+                <span tooltip="{{item.not}}" style="float: right;" *ngIf="item.not" class="badge badge-warning">
+                  <i class="icon-note icons"></i> Not
+                </span>
+
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </tab>
+        <tab (select)="onTabSelect(4)" active="true" #productionFormPanel>
+          <ng-template tabHeading><i class="icon-note icons"></i> Önizleme</ng-template>
+          <div>
+            <div class="card">
+              <div class="card-body">
+                <button appPrint [printTo]="productionFormPanel" class="btn btn-link" type="button" style=" position: absolute; right: 0px; top: 0; "><i class="icon-printer icons"></i> Yazdır</button>
+                <h5> {{selectedOrder.order_stocks.order_stock?.name}} ({{selectedOrder.order_stocks.order_stock?.code}}) </h5>
+                <label><b>Müşteri:</b></label>
+                <p> {{selectedCustomer?.company}} </p>
+                <label><b>Üretim Açıklaması:</b></label>
+                <p>{{this.productionForm.value.description}}</p>
+                <label><b>Üretim Tanımı:</b></label>
+                <p>{{this.productionForm.value.name}}</p>
+                <label><b>Üretim Adedi:</b></label> {{this.productionForm.value.unit}} Adet.
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <b>Parça Başı Üretim:  </b>
+                    <p><i class="icon-clock icons"></i> {{operationTime()}}</p>
+                    <b>Tahmini Üretim Süreci:</b>
+                    <p><i class="icon-clock icons"></i> {{operationTotalTime()}} </p>
+                    <b>Vardiya:</b>
+                    <p><i class="icon-clock icons"></i> {{productionForm.value.start_time}} - <i class="icon-clock icons"></i> {{productionForm.value.end_time}}</p>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <b>Çalışma Saati:</b>
+                    <p><i class="icon-clock icons"></i> {{operationWorkTime()}}</p>
+                    <div class="{{operationTimeValidate() ? 'btn-success' : 'btn-danger' }} btn-sm">{{operationTimeValidate() ? 'Üretim Uygun' : 'Çalışma Saati Yetersiz.' }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div style="border-bottom: 1px solid #ececec; margin-bottom: 5px;" *ngFor="let item of productionForm.value.production_personnels;">
+                  <label><b>Personel: </b></label> {{item.personnel?.name}} {{item.personnel?.lastname}}
+                  <br/>
+                  <label><b>Operasyonları: </b></label>
+                  <span *ngFor="let op of item.operations; let opi=index; let last=last">
+                  {{op.machine?.name}} ({{op.operation?.name}}) {{op?.operation_time}} dk. <b *ngIf="!last">|</b>
+                </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </tab>
+      </tabset>
+      <br/>
+      <button *ngIf="selectedtabIndex === 0 || selectedtabIndex === 1" (click)="onSubmit()" [disabled]="selectedProduction.production.is_complate"  class="btn btn-sm btn-primary" type="button">Güncelle</button>
+      <button *ngIf="selectedtabIndex === 0 || selectedtabIndex === 1" (click)="modalRef.hide()" class="btn btn-sm btn-danger" type="button">İptal</button>
+    </form>
+  </div>
+</ng-template>
+<!--/  change stock of stock card -->
