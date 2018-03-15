@@ -33,7 +33,7 @@
               <th>Foto</th>
               <th>Döküm No</th>
               <th>Tanım</th>
-              <th>Adet </th>
+              <th>Stok </th>
               <th>Tip</th>
               <th>İşlem</th>
             </tr>
@@ -107,7 +107,7 @@
     <form [formGroup]="stockChangeForm" class="form-horizontal">
       <strong>Yeni stok kaydı girmek üzeresiniz !  </strong>
       <div class="form-group">
-        <label class="form-control-label" for="unit">Adet</label>
+        <label class="form-control-label" for="unit">Stok</label>
         <div class="controls">
           <input [attr.disabled]="supplierdrp.length === 1 ? '' : null"  appRegex [regex]="'^[0-9]+$'"  formControlName="unit" id="unit" name="unit" class="form-control" placeholder="Adet">
         </div>

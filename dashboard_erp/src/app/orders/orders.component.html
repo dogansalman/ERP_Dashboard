@@ -16,6 +16,7 @@
               <th>İşleme No</th>
               <th>Tanım</th>
               <th>Üretimdeki Stok</th>
+              <th>Mevcut Stok</th>
               <th>Sipariş Durumu </th>
               <th>Sipariş Sonu</th>
               <th>İşlem</th>
@@ -35,17 +36,19 @@
                 </span>
                 {{item.customer.company | capitalizeFirst}}
               </td>
+
               <td>{{item.stockcard.code | capitalizeFirst }}</td>
               <td>{{item.order_stock.process_no | capitalizeFirst }}</td>
               <td>{{ item.order_stock.process_name ? item.order_stock.process_name : item.stockcard.name | capitalizeFirst }}  </td>
               <td>
-                <div style="display: inline-block; text-align: left; width: 45%;">{{item.produced_unit}} / {{item.order_stock.order_unit}}</div>
+                <div style="display: inline-block; text-align: left; width: 45%;">{{item.produced_unit}} / {{ (item.order_stock.order_unit) - item.order_stock.produced_orderstock}}</div>
                 <div style="display: inline-block; text-align: right; width: 50%;">%{{((item.produced_unit / item.order_stock.order_unit) * 100) | number: '.1-2'}}</div>
                 <div class="progress progress-xs my-3" style="background: #fff; padding: 0px !important; margin: 5px 0px 0px 0px !important;">
                   <div aria-valuemax="item.order_stock.order_unit" aria-valuemin="0" aria-valuenow="item.produced_unit" class="progress-bar bg-primary" role="progressbar" [style.width.%]="((item.produced_unit / item.order_stock.order_unit) * 100)" ></div>
                 </div>
 
               </td>
+              <td><span>{{item.stockcard.unit}} Adet</span></td>
               <td>
                 <div style="display: inline-block; text-align: left; width: 45%;">{{item.order_stock.produced_orderstock}} / {{item.order_stock.order_unit}}</div>
                 <div style="display: inline-block; text-align: right; width: 50%;">%{{((item.order_stock.produced_orderstock / item.order_stock.order_unit) * 100) | number: '.1-2'}}</div>

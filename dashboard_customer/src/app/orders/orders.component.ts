@@ -18,7 +18,7 @@ import * as moment from 'moment';
   public personnelList = [];
   public selectedOrder = {};
   public operations = [];
-  public modalRef: BsModalRef;;
+  public modalRef: BsModalRef;
   public orderId = 0;
   public maxProductionLimit = 0;
 

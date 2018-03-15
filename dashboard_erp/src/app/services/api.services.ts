@@ -16,8 +16,9 @@ export class ApiServices {
   private customHeader = new Headers({
     'Content-Type': 'application/json'
   });
-  public host = 'http://192.168.1.240:8080/';
+  public host = 'http://192.168.1.222:8080/';
   public apiUrl = this.host + 'api/';
+
 
   constructor(private http: Http, private toastr: ToastrService, private slimLoadingBarService: SlimLoadingBarService) {
 
