@@ -58,11 +58,14 @@
               </td>
               <td> <b>{{item.order.over_date | date: 'dd/MM/yyyy'}}</b></td>
               <td>
-                <button class="btn btn-primary btn-sm"  [routerLink]="['/orders/productions', item.order.id]" type="button" tooltip="Üretim hareketlerini incele." container="body" placement="top">
+                <button class="btn btn-primary btn-sm"  [routerLink]="['/orders/productions', item.order.id]" type="button" tooltip="Üretim hareketlerini" container="body" placement="top">
                   <i class="icon-graph icons"></i>
                 </button>
-                <button  [disabled]="item.produced_unit === item.order_stock.order_unit" (click)="openModal(production, item)" class="btn btn-success btn-sm" type="button" tooltip="Üretim kaydı oluştur." container="body" placement="top">
+                <button  [disabled]="item.produced_unit === item.order_stock.order_unit" (click)="openModal(production, item)" class="btn btn-success btn-sm" type="button" tooltip="Üretim kaydı" container="body" placement="top">
                   <i class="fa fa-plus"></i>
+                </button>
+                <button [routerLink]="['/orders/quality', item.order.id]" class="btn btn-warning btn-sm" type="button" tooltip="Kalite belgeleri" container="body" placement="top">
+                  <i class="icon-badge icons"></i>
                 </button>
               </td>
             </tr>

@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">
+    Kalite Belgeleri
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-12 card-body">
+    <div class="animated fadeIn">
+      <div class="row">
+        <div class="col-md-12">
+          <form [formGroup]="qualityForm" class="form-horizontal">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <input #uploader type="file" style="display: none" (change)="fileChange($event, this.selectedStockCard.id)" placeholder="Upload file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.gif,.rar,.zip">
+            <div class="form-group">
+              <label for="title">Dosya İsmi*</label>
+              <input formControlName="title" id="title" name="title" class="form-control" placeholder="Dosya ismi">
+            </div>
+            <div class="form-group">
+              <label for="date">Tarih*</label>
+              <input class="form-control" id="date" placeholder="Belge tarihi" bsDatepicker [bsConfig]="bsConfig" formControlName="date" />
+            </div>
+            <div class="form-group">
+              <label></label>
+              <button class="btn btn-success" (click)="uploader.click()" type="button"><i class="icon-cloud-upload icons"></i>&nbsp; Yükle (Maks. 25MB)</button>
+            </div>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

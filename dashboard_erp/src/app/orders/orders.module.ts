@@ -20,6 +20,7 @@ import { PrintModule } from '../shared/directive/print/print.module';
 import { RangeModule } from '../shared/directive/range/range.module';
 import { ExcelServices } from '../services/excel.services';
 import { WaybillComponent } from '../shared/components/waybill/waybill.component';
+import { QualityComponent } from './quality.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,7 @@ import { WaybillComponent } from '../shared/components/waybill/waybill.component
     PrintModule,
     RangeModule
   ],
-  declarations: [ OrderComponent, OrdersComponent, ProductionmovementsComponent],
+  declarations: [ OrderComponent, OrdersComponent, ProductionmovementsComponent, QualityComponent],
   providers: [
     ApiServices,
     BsDatepickerActions,
