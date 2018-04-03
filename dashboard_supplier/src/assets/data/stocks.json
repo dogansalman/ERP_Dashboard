@@ -1,0 +1,672 @@
+[
+  {
+    "code": "643306401",
+    "process_code": "643311001",
+    "name": "QB 71 KTA Temporıtı"
+  },
+  {
+    "code": "643306601",
+    "process_code": "643311101",
+    "name": "QB 80 Temporiti"
+  },
+  {
+    "code": "652319801",
+    "process_code": "652319901",
+    "name": "QS 80 KT JCI"
+  },
+  {
+    "code": "643304801",
+    "process_code": "643304901",
+    "name": "QM 80 FS TARIMAK"
+  },
+  {
+    "code": "643306801",
+    "process_code": "643311201",
+    "name": "QB 90 KTA Temporiti"
+  },
+  {
+    "code": "643307001",
+    "process_code": "643311301",
+    "name": "QB 100 KTA TEMPORİTİ"
+  },
+  {
+    "code": "643239201",
+    "process_code": "643239301",
+    "name": " 100 KTA Derin Mot.Kapağı"
+  },
+  {
+    "code": "643239801",
+    "process_code": "643239901",
+    "name": " 112 KTA Derin Mot.Kapağı"
+  },
+  {
+    "code": "643338701",
+    "process_code": "643338801",
+    "name": "112 FC Kuenle"
+  },
+  {
+    "code": "643405401",
+    "process_code": "643405501",
+    "name": "QS 132 FC"
+  },
+  {
+    "code": "643240101",
+    "process_code": "643240201",
+    "name": "132 KTA Derin Motor Kapağı"
+  },
+  {
+    "code": "643406301",
+    "process_code": "643406401",
+    "name": "QS 132 FS ELEKTROSAN"
+  },
+  {
+    "code": "643304401",
+    "process_code": "643304305",
+    "name": "QS 132 FS"
+  },
+  {
+    "code": "652328501",
+    "process_code": "652328601",
+    "name": "Q3H 160 FA "
+  },
+  {
+    "code": "652323201",
+    "process_code": "652323301",
+    "name": "QU 160 FA SCHMACHTL"
+  },
+  {
+    "code": "652338601",
+    "process_code": "652339201",
+    "name": "160 G500 Lenze"
+  },
+  {
+    "code": "644300501",
+    "process_code": "642310002",
+    "name": "QU 180 FA Kapak"
+  },
+  {
+    "code": "644311501",
+    "process_code": "644311401",
+    "name": "180 M2 LENZE"
+  },
+  {
+    "code": "652338601",
+    "process_code": "652339301",
+    "name": "180 G500 LENZE"
+  },
+  {
+    "code": "643335501",
+    "process_code": "643335401",
+    "name": "200 M2 Lenze"
+  },
+  {
+    "code": "644300401",
+    "process_code": "642401004",
+    "name": "QU 200 FA"
+  },
+  {
+    "code": "643334001",
+    "process_code": "643334101",
+    "name": "QS 200 FA"
+  },
+  {
+    "code": "641312901",
+    "process_code": "641313001",
+    "name": " QS 200 İÇ YATAK KAPAĞI"
+  },
+  {
+    "code": "652319601",
+    "process_code": "652319701",
+    "name": "225 B9Q Lenze"
+  },
+  {
+    "code": "645300301",
+    "process_code": "642401101",
+    "name": "QU 225 FA"
+  },
+  {
+    "code": "644312301",
+    "process_code": "644312401",
+    "name": "225 M2 Lenze"
+  },
+  {
+    "code": "643331501",
+    "process_code": "643331601",
+    "name": "QU 225 FS Atlas Copco"
+  },
+  {
+    "code": "645300201",
+    "process_code": "643300701",
+    "name": "Q2E 250 AS MOTOR KAPAĞI"
+  },
+  {
+    "code": "641313201",
+    "process_code": "641313301",
+    "name": " QS 250 İÇ YATAK KAPAĞI"
+  },
+  {
+    "code": "643303301",
+    "process_code": "643300602",
+    "name": " 250 İÇ YATAK KAPAĞI"
+  },
+  {
+    "code": "643332601",
+    "process_code": "643332701",
+    "name": "QS 250-280 Atlas Copco"
+  },
+  {
+    "code": "643307001",
+    "process_code": "643311302",
+    "name": "MOT.KAPAGI QB100 FS DOKUM PIK SEIPEE"
+  },
+  {
+    "code": "633307201",
+    "process_code": "643311401",
+    "name": "MOT.KAPAGI QB112 FS DOKUM PIK SEIPEE"
+  },
+  {
+    "code": "643405401",
+    "process_code": "643405502",
+    "name": "MOT.KAPAGI QS132 FC DOKUM PIK"
+  },
+  {
+    "code": "643405401",
+    "process_code": "643405503",
+    "name": "MOT.KAPAGI QS132 FC DOKUM PIK"
+  },
+  {
+    "code": "643405401",
+    "process_code": "643405504",
+    "name": "MOT.KAPAGI QS132 FC DOKUM PIK"
+  },
+  {
+    "code": "643304401",
+    "process_code": "643304301",
+    "name": "MOT.KAPAGI QS132 FS DOKUM PIK"
+  },
+  {
+    "code": "643304401",
+    "process_code": "643304302",
+    "name": "MOT.KAPAGI QS132 FS DOKUM PIK"
+  },
+  {
+    "code": "643304401",
+    "process_code": "643304303",
+    "name": "MOT.KAPAGI QS132 FS DOKUM PIK"
+  },
+  {
+    "code": "643304401",
+    "process_code": "643304304",
+    "name": "MOT.KAPAGI QS132 FS DOKUM PIK"
+  },
+  {
+    "code": "652328501",
+    "process_code": "652328602",
+    "name": "MOT.KAPAGI Q3H160 FA DOKUM PIK"
+  },
+  {
+    "code": "644300501",
+    "process_code": "642310003",
+    "name": "MOT.KAPAGI QU180 FA DOKUM PIK"
+  },
+  {
+    "code": "644300501",
+    "process_code": "642310004",
+    "name": "MOT.KAPAGI QU180 FA DOKUM PIK"
+  },
+  {
+    "code": "644300401",
+    "process_code": "642401002",
+    "name": "QU 200 FA MOT.KAP."
+  },
+  {
+    "code": "644300401",
+    "process_code": "642401003",
+    "name": "QU 200 FA MOT.KAP."
+  },
+  {
+    "code": "644300401",
+    "process_code": "642401005",
+    "name": "QU 200 FA MOT.KAP."
+  },
+  {
+    "code": "644300401",
+    "process_code": "642401006",
+    "name": "QU 200 FA MOT.KAP."
+  },
+  {
+    "code": "644300401",
+    "process_code": "642401007",
+    "name": "QU 200 FA MOT.KAP."
+  },
+  {
+    "code": "643334001",
+    "process_code": "643334102",
+    "name": "MOTOR KAP.QS200_FA_DOKUM"
+  },
+  {
+    "code": "643334001",
+    "process_code": "643334103",
+    "name": "MOTOR KAP.QS200_FA_DOKUM"
+  },
+  {
+    "code": "643334001",
+    "process_code": "643334104",
+    "name": "MOTOR KAP.QS200_FA_DOKUM"
+  },
+  {
+    "code": "643334001",
+    "process_code": "643334105",
+    "name": "MOTOR KAP.QS200_FA_DOKUM"
+  },
+  {
+    "code": "645300301",
+    "process_code": "642401102",
+    "name": "MOT.KAPAGI QU225 FA DOKUM PIK"
+  },
+  {
+    "code": "645300301",
+    "process_code": "642401103",
+    "name": "MOT.KAPAGI QU225 FA DOKUM PIK"
+  },
+  {
+    "code": "645300301",
+    "process_code": "642401104",
+    "name": "MOT.KAPAGI QU225 FA DOKUM PIK"
+  },
+  {
+    "code": "645300301",
+    "process_code": "642401105",
+    "name": "MOT.KAPAGI QU225 FA DOKUM PIK"
+  },
+  {
+    "code": "645300301",
+    "process_code": "642401106",
+    "name": "MOT.KAPAGI QU225 FA DOKUM PIK"
+  },
+  {
+    "code": "645300201",
+    "process_code": "643328401",
+    "name": "MOT.KAPAGI QU250 AS DOKUM PIK"
+  },
+  {
+    "code": "645300201",
+    "process_code": "643300702",
+    "name": "MOT.KAPAGI QU250 AS DOKUM PIK"
+  },
+  {
+    "code": "645300101",
+    "process_code": "643300501",
+    "name": "QU 250 FA DOKUM"
+  },
+  {
+    "code": "645300101",
+    "process_code": "643300502",
+    "name": "QU 250 FA DOKUM"
+  },
+  {
+    "code": "645300101",
+    "process_code": "643300503",
+    "name": "QU 250 FA DOKUM"
+  },
+  {
+    "code": "643303301",
+    "process_code": "643300602",
+    "name": " 250 İÇ YATAK KAPAĞI"
+  },
+  {
+    "code": "643303301",
+    "process_code": "643300603",
+    "name": " 250 İÇ YATAK KAPAĞI"
+  },
+  {
+    "code": "641313201",
+    "process_code": "641313901",
+    "name": "QS250 FA RULMAN_IC_KAPAK_DOKUM"
+  },
+  {
+    "code": "643332601",
+    "process_code": "643336401",
+    "name": "QS250_QS280_FS_KAPAK_DOKUM_ATLAS_COPCO"
+  },
+  {
+    "code": "644307801",
+    "process_code": "644307901",
+    "name": "QS280-QS250 KT-KTA Mot.Kap. "
+  },
+  {
+    "code": "643322201",
+    "process_code": "643322301",
+    "name": "Q1E 180 FA "
+  },
+  {
+    "code": "644307601",
+    "process_code": "644307701",
+    "name": "QS280-QS250 FA Mot.Kap."
+  },
+  {
+    "code": "644308601",
+    "process_code": "644308701",
+    "name": "QS280-QS250 FA Mot.Kap.Z Rulman"
+  },
+  {
+    "code": "644308801",
+    "process_code": "644308901",
+    "name": "QS280-QS250 KT-KTA Mot.Kap.Z Rulman"
+  },
+  {
+    "code": "643321501",
+    "process_code": "643321601",
+    "name": "QS 250 - QS 280 T.K.K.Logosuz"
+  },
+  {
+    "code": "645302801",
+    "process_code": "643321602",
+    "name": "QS 250 - QS 280 WAT LOGOLU T.K.K."
+  },
+  {
+    "code": "645304201",
+    "process_code": "643321607",
+    "name": "QS 250 - QS 280 YENİ WILO LOGOLU T.K.K."
+  },
+  {
+    "code": "643321301",
+    "process_code": "643321401",
+    "name": "QS 250 - QS 280 TERMİNAL KUTUSU"
+  },
+  {
+    "code": "644307801",
+    "process_code": "644308001",
+    "name": "QS250_QS280_KTA_KT_KAPAK_DOKUM"
+  },
+  {
+    "code": "644308801",
+    "process_code": "644308902",
+    "name": "QS250_280_KTA_KT_MOT_KAP_Z_RUL_DOKUM"
+  },
+  {
+    "code": "644308801",
+    "process_code": "644309001",
+    "name": "QS250_280_KTA_KT_MOT_KAP_Z_RUL_DOKUM"
+  },
+  {
+    "code": "643321701",
+    "process_code": "643321801",
+    "name": "QS250_QS280_RULMAN_DIS_YATAK_KAPAGI"
+  },
+  {
+    "code": "643321701",
+    "process_code": "643322401",
+    "name": "QS250_QS280_RULMAN_DIS_YATAK_KAPAGI"
+  },
+  {
+    "code": "643321901",
+    "process_code": "643322001",
+    "name": "QS250_QS280_RULMAN_IC_KAPAGI_DOKUM_PIK"
+  },
+  {
+    "code": "644308601",
+    "process_code": "644308702",
+    "name": "QS250_280_FA_MOTOR_KAP_Z_RULMAN_DOKUM"
+  },
+  {
+    "code": "644307601",
+    "process_code": "644307702",
+    "name": "QS250_QS280_FA_KAPAK_DOKUM"
+  },
+  {
+    "code": "643321301",
+    "process_code": "643321402",
+    "name": "QS250-QS280 T.K.DOKUM"
+  },
+  {
+    "code": "643321301",
+    "process_code": "643321403",
+    "name": "QS250-QS280 T.K.DOKUM"
+  },
+  {
+    "code": "643321301",
+    "process_code": "643321404",
+    "name": "QS250-QS280 T.K.DOKUM"
+  },
+  {
+    "code": "643321301",
+    "process_code": "643321405",
+    "name": "QS250-QS280 T.K.DOKUM"
+  },
+  {
+    "code": "643321301",
+    "process_code": "643321406",
+    "name": "QS250-QS280 T.K.DOKUM"
+  },
+  {
+    "code": "643321301",
+    "process_code": "642441001",
+    "name": "QS250-QS280 T.K.DOKUM"
+  },
+  {
+    "code": "645303401",
+    "process_code": "643321605",
+    "name": "T.K.K. GR.(QS250-280) WILO LOGOLU"
+  },
+  {
+    "code": "643346001",
+    "process_code": "643347501",
+    "name": "80 B9Q Lenze Mot.Kap."
+  },
+  {
+    "code": "643346101",
+    "process_code": "643347401",
+    "name": "112 B9Q Lenze Mot.Kap."
+  },
+  {
+    "code": "644311701",
+    "process_code": "644311801",
+    "name": "132 M2 LENZE"
+  },
+  {
+    "code": "644404301",
+    "process_code": "644404401",
+    "name": "132 B9Z LENZE"
+  },
+  {
+    "code": "643334501",
+    "process_code": "643335301",
+    "name": "132 B9Q LENZE"
+  },
+  {
+    "code": "643319801",
+    "process_code": "643319901",
+    "name": "QS 132 FA 6308 Rulman"
+  },
+  {
+    "code": "644311901",
+    "process_code": "644312001",
+    "name": "160 B9Q Lenze"
+  },
+  {
+    "code": "644312201",
+    "process_code": "644312101",
+    "name": "160 M2 Lenze"
+  },
+  {
+    "code": "643319401",
+    "process_code": "643319501",
+    "name": "QS 160 FA 6310 RULMAN"
+  },
+  {
+    "code": "644300701",
+    "process_code": "642400801",
+    "name": "QU 160 FA Kapak"
+  },
+  {
+    "code": "643334201",
+    "process_code": "643334301",
+    "name": "180 B9Q LENZE"
+  },
+  {
+    "code": "644309301",
+    "process_code": "644309401",
+    "name": "QS 180 FA Kapak"
+  },
+  {
+    "code": "643319401",
+    "process_code": "643319502",
+    "name": "MOT KAP.QS160 FA ISL.6310 RULMAN PAYSIZ"
+  },
+  {
+    "code": "643319801",
+    "process_code": "643319902",
+    "name": "MOT KAP.QS132FA ISL.6308 RULMAN (PAYSIZ)"
+  },
+  {
+    "code": "643329501",
+    "process_code": "643329601",
+    "name": "QS 160 IC KAPAK ISLEME"
+  },
+  {
+    "code": "643335801",
+    "process_code": "643335701",
+    "name": "MOTOR_KAPAGI_100_M2_ISLEME_LENZE"
+  },
+  {
+    "code": "643335801",
+    "process_code": "643335702",
+    "name": "MOTOR_KAP_100_M2_ISL_LENZE_SEG.KAN."
+  },
+  {
+    "code": "643335801",
+    "process_code": "643356901",
+    "name": "MOTOR_KAP_Q3H100 KTA_(180 PAKET)"
+  },
+  {
+    "code": "643335901",
+    "process_code": "643336001",
+    "name": "MOTOR_KAPAGI_90_M2_ISLEME_LENZE"
+  },
+  {
+    "code": "643335901",
+    "process_code": "643336002",
+    "name": "MOTOR_KAP_90_M2_ISLEME_LENZE SEG.KAN."
+  },
+  {
+    "code": "644300701",
+    "process_code": "642369801",
+    "name": "MOT.KAPAGI QU160 FS ISLEME ELSTO"
+  },
+  {
+    "code": "644300701",
+    "process_code": "642386501",
+    "name": "MOT.KAP.QSFS160 ISL(FATURASIZ FA)"
+  },
+  {
+    "code": "644300701",
+    "process_code": "642386502",
+    "name": "MOT.KAP.QSFS160 ISL(FATURASIZ FA)"
+  },
+  {
+    "code": "644300701",
+    "process_code": "642400802",
+    "name": "MOT.KAPAGI QU160 FA ISLEME 55.2"
+  },
+  {
+    "code": "644300701",
+    "process_code": "642400803",
+    "name": "MOT.KAPAGI QU160 FA ISLEME SEG.KANALLI"
+  },
+  {
+    "code": "644300701",
+    "process_code": "642400804",
+    "name": "MOT_KAPAGI_QS160_FA_ISLEME_EGA_CAPI_244"
+  },
+  {
+    "code": "644300701",
+    "process_code": "642400805",
+    "name": "MOT_KAPAGI_QU160_FA_ISLEME_MK_BIRAL"
+  },
+  {
+    "code": "644300701",
+    "process_code": "642400806",
+    "name": "MOT_KAPAGI_QU160_FA_ISLEME_PAYSIZ"
+  },
+  {
+    "code": "644300701",
+    "process_code": "642400807",
+    "name": "MOTOR KAPAGI QS160 FA ISLEME"
+  },
+  {
+    "code": "644300701",
+    "process_code": "642400808",
+    "name": "MOT.KAPAGI Q3E160 FA ISLEME SEG.KANALLI"
+  },
+  {
+    "code": "644300701",
+    "process_code": "642400809",
+    "name": "MOTOR KAPAGI QS160 FA ISLEME PAYSIZ"
+  },
+  {
+    "code": "644300701",
+    "process_code": "642400810",
+    "name": "MOTOR KAPAGI QS160 FA ISLEME BUSCH"
+  },
+  {
+    "code": "644300701",
+    "process_code": "642400811",
+    "name": "MOT_KAPAGI_QU160_FA_ISLEME_PAYLI"
+  },
+  {
+    "code": "644300701",
+    "process_code": "643313501",
+    "name": "MOT.KAPAGI QU160 FA ISLEME (GMA)"
+  },
+  {
+    "code": "644300701",
+    "process_code": "643318101",
+    "name": "MOT_KAPAGI_QS160_FA_ISLEME_GMA_CAP_244"
+  },
+  {
+    "code": "644300701",
+    "process_code": "643406201",
+    "name": "MOT.KAPAGI 160 FA ISLEME (PAYSIZ)"
+  },
+  {
+    "code": "644300701",
+    "process_code": "643406202",
+    "name": "MOT.KAPAGI 160 FA ISLEME (PAYSIZ) SAB.Y."
+  },
+  {
+    "code": "644308401",
+    "process_code": "644308501",
+    "name": "MOT KAP.QU200FA ISLEME WILO"
+  },
+  {
+    "code": "644309101",
+    "process_code": "642428701",
+    "name": "MOT.KAP.QU160FA ISL. SEG.KAN.(SFERO DOK)"
+  },
+  {
+    "code": "644309301",
+    "process_code": "644309402",
+    "name": "MOT.KAPAGI QS180 FA ISLEME PAYSIZ"
+  },
+  {
+    "code": "644309301",
+    "process_code": "644309403",
+    "name": "MOT.KAPAGI QS180 FA ISLEME MK BIRAL"
+  },
+  {
+    "code": "644309301",
+    "process_code": "644309404",
+    "name": "MOT.KAPAGI Q3E180 FA ISLEME SEG.KAN."
+  },
+  {
+    "code": "644310001",
+    "process_code": "644310101",
+    "name": "MOT.KAP. QS160 FA HARICI YAGLAMA ISLEME"
+  },
+  {
+    "code": "644311901",
+    "process_code": "644312801",
+    "name": "MOTOR_KAPAGI_160_B9Q_ISLEME_LENZE_C_TYP"
+  }
+]

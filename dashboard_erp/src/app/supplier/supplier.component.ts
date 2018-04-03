@@ -29,6 +29,7 @@ export class SupplierComponent implements OnInit {
       'town': ['Seçiniz', [ Validators.required, ConditionalValidate('Seçiniz') ]],
       'phone': [null, Validators.required],
       'email': [],
+      'password': [null, Validators.required],
       'name': [null, Validators.required],
       'lastname': [null, Validators.required],
       'created_date': [],

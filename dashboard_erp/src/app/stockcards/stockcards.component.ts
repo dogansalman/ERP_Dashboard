@@ -183,6 +183,11 @@ export class StockcardsComponent implements  OnInit {
    */
   addStockRequest(id): void {
      if (!id) { return; }
+
+     const supplier = JSON.parse(this.stockRequestForm.value.supplier.replace(/(\r\n\t|\n|\r\t)/gm, '').trim());
+     this.stockRequestForm.value.supplier = supplier.company;
+     this.stockRequestForm.value.supplier_id = supplier.id;
+
     const stockRequest = Object.assign(this.stockRequestForm.value, { stockcard_id : id, message: this.stockRequestForm.value.notify ? this.requestMessage : null });
 
     const dates = this.stockRequestForm.value.delivery_date;

@@ -1,0 +1,67 @@
+<div class="animated fadeIn">
+
+  <!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+           Siparişler ({{orderList?.length}})
+        </div>
+        <div class="card-body">
+          <table *ngIf="orderList?.length > 0"  class="table table-bordered table-striped table-md">
+            <thead>
+            <tr>
+              <th>Tedarik</th>
+              <th>Adet</th>
+              <th>Teslim Tarihi</th>
+              <th>İrsaliye</th>
+              <th>Durum</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr (click)="navigateDetail($event, item.id)" class="linked-table-row" *ngFor='let item of orderList'>
+              <td>
+                {{item.supplier | capitalizeFirst}}
+              </td>
+              <td>{{item.unit }}</td>
+              <td>{{item.delivery_date | date: 'dd/MM/yyyy'}}</td>
+              <td>{{item.waybill ?  item.waybill : 'İrsaliye Bulunamadı' }}</td>
+              <td>
+                 <span *ngIf="item.state === 0" class="badge badge-warning">
+                  <i tooltip="Bekleniyor" class="icon-clock icons"></i> Bekleniyor
+                </span>
+                <span *ngIf="item.state === 2" class="badge badge-danger">
+                  <i tooltip="İptal" class="icon-speedometer icons"></i> İptal Edildi
+                </span>
+                <span *ngIf="item.state === 1" class="badge badge-success">
+                  <i tooltip="Teslim" class="icon-check icons"></i> Teslim Alındı
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-warning btn-sm"  [routerLink]="['/orders/productions', item.id]" type="button" tooltip="View Quality Docs" container="body" placement="top">
+                  <i class="icon-docs icons"></i>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <p *ngIf="orderList?.length == 0">Sipariş kaydı bulunamadı.</p>
+        </div>
+      </div>
+
+      <div *ngIf="orderList?.length > 0"  class="card card-accent-warning">
+        <div class="card-header">
+          Bilgi !
+        </div>
+        <div class="card-body">
+          Siparişlerin durumu <b>Abkar ERP</b> üzerinden değiştirilmektedir. <br>
+          Kalite ölcüm belgeleri ve raporlarını <button class="btn btn-warning btn-sm" type="button"><i class="icon-docs icons"></i></button> seçeneğini kullanarak kayıt edebilirsiniz.
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>
+

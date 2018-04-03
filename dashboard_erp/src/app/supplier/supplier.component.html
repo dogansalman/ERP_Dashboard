@@ -34,6 +34,7 @@
               </select>
             </div>
 
+
             <div class="form-group">
               <label for="phone">Telefon*</label>
               <input appRegex [regex]="'^[0-9]+$'"  formControlName="phone" id="phone" name="phone" class="form-control" placeholder="Telefon">
@@ -53,6 +54,12 @@
               <label for="email">E-posta</label>
               <input formControlName="email" id="email" name="email" class="form-control" placeholder="E-posta">
             </div>
+
+            <div class="form-group">
+              <label for="town">Şifre*</label>
+              <input formControlName="password"  type="password" name="password" class="form-control" id="password">
+            </div>
+
             <div class="card-text">* doldurulması zorunlu alanlar.</div>
           </div>
           <div class="card-footer">

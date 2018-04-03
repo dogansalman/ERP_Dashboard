@@ -66,6 +66,7 @@ export class RequistionsComponent implements  OnInit {
       'stockcard_id': [],
       'supplier': [],
       'delivery_date': [],
+      'supplier_id': []
   })
   }
 

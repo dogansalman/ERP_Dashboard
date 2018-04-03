@@ -176,7 +176,7 @@
         <div class="controls">
           <select [attr.disabled]="supplierdrp.length === 1 ? '' : null"  formControlName="supplier" #supplierdrp name="supplier" appSuppliers (suppliers)="suppliers = $event" class="form-control" id="_supplier">
             <option value="Seçiniz">Seçiniz</option>
-            <option *ngFor="let d of suppliers; let i = index" value="{{d.company}}"> {{d.company}} </option>
+            <option *ngFor="let d of suppliers; let i = index" value="{{d | json}}"> {{d.company}} </option>
           </select>
         </div>
       </div>

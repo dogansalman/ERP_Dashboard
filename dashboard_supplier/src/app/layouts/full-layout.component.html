@@ -1,0 +1,67 @@
+<header class="app-header navbar">
+  <button class="navbar-toggler d-lg-none" type="button" appMobileSidebarToggler>&#9776;</button>
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler d-md-down-none" type="button" appSidebarToggler>&#9776;</button>
+
+  <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+      <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
+        <span class="d-md-down-none"><i class="icon-user icons"></i> Hesabım</span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+        <a class="dropdown-item" href="/auth/logout"><i class="fa fa-lock"></i> Çıkış</a>
+        <a (click)="changePassModal()" class="dropdown-item"><i class="fa fa-lock"></i> Şifre Güncelle</a>
+      </div>
+    </li>
+
+  </ul>
+</header>
+
+<div class="app-body">
+  <div class="sidebar">
+    <nav class="sidebar-nav">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"> Abkar <span class="badge badge-info">Tedarik</span></a>
+        </li>
+        <li class="divider"></li>
+        <li class="nav-title">
+          Company Name
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/orders']"><i class="icon-basket icons"></i> Siparişlerim</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/company']"><i class="icon-briefcase icons"></i> Hesabım</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"><i class="fa fa-envelope-o"></i> İletişim</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"><i class="icon-lock-open icons"></i> Çıkış</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main content -->
+  <main class="main">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+      <app-breadcrumbs></app-breadcrumbs>
+      <!-- Breadcrumb Menu-->
+
+    </ol>
+
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div><!-- /.conainer-fluid -->
+  </main>
+
+</div>
+
+<footer class="app-footer">
+  <a href="http://www.abkar.com.tr">Abkar</a> &copy; 2017 Abkar LTD - Tedarik Takip
+</footer>
+
+
