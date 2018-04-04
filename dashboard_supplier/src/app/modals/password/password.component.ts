@@ -32,7 +32,10 @@ export class PasswordComponent  implements OnInit {
   });
  }
   onSubmit(): void {
-      this.api.put('customer/company/password', this.changePasswordForm.value).subscribe(() => this.toastr.success('Your password has been changed'))
+      this.api.put('supplier/company/password', this.changePasswordForm.value).subscribe(() => {
+        this.toastr.success('Şifreniz güncellendi.');
+        this.close();
+      })
   }
 
   ngOnInit(): void {

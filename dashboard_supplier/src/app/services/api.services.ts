@@ -1,8 +1,9 @@
-import {Injectable } from '@angular/core';
-import {Http, Response, RequestOptions, Headers, ResponseContentType} from '@angular/http';
-import {Observable} from 'rxjs/Rx';
-import {ToastrService} from 'ngx-toastr';
-import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
+import { Injectable } from '@angular/core';
+import { Http, Response, RequestOptions, Headers, ResponseContentType } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { ToastrService } from 'ngx-toastr';
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
+import { Router } from '@angular/router';
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -19,7 +20,7 @@ export class ApiServices {
   public host = 'http://192.168.1.222:8080/';
   public apiUrl = this.host + 'api/';
 
-  constructor(private http: Http, private toastr: ToastrService, private slimLoadingBarService: SlimLoadingBarService) {
+  constructor(private http: Http, private toastr: ToastrService, private slimLoadingBarService: SlimLoadingBarService, private route: Router) {
 
 
   }
@@ -48,6 +49,10 @@ export class ApiServices {
     return this.http.get(this.apiUrl + url, this.header() )
       .map((res: Response) =>  <any[]> res.json())
       .catch((error: any) => {
+        if (error.status === 401) {
+          setTimeout(() => { this.toastr.error('Oturumunuz zaman aşımına uğradı tekrar giriş yapın.', ''); }, 100)
+          this.route.navigate(['/auth/logout']);
+        }
         setTimeout(() => { this.toastr.error('Lütfen tekrar deneyin', 'Kayıt bulunamadı!'); }, 100)
         return Observable.throw(error.json().error || 'Server error');
       })._finally(() => this.slimLoadingBarService.complete())
@@ -57,7 +62,11 @@ export class ApiServices {
     return this.http.post(this.apiUrl + url, data, this.header() )
       .map((res: Response) =>  <any[]> res.json())
       .catch((error: any) => {
-        setTimeout(() => this.toastr.error('Process Unsuccessful Please try again.', 'Process Unsuccessful!'));
+        if (error.status === 401) {
+          setTimeout(() => { this.toastr.error('Oturumunuz zaman aşımına uğradı tekrar giriş yapın.', ''); }, 100)
+          this.route.navigate(['/auth/logout']);
+        }
+        setTimeout(() => this.toastr.error('İşlem başarısız.', 'Tekrar deneyin!'));
         return Observable.throw(error || 'Server error')
 
       })
@@ -68,7 +77,11 @@ export class ApiServices {
     return this.http.put(this.apiUrl + url, data, this.header() )
       .map((res: Response) => <any[]> res.json())
       .catch((error: any) => {
-        setTimeout(() => this.toastr.error('Process Unsuccessful Please try again.', 'Process Unsuccessful!'));
+        if (error.status === 401) {
+          setTimeout(() => { this.toastr.error('Oturumunuz zaman aşımına uğradı tekrar giriş yapın.', ''); }, 100)
+          this.route.navigate(['/auth/logout']);
+        }
+        setTimeout(() => this.toastr.error('İşlem başarısız.', 'Tekrar deneyin!'));
         return Observable.throw(error || 'Server error');
       })
       ._finally(() => this.slimLoadingBarService.complete())
@@ -77,6 +90,10 @@ export class ApiServices {
     this.slimLoadingBarService.start(() => {  });
     return this.http.delete(this.apiUrl + url, this.header() )
       .catch((error: any) => {
+        if (error.status === 401) {
+          setTimeout(() => { this.toastr.error('Oturumunuz zaman aşımına uğradı tekrar giriş yapın.', ''); }, 100)
+          this.route.navigate(['/auth/logout']);
+        }
         setTimeout(() => this.toastr.error('Kayıt silinemedi lütfen tekrar deneyin.', 'İşlem başarısız'));
         return Observable.throw(error || 'Server error')
       })
@@ -87,7 +104,10 @@ export class ApiServices {
     return this.http.post(this.apiUrl + url, formData, this.header({'Content-Type': 'multipart/form-data'}))
       .map(res => res.json())
       .catch((error: any) => {
-      console.log(error);
+        if (error.status === 401) {
+          setTimeout(() => { this.toastr.error('Oturumunuz zaman aşımına uğradı tekrar giriş yapın.', ''); }, 100)
+          this.route.navigate(['/auth/logout']);
+        }
         setTimeout(() => { this.toastr.error('Yükleme başarısız. Tekrar deneyin', 'Yükleme başarısız!'); }, 100)
         return Observable.throw(error.json().error || 'Server error');
       })._finally(() => this.slimLoadingBarService.complete())

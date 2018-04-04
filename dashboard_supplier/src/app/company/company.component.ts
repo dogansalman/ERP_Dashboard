@@ -19,12 +19,12 @@ export class CompanyComponent  implements OnInit {
   /*
   Customer detail
    */
-  public customer: any;
+  public supplier: any;
 
   /*
   Customer form group
    */
-  public customerForm: FormGroup;
+  public supplierForm: FormGroup;
 
 
 
@@ -32,13 +32,15 @@ export class CompanyComponent  implements OnInit {
     /*
     Customer form validation
      */
-    this.customerForm = this.formBuilder.group({
+    this.supplierForm = this.formBuilder.group({
       'company': [null, Validators.required],
       'adress': ['', Validators.required],
       'email': [null, Validators.email],
       'phone': [null, Validators.required],
       'name': [null, Validators.required],
       'lastname': [null, Validators.required],
+      'city': [null, Validators.required],
+      'town': [null, Validators.required],
       'created_date': [],
       'updated_date': [],
     })
@@ -49,8 +51,8 @@ export class CompanyComponent  implements OnInit {
     /*
     Get customer
      */
-    this.customer = this.api.get('supplier/company').subscribe(c => this.customerForm.patchValue(c));
-    console.log(this.customerForm.value);
+    this.supplier = this.api.get('supplier/company').subscribe(c => this.supplierForm.patchValue(c));
+
   }
 
 
@@ -58,8 +60,10 @@ export class CompanyComponent  implements OnInit {
 Submit form add or update
  */
   onSubmit() {
-    this.api.put('customer/company', this.customerForm.value).subscribe(() => {
-      setTimeout(() => this.toastr.success('Update Successfully.'));
+    console.log(this.supplierForm.value);
+
+    this.api.put('supplier/company', this.supplierForm.value).subscribe(() => {
+      setTimeout(() => this.toastr.success('Güncelleme başarılı.'));
     });
   }
 
