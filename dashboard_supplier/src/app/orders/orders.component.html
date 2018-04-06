@@ -11,6 +11,9 @@
           <table *ngIf="orderList?.length > 0"  class="table table-bordered table-striped table-md">
             <thead>
             <tr>
+              <th>Görsel</th>
+              <th>Stok Adı</th>
+              <th>Stok Kodu</th>
               <th>Tedarik</th>
               <th>Adet</th>
               <th>Teslim Tarihi</th>
@@ -20,7 +23,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr (click)="navigateDetail($event, item.id)" class="linked-table-row" *ngFor='let item of orderList'>
+            <tr class="linked-table-row" *ngFor='let item of orderList'>
+              <td>
+                <img style="height: 70px" onerror="this.src='../../assets/img/no-img.png'"  src="http://192.168.1.222:8080/files/{{item.stockcard_id}}/photo/photo.jpg">
+              </td>
+              <td>
+                {{item.stockcard | capitalizeFirst}}
+              </td>
+              <td>
+                {{item.stockcard_code}}
+              </td>
               <td>
                 {{item.supplier | capitalizeFirst}}
               </td>
@@ -39,7 +51,7 @@
                 </span>
               </td>
               <td>
-                <button class="btn btn-warning btn-sm"  [routerLink]="['/orders/productions', item.id]" type="button" tooltip="View Quality Docs" container="body" placement="top">
+                <button class="btn btn-warning btn-sm"  type="button" tooltip="View Quality Docs" container="body" placement="top">
                   <i class="icon-docs icons"></i>
                 </button>
               </td>

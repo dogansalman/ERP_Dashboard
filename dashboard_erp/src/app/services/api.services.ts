@@ -84,9 +84,10 @@ export class ApiServices {
       ._finally(() => this.slimLoadingBarService.complete())
   }
   upload(url, formData): Observable<any> {
+    console.log(formData);
+
     this.slimLoadingBarService.start(() => {  });
-    return this.http.post(this.apiUrl + url, formData, this.header({'Content-Type': 'multipart/form-data'}))
-      .map(res => res.json())
+    return this.http.post(this.apiUrl + url, formData, this.header())
       .catch((error: any) => {
       console.log(error);
         setTimeout(() => { this.toastr.error('Yükleme başarısız. Tekrar deneyin', 'Yükleme başarısız!'); }, 100)

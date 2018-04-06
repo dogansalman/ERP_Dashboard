@@ -112,6 +112,7 @@ export class StockcardComponent implements OnInit {
       const file: File = fileList[0];
       const formData: FormData = new FormData();
       formData.append('uploadFile', file, file.name);
+      console.log(file, file.name);
       this.api.upload('files/photo' + '/' + id, formData).subscribe(() => {
         setTimeout(() => this.toastr.success('Dosya yüklendi.'));
         this.photoUrl = this.api.host + '/files/' + this.id + '/photo/photo.jpg?r=' + Math.random();
