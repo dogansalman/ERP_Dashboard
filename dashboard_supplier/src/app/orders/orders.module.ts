@@ -16,6 +16,9 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { PrintModule } from '../shared/directive/print/print.module';
 import { RangeModule } from '../shared/directive/range/range.module';
 import { ExcelServices } from '../services/excel.services';
+import { DocsComponent } from './docs.component';
+import { AddDocsModule } from '../modals/add-docs/add-docs.module';
+import { AddDocsComponent } from '../modals/add-docs/add-docs.component';
 
 @NgModule({
   imports: [
@@ -32,15 +35,17 @@ import { ExcelServices } from '../services/excel.services';
     TabsModule,
     RegexModule,
     PrintModule,
-    RangeModule
+    RangeModule,
+    AddDocsModule
   ],
-  declarations: [ OrdersComponent],
+  declarations: [ OrdersComponent, DocsComponent],
   providers: [
     ApiServices,
     BsDatepickerActions,
     TooltipConfig,
     BsModalRef,
     ExcelServices
-  ]
+  ],
+  entryComponents: [AddDocsComponent]
 })
 export class OrdersModule { }

@@ -3,7 +3,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { PasswordComponent } from "../modals/password/password.component";
+import { PasswordComponent } from '../modals/password/password.component';
 import { Subject } from 'rxjs/Subject';
 
 @Component({
@@ -33,9 +33,7 @@ export class FullLayoutComponent implements OnInit, OnChanges {
 
   public changePassModal() {
     this.modalRef = this.modalService.show(PasswordComponent, {keyboard: false, ignoreBackdropClick: true, class: 'gray modal-md'});
-
     document.dispatchEvent(new CustomEvent('modal.password', {detail: this.modalRef}));
-
   }
 
   constructor(private modalService: BsModalService, private fb: FormBuilder, private toastr: ToastrService) {
@@ -47,9 +45,6 @@ export class FullLayoutComponent implements OnInit, OnChanges {
     $event.preventDefault();
     $event.stopPropagation();
     this.status.isopen = !this.status.isopen;
-  }
-  onVoted(agreed: boolean) {
-    console.log('asd');
   }
 
   ngOnChanges(): void {}

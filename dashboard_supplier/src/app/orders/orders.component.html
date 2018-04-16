@@ -51,7 +51,7 @@
                 </span>
               </td>
               <td>
-                <button class="btn btn-warning btn-sm"  type="button" tooltip="View Quality Docs" container="body" placement="top">
+                <button (click)="this.router.navigateByUrl('orders/docs/' + item.id + '/' + this.regxStockCard(item.stockcard) + '/' + item.stockcard_id);" class="btn btn-warning btn-sm"  type="button" tooltip="Dokümanlar ve Kalite Belgeleri" container="body" placement="top">
                   <i class="icon-docs icons"></i>
                 </button>
               </td>

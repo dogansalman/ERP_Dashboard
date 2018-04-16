@@ -17,7 +17,7 @@ export class AuthServices implements OnInit {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json'
       });
-    public authUrl = 'http://192.168.1.222:8080/auth';
+    public authUrl = 'http://localhost:8080/auth';
 
       ngOnInit(): void {
         console.log('fire');

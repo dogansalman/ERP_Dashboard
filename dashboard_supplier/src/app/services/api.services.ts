@@ -13,11 +13,10 @@ import {subscribeOn} from "rxjs/operator/subscribeOn";
 @Injectable()
 export class ApiServices {
 
-
   private customHeader = new Headers({
     'Content-Type': 'application/json'
   });
-  public host = 'http://192.168.1.222:8080/';
+  public host = 'http://localhost:8080/';
   public apiUrl = this.host + 'api/';
 
   constructor(private http: Http, private toastr: ToastrService, private slimLoadingBarService: SlimLoadingBarService, private route: Router) {
@@ -101,7 +100,7 @@ export class ApiServices {
   }
   upload(url, formData): Observable<any> {
     this.slimLoadingBarService.start(() => {  });
-    return this.http.post(this.apiUrl + url, formData, this.header({'Content-Type': 'multipart/form-data'}))
+    return this.http.post(this.apiUrl + url, formData, this.header())
       .map(res => res.json())
       .catch((error: any) => {
         if (error.status === 401) {
@@ -113,5 +112,6 @@ export class ApiServices {
       })._finally(() => this.slimLoadingBarService.complete())
   }
 }
+
 
 

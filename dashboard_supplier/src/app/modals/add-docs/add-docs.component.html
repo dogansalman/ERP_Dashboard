@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">  <h2> Doküman Ekle</h2></h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="docsForms" (ngSubmit)="onSubmit()" class="form-horizontal">
+    <div class="col-xs-12card-body">
+      <div class="form-group">
+        <label  for="date">Tarih*</label>
+        <span style="display:block; font-size:11px; margin-bottom: 5px;">Seçili tarih yükelenecek dokümanı barındıran klasörün adını temsil eder.</span>
+        <input class="form-control" formControlName="date" id="date" placeholder="Dosya tarihini belirtin." bsDatepicker [bsConfig]="bsConfig"  />
+      </div>
+      <div class="form-group">
+        <label for="filename">Dosya adı*</label>
+        <span style="display:block; font-size:11px; margin-bottom: 5px;">Varsa notunuzu kayıt edebilirsiniz.</span>
+        <input id="filename" formControlName="filename" name="filename" class="form-control" placeholder="Dosya adı" />
+      </div>
+      <div class="form-group">
+        <span style="display:block; font-size:11px; margin-bottom: 5px;">Yanlızca .pdf, .doc, .docx, .gif, .jpg, .jpeg, .png, .rft, .rar, .zip formatındaki dosyaları yükleyebilirsiniz.</span>
+        <input #uploader type="file" (change)="fileChange($event, id)" placeholder="Upload file" accept=".jpg,.jpeg,.gif,.png,.pdf,.doc,.docx,.rft,.rar,.zip">
+      </div>
+      <div class="form-group">
+        <label for="note">Not</label>
+        <span style="display:block; font-size:11px; margin-bottom: 5px;">Varsa notunuzu kayıt edebilirsiniz.</span>
+        <textarea id="note" formControlName="note" name="note" class="form-control" placeholder="Notunuz" rows="3" cols="3" ></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" [disabled]="!docsForms.valid || this.formData.get('uploadFile') == null" class="btn btn-sm btn-primary">Gönder</button>
+    </div>
+  </form>
+</div>
