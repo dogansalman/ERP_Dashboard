@@ -3,6 +3,7 @@ import { ActivatedRoute  } from '@angular/router';
 import { AddDocsComponent } from '../modals/add-docs/add-docs.component';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { ApiServices } from '../services/api.services';
 
 @Component({
   templateUrl: './docs.component.html'
@@ -13,10 +14,13 @@ export class DocsComponent implements OnInit {
   public title: any = '';
   public stockcard_id: any = null;
   public modalRef: BsModalRef;
+  public documents = null;
+  public documents_static = null;
+
 
   @Output() name: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private route: ActivatedRoute, private modalService: BsModalService) {
+  constructor(private route: ActivatedRoute, private modalService: BsModalService, private api: ApiServices) {
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.id = params['id'];
@@ -33,5 +37,13 @@ export class DocsComponent implements OnInit {
     this.name.emit('chicken');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.api.get('supplier/requisitions/docs/' + this.stockcard_id).subscribe(data => {this.documents = data; this.documents_static = data;});
+  }
+  getFiles(file: any): void {
+    this.api.get('supplier/requisitions/files/' + this.stockcard_id + '/' + file.folder).subscribe(data => this.documents = data);
+  }
+  Download(item): void {
+    window.open( 'http://localhost:8080/documents/' + this.stockcard_id + '/' + item.mainFolder + '/' + item.filename);
+  }
 }

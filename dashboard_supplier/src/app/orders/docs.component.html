@@ -15,7 +15,26 @@
     <div class="card">
       <div class="card-body">
         <p>Sipariş ile ilgili tüm doküman kayıtlarına aşağıda ulaşabilirsiniz.</p>
-        <button  (click)="openModal();" class="btn btn-success btn-sm"><i class="icon-docs icons"></i> Yeni Doküman Ekle</button>
+        <button (click)="openModal();" class="btn btn-success btn-sm"><i class="icon-docs icons"></i> Yeni Doküman Ekle</button>
+
+        <ol class="breadcrumb">
+          <!-- Breadcrumb Menu-->
+        </ol>
+
+        <div class="card" style="margin-top:30px;">
+          <div class="card-body">
+            <p>Sipariş için toplam <b>{{documents?.length}}</b>  adet kayıt bulunmaktadır.</p>
+            <p>Dökümanları incelemek için klasörü seçmelisiniz.</p>
+
+            <div style="display: inline-block; margin-right: 5px; margin-bottom: 5px; position: relative;" *ngFor="let item of documents; let i = index; let last = last;">
+              <span *ngIf="!item.filename"  style="position: absolute;" class="badge badge-success">{{item.files}} dosya</span>
+              <button (click)="!item.filename ? getFiles(item): Download(item)" class="btn btn-lg btn-outline-warning" type="button">
+                <i class="{{!item.filename ? 'icon-folder icons' : 'icon-cloud-download icons'}}"></i>
+                {{item.folder || item.filename}} </button>
+              <button  *ngIf="last && item.filename" (click)="documents = documents_static" class="btn btn-lg btn-danger" type="button"><i class="icon-arrow-left icons"></i>&nbsp; Geri</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
    </div>

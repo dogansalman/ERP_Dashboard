@@ -15,7 +15,14 @@
       <div class="form-group">
         <label for="filename">Dosya adı*</label>
         <span style="display:block; font-size:11px; margin-bottom: 5px;">Varsa notunuzu kayıt edebilirsiniz.</span>
-        <input id="filename" formControlName="filename" name="filename" class="form-control" placeholder="Dosya adı" />
+        <select formControlName="filename" name="filename" id="filename" class="form-control" >
+          <option [selected]="true" value="Numune Kontrol Raporu">Numune Kontrol Raporu</option>
+          <option value="Giriş Kalite Kontrol">Giriş Kalite Kontrol</option>
+          <option value="Malzeme Kalite Belgesi">Malzeme Kalite Belgesi</option>
+          <option value="Kimyasal Bileşenler">Kimyasal Bileşenler</option>
+          <option value="Çıkış Kalite Kontrol">Çıkış Kalite Kontrol</option>
+          <option value="Kontrol Planı">Kontrol Planı</option>
+        </select>
       </div>
       <div class="form-group">
         <span style="display:block; font-size:11px; margin-bottom: 5px;">Yanlızca .pdf, .doc, .docx, .gif, .jpg, .jpeg, .png, .rft, .rar, .zip formatındaki dosyaları yükleyebilirsiniz.</span>
