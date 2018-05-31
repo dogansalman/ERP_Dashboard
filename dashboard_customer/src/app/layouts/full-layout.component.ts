@@ -3,7 +3,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { PasswordComponent } from "../modals/password/password.component";
+import { PasswordComponent } from '../modals/password/password.component';
 import { Subject } from 'rxjs/Subject';
 
 @Component({

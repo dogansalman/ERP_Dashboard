@@ -2,11 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6150554-829d-43f2-a876-0d418d60eb1d" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/dashboard_customer/src/app/modals/live/live.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard_customer/src/app/modals/live/live.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard_customer/src/app/modals/live/live.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard_customer/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_customer/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard_customer/src/app/layouts/full-layout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_customer/src/app/layouts/full-layout.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard_customer/src/app/layouts/full-layout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_customer/src/app/layouts/full-layout.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard_customer/src/app/orders/orders.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_customer/src/app/orders/orders.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard_customer/src/app/orders/orders.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_customer/src/app/orders/orders.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard_customer/src/app/services/api.services.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_customer/src/app/services/api.services.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard_erp/src/app/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_erp/src/app/dashboard/dashboard.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard_erp/src/app/orders/orders.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_erp/src/app/orders/orders.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard_supplier/src/app/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_supplier/src/app/dashboard/dashboard.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard_supplier/src/app/layouts/full-layout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_supplier/src/app/layouts/full-layout.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard_supplier/src/app/modals/add-docs/add-docs.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_supplier/src/app/modals/add-docs/add-docs.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard_supplier/src/app/orders/docs.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_supplier/src/app/orders/docs.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dashboard_supplier/src/app/orders/docs.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_supplier/src/app/orders/docs.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard_supplier/src/app/orders/orders.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_supplier/src/app/orders/orders.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard_supplier/src/app/services/api.services.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_supplier/src/app/services/api.services.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard_supplier/src/app/services/auth.services.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_supplier/src/app/services/auth.services.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard_supplier/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard_supplier/src/environments/environment.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,38 +35,78 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="docs.component.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/orders/docs.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#70#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="docs.component.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/orders/docs.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="31" column="42" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="42" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#1782#1788#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="orders.component.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/orders/orders.component.html">
+        <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/orders/orders.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="25" column="14" lean-forward="true" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+            <state relative-caret-position="1071">
+              <caret line="63" column="38" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="live.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/modals/live/live.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="55" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="55" />
+              <folding>
+                <element signature="n#style#0;n#iframe#0;n#div#1;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="live.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/modals/live/live.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="33" column="54" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="orders.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/orders/orders.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1275">
+              <caret line="86" column="54" selection-start-line="86" selection-start-column="54" selection-end-line="86" selection-end-column="54" />
+              <folding>
+                <element signature="e#0#61#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="full-layout.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/layouts/full-layout.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#87#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="full-layout.component.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/layouts/full-layout.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/app.module.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="697">
+              <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#58#0" expanded="true" />
+                <element signature="e#879#949#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -60,50 +115,54 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tari</find>
-      <find>BsDatepickerConfig</find>
-      <find>tarih</find>
-      <find>bs</find>
-      <find>requis</find>
-      <find>bsConfig</find>
-      <find>file</find>
-      <find>fileChange</find>
-      <find>:8080</find>
-      <find>50791</find>
-      <find>ultipart/form-data</find>
-      <find>:5</find>
-      <find>8080</find>
-      <find>date</find>
-      <find>moment</find>
-      <find>req</find>
-      <find>import * as moment from 'moment';</find>
-      <find>stockRequestForm</find>
-      <find>delivery_date</find>
-      <find>reset</find>
-      <find>changePassModal</find>
-      <find>Çık</find>
-      <find>href=&quot;/auth/logout&quot;</find>
-      <find>Çıkış</find>
-      <find>&lt;select</find>
-      <find>ngFor</find>
       <find>badge</find>
       <find>breadcrumb</find>
       <find>lenght</find>
       <find>Download</find>
+      <find>openModal</find>
+      <find>localhost</find>
+      <find>iletişim</find>
+      <find>Hesabım</find>
+      <find>192.168.1.22</find>
+      <find>localhost:</find>
+      <find>192.168.1.222</find>
+      <find>192.168.1</find>
+      <find>192.168.</find>
+      <find>192.</find>
+      <find>bootstrap</find>
+      <find>routerConfig</find>
+      <find>AppRoutingModule</find>
+      <find>onSubmit</find>
+      <find>no-photo</find>
+      <find>localhost:8080</find>
+      <find>stok kodu</find>
+      <find>api.abkar.com.tr</find>
+      <find>password</find>
+      <find>PasswordComponent</find>
+      <find>openMo</find>
+      <find>paswor</find>
+      <find>modal.password</find>
+      <find>close.password</find>
+      <find>live sup</find>
+      <find>logout</find>
     </findStrings>
     <replaceStrings>
       <replace>Process Unsuccessful!</replace>
       <replace>Process Unsuccessful Please try again.</replace>
+      <replace>localhost:</replace>
+      <replace>localhost:8080</replace>
+      <replace>192.168.1.222:8080</replace>
     </replaceStrings>
     <dirStrings>
-      <dir>C:\inetpub\wwwroot\abkar_dashboard\dashboard_customer\src</dir>
-      <dir>C:\inetpub\wwwroot\abkar_dashboard\dashboard_customer\src\app</dir>
       <dir>C:\inetpub\wwwroot\abkar_dashboard\dashboard_supplier\src\app</dir>
-      <dir>C:\inetpub\wwwroot\abkar_dashboard\dashboard_supplier\src</dir>
       <dir>C:\inetpub\wwwroot\abkar_dashboard\dashboard_supplier</dir>
       <dir>C:\inetpub\wwwroot\abkar_dashboard\dashboard_erp\src\app</dir>
-      <dir>C:\inetpub\wwwroot\abkar_dashboard\dashboard_erp</dir>
+      <dir>C:\inetpub\wwwroot\abkar_dashboard\dashboard_supplier\src</dir>
+      <dir>C:\inetpub\wwwroot\abkar_dashboard\dashboard_customer</dir>
       <dir>C:\inetpub\wwwroot\abkar_dashboard\dashboard_erp\src</dir>
+      <dir>C:\inetpub\wwwroot\abkar_dashboard\dashboard_erp</dir>
+      <dir>C:\inetpub\wwwroot\abkar_dashboard\dashboard_customer\src\app</dir>
+      <dir>C:\inetpub\wwwroot\abkar_dashboard\dashboard_customer\src</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -112,19 +171,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dashboard_customer/src/app/orders/orders.component.html" />
-        <option value="$PROJECT_DIR$/dashboard_customer/src/app/company/company.component.html" />
-        <option value="$PROJECT_DIR$/dashboard_customer/src/app/company/company.component.ts" />
-        <option value="$PROJECT_DIR$/dashboard_customer/src/app/orders/orders.component.ts" />
-        <option value="$PROJECT_DIR$/dashboard_erp/src/app/layouts/full-layout.component.html" />
-        <option value="$PROJECT_DIR$/dashboard_erp/src/app/services/auth.services.ts" />
-        <option value="$PROJECT_DIR$/dashboard_customer/src/app/services/auth.services.ts" />
-        <option value="$PROJECT_DIR$/dashboard_customer/src/app/app.module.ts" />
-        <option value="$PROJECT_DIR$/dashboard_customer/src/app/layouts/full-layout.component.ts" />
-        <option value="$PROJECT_DIR$/dashboard_erp/src/app/orders/orders.module.ts" />
-        <option value="$PROJECT_DIR$/dashboard_erp/src/app/orders/orders-routing.module.ts" />
-        <option value="$PROJECT_DIR$/dashboard_erp/src/app/orders/orders.component.html" />
-        <option value="$PROJECT_DIR$/dashboard_erp/src/app/orders/quality.component.ts" />
         <option value="$PROJECT_DIR$/dashboard_erp/src/app/orders/quality.component.html" />
         <option value="$PROJECT_DIR$/dashboard_erp/src/app/supplier/supplier.component.ts" />
         <option value="$PROJECT_DIR$/dashboard_erp/src/app/supplier/supplier.component.html" />
@@ -142,27 +188,40 @@
         <option value="$PROJECT_DIR$/dashboard_supplier/src/app/modals/password/password.module.ts" />
         <option value="$PROJECT_DIR$/dashboard_supplier/src/app/modals/password/password.component.html" />
         <option value="$PROJECT_DIR$/dashboard_customer/src/app/modals/password/password.component.html" />
-        <option value="$PROJECT_DIR$/dashboard_customer/src/app/services/api.services.ts" />
         <option value="$PROJECT_DIR$/dashboard_supplier/src/app/modals/password/password.component.ts" />
         <option value="$PROJECT_DIR$/dashboard_customer/src/app/modals/password/password.component.ts" />
-        <option value="$PROJECT_DIR$/dashboard_customer/src/app/layouts/full-layout.component.html" />
-        <option value="$PROJECT_DIR$/dashboard_supplier/src/app/dashboard/dashboard.component.html" />
         <option value="$PROJECT_DIR$/dashboard_erp/src/app/stockcards/stockcard.component.ts" />
-        <option value="$PROJECT_DIR$/dashboard_erp/src/app/stockcards/stockcards.component.html" />
-        <option value="$PROJECT_DIR$/dashboard_erp/src/app/services/api.services.ts" />
         <option value="$PROJECT_DIR$/dashboard_supplier/src/app/orders/orders-routing.module.ts" />
-        <option value="$PROJECT_DIR$/dashboard_supplier/src/app/orders/orders.component.html" />
         <option value="$PROJECT_DIR$/dashboard_supplier/src/app/orders/orders.component.ts" />
         <option value="$PROJECT_DIR$/dashboard_supplier/src/app/layouts/full-layout.component.ts" />
         <option value="$PROJECT_DIR$/dashboard_supplier/src/app/orders/orders.module.ts" />
         <option value="$PROJECT_DIR$/dashboard_supplier/src/app/modals/add-docs/add-docs.module.ts" />
-        <option value="$PROJECT_DIR$/dashboard_supplier/src/app/services/api.services.ts" />
-        <option value="$PROJECT_DIR$/dashboard_supplier/src/app/services/auth.services.ts" />
         <option value="$PROJECT_DIR$/dashboard_supplier/src/app/modals/add-docs/add-docs.component.ts" />
-        <option value="$PROJECT_DIR$/dashboard_supplier/src/app/layouts/full-layout.component.html" />
         <option value="$PROJECT_DIR$/dashboard_supplier/src/app/modals/add-docs/add-docs.component.html" />
+        <option value="$PROJECT_DIR$/dashboard_supplier/src/app/orders/orders.component.html" />
         <option value="$PROJECT_DIR$/dashboard_supplier/src/app/orders/docs.component.html" />
+        <option value="$PROJECT_DIR$/dashboard_supplier/src/app/services/auth.services.ts" />
+        <option value="$PROJECT_DIR$/dashboard_supplier/src/app/services/api.services.ts" />
         <option value="$PROJECT_DIR$/dashboard_supplier/src/app/orders/docs.component.ts" />
+        <option value="$PROJECT_DIR$/dashboard_supplier/src/environments/environment.ts" />
+        <option value="$PROJECT_DIR$/dashboard_supplier/src/app/layouts/full-layout.component.html" />
+        <option value="$PROJECT_DIR$/dashboard_supplier/src/app/dashboard/dashboard.component.html" />
+        <option value="$PROJECT_DIR$/dashboard_erp/src/app/services/api.services.ts" />
+        <option value="$PROJECT_DIR$/dashboard_erp/src/app/stockcards/stockcards.component.html" />
+        <option value="$PROJECT_DIR$/dashboard_erp/src/app/services/auth.services.ts" />
+        <option value="$PROJECT_DIR$/dashboard_erp/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/dashboard_erp/src/environments/environment.ts" />
+        <option value="$PROJECT_DIR$/dashboard_erp/src/app/orders/orders.component.ts" />
+        <option value="$PROJECT_DIR$/dashboard_erp/src/app/dashboard/dashboard.component.html" />
+        <option value="$PROJECT_DIR$/dashboard_customer/src/app/services/api.services.ts" />
+        <option value="$PROJECT_DIR$/dashboard_customer/src/app/modals/live/live.module.ts" />
+        <option value="$PROJECT_DIR$/dashboard_customer/src/app/layouts/full-layout.component.ts" />
+        <option value="$PROJECT_DIR$/dashboard_customer/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/dashboard_customer/src/app/orders/orders.component.ts" />
+        <option value="$PROJECT_DIR$/dashboard_customer/src/app/modals/live/live.component.ts" />
+        <option value="$PROJECT_DIR$/dashboard_customer/src/app/modals/live/live.component.html" />
+        <option value="$PROJECT_DIR$/dashboard_customer/src/app/orders/orders.component.html" />
+        <option value="$PROJECT_DIR$/dashboard_customer/src/app/layouts/full-layout.component.html" />
       </list>
     </option>
   </component>
@@ -178,10 +237,10 @@
     <handled-path value="$PROJECT_DIR$/dashboard_supplier/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="278" />
+    <option name="y" value="-9" />
+    <option name="width" value="1918" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -191,7 +250,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -202,52 +260,34 @@
             <path>
               <item name="abkar_dashboard" type="b2602c69:ProjectViewProjectNode" />
               <item name="abkar_dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard_erp" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard_customer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="abkar_dashboard" type="b2602c69:ProjectViewProjectNode" />
               <item name="abkar_dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard_erp" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard_customer" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="abkar_dashboard" type="b2602c69:ProjectViewProjectNode" />
               <item name="abkar_dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard_supplier" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="abkar_dashboard" type="b2602c69:ProjectViewProjectNode" />
-              <item name="abkar_dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard_supplier" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="abkar_dashboard" type="b2602c69:ProjectViewProjectNode" />
-              <item name="abkar_dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard_supplier" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard_customer" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="abkar_dashboard" type="b2602c69:ProjectViewProjectNode" />
               <item name="abkar_dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard_supplier" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard_customer" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="layouts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="abkar_dashboard" type="b2602c69:ProjectViewProjectNode" />
-              <item name="abkar_dashboard" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard_supplier" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="orders" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -265,6 +305,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\inetpub\wwwroot\abkar_dashboard\dashboard_customer\src\app\modals" />
       <recent name="C:\inetpub\wwwroot\abkar_dashboard\dashboard_supplier\src\app\modals" />
       <recent name="C:\inetpub\wwwroot\abkar_dashboard\dashboard_supplier\src\app\shared\directive" />
       <recent name="C:\inetpub\wwwroot\abkar_dashboard\dashboard_customer\src\app" />
@@ -342,7 +383,18 @@
       <workItem from="1523885000488" duration="690000" />
       <workItem from="1523887580842" duration="1752000" />
       <workItem from="1523942732455" duration="42000" />
-      <workItem from="1523959890474" duration="8171000" />
+      <workItem from="1523959890474" duration="8211000" />
+      <workItem from="1524033639793" duration="1235000" />
+      <workItem from="1524558705528" duration="6988000" />
+      <workItem from="1524807760613" duration="23000" />
+      <workItem from="1525940815679" duration="1228000" />
+      <workItem from="1526021636100" duration="25000" />
+      <workItem from="1526894656480" duration="1289000" />
+      <workItem from="1526967520416" duration="6805000" />
+      <workItem from="1527057008727" duration="4377000" />
+      <workItem from="1527147473906" duration="23000" />
+      <workItem from="1527494354302" duration="10088000" />
+      <workItem from="1527753944757" duration="473000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1518179517128</created>
@@ -386,11 +438,18 @@
       <option name="project" value="LOCAL" />
       <updated>1523020082410</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update">
+      <created>1523973843972</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1523973843973</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145365000" />
+    <option name="totallyTimeSpent" value="177959000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -406,21 +465,21 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TypeScript" order="11" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.17281349" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.17281349" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.32934782" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.5021075" side_tool="true" weight="0.32934782" />
-      <window_info anchor="bottom" id="Find" order="5" />
       <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.32934782" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.15279241" />
-      <window_info anchor="bottom" id="Terminal" order="2" sideWeight="0.49789253" visible="true" weight="0.3845316" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="2" sideWeight="0.49789253" visible="true" weight="0.34422657" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info id="npm" order="0" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="5" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="4" />
@@ -439,136 +498,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/dashboard_erp/src/app/orders/orders.component.ts</url>
-          <line>178</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="7" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/orders/docs.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/app.routing.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/auth/login.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="35" column="18" lean-forward="true" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/auth/login.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="26" column="19" lean-forward="true" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/dashboard/dashboard.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="40" column="72" lean-forward="true" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/dashboard/dashboard.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/company/company-routing.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/auth/logout.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_erp/src/app/customers/customers.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_erp/src/app/customers/customer.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="44" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/company/company.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="57" column="14" lean-forward="true" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/company/company.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/company/company.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="64" column="25" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/modals/password/password.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/services/api.services.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="70" column="81" lean-forward="true" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/modals/password/password.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/modals/password/password.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -576,31 +509,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/layouts/full-layout.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="88" selection-start-line="12" selection-start-column="88" selection-end-line="12" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/dashboard/dashboard.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="14" column="100" selection-start-line="14" selection-start-column="100" selection-end-line="14" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashboard_erp/src/app/orders/orders-routing.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_erp/src/app/services/api.services.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -667,13 +579,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_erp/src/app/stockcards/stockcards.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="169" column="128" selection-start-line="169" selection-start-column="120" selection-end-line="169" selection-end-column="128" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/modals/add-docs/add-docs.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -723,30 +628,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/services/auth.services.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="19" column="43" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/services/api.services.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/modals/add-docs/add-docs.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
           <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-          <folding>
-            <element signature="e#0#103#0" expanded="true" />
-            <element signature="n#!!block;n#ngOnInit#0;n#AddDocsComponent#0" />
-            <element signature="n#!!block;n#fileChange#0;n#AddDocsComponent#0" />
-            <element signature="n#!!block;n#close#0;n#AddDocsComponent#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -768,11 +653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="313">
           <caret line="35" column="10" lean-forward="true" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#2;n#div#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -780,20 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/orders/orders.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="25" column="14" lean-forward="true" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/layouts/full-layout.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="53" column="9" lean-forward="true" selection-start-line="49" selection-start-column="3" selection-end-line="53" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -806,24 +672,213 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/orders/docs.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="31" column="42" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#1782#1788#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/orders/orders.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="27" column="120" selection-start-line="27" selection-start-column="120" selection-end-line="27" selection-end-column="120" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/orders/docs.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+        <state relative-caret-position="424">
+          <caret line="46" column="41" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/services/auth.services.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/services/api.services.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/environments/environment.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/layouts/full-layout.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_supplier/src/app/dashboard/dashboard.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_erp/src/app/services/auth.services.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_erp/src/app/stockcards/stockcards.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="42" column="128" selection-start-line="42" selection-start-column="128" selection-end-line="42" selection-end-column="128" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_erp/src/app/services/api.services.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_erp/src/app/app.routing.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_erp/src/environments/environment.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_erp/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="32" column="20" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_erp/src/app/orders/orders.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="290" column="67" selection-start-line="290" selection-start-column="59" selection-end-line="290" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/services/api.services.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_erp/src/app/dashboard/dashboard.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="187" column="34" selection-start-line="187" selection-start-column="34" selection-end-line="187" selection-end-column="34" />
           <folding>
-            <element signature="e#0#70#0" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_erp/src/app/orders/orders.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="210" selection-start-line="210" selection-end-line="210" />
+          <folding>
+            <element signature="e#0#61#0" expanded="true" />
+            <element signature="n#!!block;n#operationTotalMilSeconds#0;n#OrdersComponent#0" />
+            <element signature="n#!!block;n#operationTime#0;n#OrdersComponent#0" />
+            <element signature="n#!!block;n#operationTotalTime#0;n#OrdersComponent#0" />
+            <element signature="n#!!block;n#operationWorkTime#0;n#OrdersComponent#0" />
+            <element signature="n#!!block;n#operationTimeValidate#0;n#OrdersComponent#0" />
+            <element signature="n#!!block;n#addOperationControl#0;n#OrdersComponent#0" />
+            <element signature="n#!!block;n#openModal#0;n#OrdersComponent#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/dashboard/dashboard.module.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/modals/live/live.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+            <element signature="e#879#949#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/orders/orders.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="86" column="54" selection-start-line="86" selection-start-column="54" selection-end-line="86" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/modals/live/live.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="33" column="54" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/modals/live/live.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="55" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="55" />
+          <folding>
+            <element signature="n#style#0;n#iframe#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/orders/orders.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="63" column="38" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/layouts/full-layout.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#87#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard_customer/src/app/layouts/full-layout.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
         </state>
       </provider>
     </entry>

@@ -8,6 +8,8 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import * as moment from 'moment';
+import {PasswordComponent} from '../modals/password/password.component';
+import {LiveComponent} from '../modals/live/live.component';
 
 @Component({
   templateUrl: 'orders.component.html'
@@ -78,6 +80,11 @@ import * as moment from 'moment';
       // this.productionForm.reset();
     });
 
+  }
+
+  public openLiveSupport() {
+    this.modalRef = this.modalService.show(LiveComponent, {keyboard: false, ignoreBackdropClick: true, class: 'gray modal-md'});
+    document.dispatchEvent(new CustomEvent('modal.chat', {detail: this.modalRef}));
   }
 
   /*

@@ -44,6 +44,6 @@ export class DocsComponent implements OnInit {
     this.api.get('supplier/requisitions/files/' + this.stockcard_id + '/' + file.folder).subscribe(data => this.documents = data);
   }
   Download(item): void {
-    window.open( 'http://localhost:8080/documents/' + this.stockcard_id + '/' + item.mainFolder + '/' + item.filename);
+    window.open( 'http://api.abkar.com.tr/documents/' + this.stockcard_id + '/' + item.mainFolder + '/' + item.filename);
   }
 }

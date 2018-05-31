@@ -21,8 +21,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { TooltipModule } from 'ngx-bootstrap';
 import { ModalModule, BsModalRef} from 'ngx-bootstrap';
 
-import { PasswordModule} from "./modals/password/password.module";
-import { PasswordComponent } from "./modals/password/password.component";
+import { PasswordModule} from './modals/password/password.module';
+import { PasswordComponent } from './modals/password/password.component';
+import { LiveModule } from './modals/live/live.module';
+import { LiveComponent } from './modals/live/live.component';
 
 @NgModule({
   imports: [
@@ -43,7 +45,8 @@ import { PasswordComponent } from "./modals/password/password.component";
     }),
     TooltipModule.forRoot(),
     SlimLoadingBarModule.forRoot(),
-    PasswordModule
+    PasswordModule,
+    LiveModule
 
   ],
   declarations: [
@@ -57,7 +60,8 @@ import { PasswordComponent } from "./modals/password/password.component";
 
   ],
   entryComponents: [
-    PasswordComponent
+    PasswordComponent,
+    LiveComponent
   ],
   providers: [
     {

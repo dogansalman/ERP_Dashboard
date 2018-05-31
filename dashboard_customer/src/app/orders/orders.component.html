@@ -58,8 +58,8 @@
                 <button class="btn btn-primary btn-sm"  [routerLink]="['/orders/productions', item.order.id]" type="button" tooltip="View Production Movements" container="body" placement="top">
                   <i class="icon-graph icons"></i>
                 </button>
-                <button (click)="openModal(production, item)" class="btn btn-success btn-sm" type="button" tooltip="Live Support" container="body" placement="top">
-                  <i class="icon-cd   bubbles icons"></i>
+                <button (click)="openLiveSupport()" class="btn btn-success btn-sm" type="button" tooltip="Live Support" container="body" placement="top">
+                  <i class="fa fa-comments-o"></i>
                 </button>
                 <button class="btn btn-warning btn-sm"  [routerLink]="['/orders/productions', item.order.id]" type="button" tooltip="View Quality Docs" container="body" placement="top">
                   <i class="icon-docs icons"></i>
@@ -97,7 +97,8 @@
     </button>
   </div>
   <div class="modal-body">
-    Order Files
+
+
   </div>
 </ng-template>
 <!--/  Order Files -->
